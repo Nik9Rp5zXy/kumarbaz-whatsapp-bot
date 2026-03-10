@@ -451,7 +451,7 @@ const getPortfolio = (userId) => {
 
 // ─── Tournament Functions ───
 const createTournament = (chatId, createdBy, bet) => {
-  const result = db.prepare('INSERT INTO tournaments (chat_id, created_by, bet, status, created_at) VALUES (?, ?, ?, "waiting", ?)')
+  const result = db.prepare("INSERT INTO tournaments (chat_id, created_by, bet, status, created_at) VALUES (?, ?, ?, 'waiting', ?)")
     .run(chatId, createdBy, bet, Date.now());
   const tid = result.lastInsertRowid;
   db.prepare('INSERT INTO tournament_participants (tournament_id, user_id) VALUES (?, ?)').run(tid, createdBy);
@@ -463,7 +463,7 @@ const joinTournament = (tournamentId, userId) => {
 };
 
 const getTournament = (chatId) => {
-  return db.prepare('SELECT * FROM tournaments WHERE chat_id = ? AND status IN ("waiting", "active") ORDER BY created_at DESC LIMIT 1').get(chatId);
+  return db.prepare("SELECT * FROM tournaments WHERE chat_id = ? AND status IN ('waiting', 'active') ORDER BY created_at DESC LIMIT 1").get(chatId);
 };
 
 const getTournamentById = (id) => {

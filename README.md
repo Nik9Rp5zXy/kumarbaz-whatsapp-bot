@@ -35,24 +35,26 @@ src/
 
 ## ✨ Özellikler
 
-### 💰 Ekonomi & Kumar
-*   **`!gunluk`**: 24 saatte bir 500$ ödül.
-*   **`!bakiye`**: Cüzdan durumu ve unvan.
-*   **`!transfer`**: Arkadaşına para gönderme.
-*   **`!yazitura`**, **`!zar`**, **`!slot`**: Klasik kumar oyunları.
-
-### ⚔️ Savaş & Rekabet
-*   **`!duello`**: Bahisli kapışma (kazanan parayı alır).
-*   **`!soygun`**: Riskli hırsızlık (%40 şans, yakalanırsan ceza).
-*   **`!wanted`**: Kullanıcıları aranan ilan etme (soyan bonus alır).
-
-### 👥 Sosyal & Grup İçi
-*   **`!rulet`**: Gruplu rulet, 30sn katılım süresi, kazanan hepsini alır.
+### 💸 Ekonomi & Şans Oyunları
+*   **Kim Milyoner Olmak İster (!milyoner):** 5 soru, her biri için ⏳ **30 Saniye** kazanma süresi.
+    *   **Jokerler:** Oyun başına 1 kullanım hakkıyla `!joker 50` ve `!joker cift`. (Süre biterse jokerler yanar).
+    *   **Güvence Sistemi:** Elenirsen kazancın %25'i hesabına eklenir. `!cekil` ile tüm parayı alıp kaçabilirsin.
+*   **Rulet (!rulet):** Klasik Avrupa ruleti (Kırmızı, Siyah, Yeşil, Tek, Çift veya 0-36 arası sayı).
+*   **Slot Makinesi (!slot):** Emojilerle slot oyunu. 🎰
+*   **Yazı Tura (!yazitura):** %50 şansla yatırdığın miktarı ikiye katla.
+*   **Blackjack (!bj):** Gerçek 52 kart deste simülasyonu. 🃏
+*   **Banka (!banka):** Paranı bankaya yatır ve saat başı %5 faiz kazan. 🏦
+*   **Günlük Ödül (!gunluk):** Her 24 saatte bir bedava para. 🎁
 *   **`!boss`**: Grupça boss kesme, hasara göre ödül paylaşımı.
 *   **`!aa` (Adam Asmaca)**: DM'den kelime seçmeli, grupça tahmin etmeli oyun.
 *   **`!evlilik` / `!bosanma`**: Sanal evlilik sistemi (eş bonusu).
 *   **`!profil`**: Tüm istatistiklerin (W/L oranı, net kazanç) olduğu kart.
 *   **`!unvan`**: Bakiyeye göre değişen unvanlar (Çöpçü -> Sultan).
+
+### ⚔️ Savaş & Rekabet
+*   **`!duello`**: Bahisli kapışma (kazanan parayı alır).
+*   **`!soygun`**: Riskli hırsızlık (%40 şans, yakalanırsan ceza).
+*   **`!wanted`**: Kullanıcıları aranan ilan etme (soyan bonus alır).
 
 ### 🛡️ Güvenlik & Sistem
 *   **WhatsApp Admin Paneli**: Artık tüm yönetim WhatsApp üzerinden! `Owner`, `Admin` ve `Mod` rolleri.

@@ -118,10 +118,23 @@ client.on('message', async msg => {
 
 client.initialize();
 
-process.on('uncaughtException', (err) => {
-    console.error('UNCAUGHT EXCEPTION:', err);
-});
+const fs = require('fs');
+const { execSync } = require('child_process');
 
-process.on('unhandledRejection', (reason, promise) => {
-    console.error('UNHANDLED REJECTION:', reason);
-});
+const handleCrash = (err, type) => {
+    console.error(`\n🚨 [${type}] Kapatılıyor...`, err);
+    try {
+        const logMsg = `\n--- CRASH: ${new Date().toLocaleString('tr-TR')} ---\n${err?.stack || err}\n`;
+        fs.appendFileSync('crash_log.txt', logMsg);
+        console.log('Log dosyasına yazıldı. GitHub\'a pushlanıyor...');
+        
+        execSync('git add crash_log.txt && git commit -m "🚨 Otomatik Log: Bot Çöktü" && git push origin main', { stdio: 'ignore' });
+        console.log('GitHub push başarılı.');
+    } catch (pushErr) {
+        console.error('GitHub push hatası (Zaten güncel olabilir veya git hatası):', pushErr.message);
+    }
+    process.exit(1);
+};
+
+process.on('uncaughtException', (err) => handleCrash(err, 'Uncaught Exception'));
+process.on('unhandledRejection', (reason) => handleCrash(reason, 'Unhandled Rejection'));

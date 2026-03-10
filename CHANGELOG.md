@@ -2,6 +2,17 @@
 
 Tüm önemli değişiklikler bu dosyada belgelenecektir.
 
+## [1.7.0] - 2024-03-10
+### 🚀 Yenilikler
+- **Kim Milyoner Olmak İster Güncellemesi:**
+  - ⏳ **Süre Sınırı:** Her soru için katı **30 Saniye** mola süresi. Süre dolarsa anında elenme.
+  - 🃏 **Jokerler Eklendi:** `!joker 50` (İki yanlış şıkkı siler) ve `!joker cift` (Çift cevap hakkı verir).
+- **Global Crash Logger (Hata Yakalama):** Bot fatal error verip çöktüğünde (`uncaughtException`), logu anında `crash_log.txt`'ye kaydedip **otomatik olarak GitHub'a pushlar.**
+
+### 🐛 Hata Düzeltmeleri
+- **Turnuva Hatası (`!turnuva`):** SQLite'ta "waiting" stringinin çift tırnakla çevrilmesinden kaynaklanan `no such column: "waiting"` çökme hatası düzeltildi.
+
+
 ## [1.6.0] - 2024-03-10
 ### 📦 Çevre Birimleri ve Paket Çözümleri (Termux & Android)
 - **Chromium Bağımlılıkları:** Termux üzerinde `x11-repo` sisteme eklendi ve `chromium` paketi başarıyla kuruldu.

@@ -3,7 +3,7 @@ const { updateBalance, recordWin, recordLoss,
 const { sleep, centeredBox, troll, getRandom } = require('./utils');
 
 // ─── Active Games ───
-const activeGames = {}; // userId -> { questionIndex, score, currentQ, msg, lives, streak }
+const activeGames = {}; // userId -> { questionIndex, score, currentQ, msg, timer, jokers: { fifty: true, double: true }, doubleActive: false }
 
 // Prize ladder per question index (0-4)
 const PRIZES = [250, 500, 1000, 2500, 5000];
@@ -27,18 +27,48 @@ function buildQuestionMsg(game, showTimer = true) {
         ...ladder, ' ',
         `❓ Soru ${qNum}/5:`,
         q.question, ' ',
-        `A) ${q.option_a}`,
-        `B) ${q.option_b}`,
-        `C) ${q.option_c}`,
-        `D) ${q.option_d}`,
+        q.option_a ? `A) ${q.option_a}` : 'A) ░░░░░░',
+        q.option_b ? `B) ${q.option_b}` : 'B) ░░░░░░',
+        q.option_c ? `C) ${q.option_c}` : 'C) ░░░░░░',
+        q.option_d ? `D) ${q.option_d}` : 'D) ░░░░░░',
         ' ',
-        `💰 Mevcut kazanç: ${game.score} $`,
-        `🎯 Doğru cevap: +${prize} $`,
+        `💰 Kazanç: ${game.score} $ | Hedef: +${prize} $`,
         ' ',
-        '!cevap A/B/C/D  |  !cekilme (parayı al kaç)',
+        `🃏 Jokerler: ${game.jokers.fifty ? '5️⃣0️⃣' : '❌'} | ${game.jokers.double ? '✌️' : '❌'}`,
+        ' ',
+        '!cevap A/B/C/D  |  !cekilme (parayı al)',
+        '!joker 50       |  !joker cift'
     ];
+    
+    if (showTimer) lines.push('⏳ SÜRE: 30 Saniye');
+    if (game.doubleActive) lines.push('✌️ ÇİFT CEVAP HAKKIN AKTİF!');
 
     return centeredBox(lines, '💎 KİM MİLYONER OLMAK İSTER 💎');
+}
+
+async function startTimer(userId, msg) {
+    const game = activeGames[userId];
+    if (!game) return;
+    
+    if (game.timer) clearTimeout(game.timer);
+    
+    game.timer = setTimeout(async () => {
+        const g = activeGames[userId];
+        if (!g) return;
+        
+        // Timeout! Lose everything.
+        try {
+            await g.msg.edit(centeredBox([
+                '⏳ SÜRE DOLDU!', ' ',
+                '30 saniye içinde cevap vermediğin için elendin.',
+                'Tüm kazancın ve jokerlerin çöpe gitti 💸',
+                ' ', getRandom(troll.lose)
+            ], '💎 MİLYONER - KAYBETTİN 💎'));
+        } catch (e) {
+            msg.reply('⏳ Süre doldu! Elendin ve tüm kazancını kaybettin.');
+        }
+        delete activeGames[userId];
+    }, 30000); // 30 seconds limit
 }
 
 async function nextQuestion(userId, game, msg) {
@@ -46,6 +76,7 @@ async function nextQuestion(userId, game, msg) {
         // Won all 5!
         updateBalance(userId, game.score);
         recordWin(userId, game.score);
+        if (game.timer) clearTimeout(game.timer);
         delete activeGames[userId];
 
         try {
@@ -60,10 +91,9 @@ async function nextQuestion(userId, game, msg) {
     }
 
     const difficulty = DIFFICULTY_MAP[game.questionIndex];
-    const question = getUnseenQuestion(userId, difficulty);
+    let question = getUnseenQuestion(userId, difficulty);
 
     if (!question) {
-        // No unseen questions at this difficulty
         const seen = getSeenCount(userId);
         const total = getTotalQuestionCount();
 
@@ -71,6 +101,7 @@ async function nextQuestion(userId, game, msg) {
             updateBalance(userId, game.score);
             recordWin(userId, game.score);
         }
+        if (game.timer) clearTimeout(game.timer);
         delete activeGames[userId];
 
         const lines = [
@@ -78,7 +109,7 @@ async function nextQuestion(userId, game, msg) {
             ' ',
             `Bu zorlukta çözmediğin soru kalmadı.`,
             `Toplam çözülen: ${seen}/${total}`, ' ',
-            game.score > 0 ? `Kazancın: ${game.score} $` : '',
+            game.score > 0 ? `Kazancın: ${game.score} $ hesabına eklendi.` : '',
             'Yeni soru eklenmesini bekle!',
         ].filter(l => l !== '');
 
@@ -87,16 +118,20 @@ async function nextQuestion(userId, game, msg) {
         return;
     }
 
-    game.currentQ = question;
+    // Clone the question because we might modify options for 50-50 joker
+    game.currentQ = { ...question };
+    game.doubleActive = false; // reset double joker buff if active from previous question
     markQuestionSeen(userId, question.id);
 
     const questionText = buildQuestionMsg(game);
     try {
         await game.msg.edit(questionText);
     } catch (e) {
-        // If message was deleted, send a new one
         game.msg = await msg.reply(questionText);
     }
+    
+    // Start 30s timer
+    await startTimer(userId, msg);
 }
 
 // ─── Handler ───
@@ -124,12 +159,16 @@ const handler = async (command, args, msg, userId, user, resolve) => {
                 score: 0,
                 currentQ: null,
                 msg: null,
+                timer: null,
+                doubleActive: false,
+                jokers: { fifty: true, double: true }
             };
             activeGames[userId] = game;
 
             const introLines = [
                 '💎 KİM MİLYONER OLMAK İSTER 💎', ' ',
-                '5 soruyu doğru bil, ödülleri topla!', ' ',
+                '5 soruyu doğru bil, ödülleri topla!',
+                'Her soru için ⏳ 30 Saniye süren olacak.', ' ',
                 '1. Soru → 250 $',
                 '2. Soru → 500 $',
                 '3. Soru → 1.000 $',
@@ -138,19 +177,53 @@ const handler = async (command, args, msg, userId, user, resolve) => {
                 `📊 Çözülen: ${seen}/${total}`,
             ];
 
-            const introMsg = await msg.reply(centeredBox([...introLines, ' ', '⏳ BAŞLIYOR: 10'], 'MİLYONER'));
+            const introMsg = await msg.reply(centeredBox([...introLines, ' ', 'Masa hazırlanıyor...'], 'MİLYONER'));
             game.msg = introMsg;
 
-            // Countdown 10s
-            for (let i = 9; i > 0; i--) {
-                await sleep(1000);
-                try {
-                    await introMsg.edit(centeredBox([...introLines, ' ', `⏳ BAŞLIYOR: ${i}`], 'MİLYONER'));
-                } catch (e) { break; }
-            }
-            await sleep(1000);
-
+            await sleep(2000);
             await nextQuestion(userId, game, msg);
+            return;
+        }
+        
+        case 'joker': {
+            const game = activeGames[userId];
+            if (!game) return msg.reply('⚠️ Aktif bir oyunun yok. !milyoner ile başla.');
+            if (!game.currentQ) return msg.reply('⚠️ Henüz soru yüklenmedi.');
+            
+            const jokerType = args[0]?.toLowerCase();
+            if (jokerType !== '50' && jokerType !== 'cift') return msg.reply('⚠️ Kullanım: !joker 50 veya !joker cift');
+            
+            if (jokerType === '50') {
+                if (!game.jokers.fifty) return msg.reply('⚠️ %50 jokerini zaten kullandın!');
+                game.jokers.fifty = false;
+                
+                const q = game.currentQ;
+                const correct = q.correct.toLowerCase();
+                const wrongOptions = ['a', 'b', 'c', 'd'].filter(opt => opt !== correct);
+                
+                // Keep 1 random wrong option, nullify the other 2
+                const keepWrongInt = Math.floor(Math.random() * wrongOptions.length);
+                const keepWrong = wrongOptions[keepWrongInt];
+                
+                wrongOptions.forEach(opt => {
+                    if (opt !== keepWrong) game.currentQ[`option_${opt}`] = null; // nullifies the text
+                });
+                
+                const questionText = buildQuestionMsg(game, true);
+                try { await game.msg.edit(questionText); } catch (e) { } // Ignore if fails
+                return msg.reply('💡 %50 Jokeri kullanıldı! 2 yanlış şık silindi.');
+            }
+            
+            if (jokerType === 'cift') {
+                if (!game.jokers.double) return msg.reply('⚠️ Çift Cevap jokerini zaten kullandın!');
+                if (game.doubleActive) return msg.reply('⚠️ Bu soruda zaten çift cevap hakkın aktif!');
+                game.jokers.double = false;
+                game.doubleActive = true;
+                
+                const questionText = buildQuestionMsg(game, true);
+                try { await game.msg.edit(questionText); } catch (e) { }
+                return msg.reply('✌️ Çift Cevap Jokeri kullanıldı! İlk yanlış cevabında elenmeyeceksin.');
+            }
             return;
         }
 
@@ -163,14 +236,18 @@ const handler = async (command, args, msg, userId, user, resolve) => {
             if (args.length === 0) return msg.reply('⚠️ Kullanım: !cevap A/B/C/D');
             const answer = args[0].toUpperCase();
             if (!['A', 'B', 'C', 'D'].includes(answer)) return msg.reply('⚠️ A, B, C veya D yaz.');
+            
+            const optKey = `option_${answer.toLowerCase()}`;
+            if (game.currentQ[optKey] === null) return msg.reply('⚠️ Bu şık elendi. Başka bir şık seç!');
 
             const correct = game.currentQ.correct;
             const prize = PRIZES[game.questionIndex];
             const correctText = game.currentQ[`option_${correct.toLowerCase()}`];
-            const playerText = game.currentQ[`option_${answer.toLowerCase()}`];
+            const playerText = game.currentQ[optKey];
 
             if (answer === correct) {
                 // Correct!
+                if (game.timer) clearTimeout(game.timer);
                 game.score += prize;
                 game.questionIndex++;
 
@@ -189,6 +266,21 @@ const handler = async (command, args, msg, userId, user, resolve) => {
                 return;
             } else {
                 // Wrong
+                if (game.doubleActive) {
+                    game.doubleActive = false; // used up the extra life
+                    game.currentQ[optKey] = null; // eliminate that wrong answer visually
+                    const lines = [
+                        '❌ YANLIŞ CEVAP!', ' ',
+                        `Senin cevabın (${answer}) değildi.`,
+                        'Dert etme, ✌️ ÇİFT CEVAP jokerin seni kurtardı!',
+                        'Hâlâ süren işliyor, Kalan şıklardan yeni bir !cevap ver!'
+                    ];
+                    try { await game.msg.edit(buildQuestionMsg(game, true)); } catch (e) {}
+                    return msg.reply(centeredBox(lines, 'JOKER KULLANILDI'));
+                }
+                
+                // Real Wrong -> Game Over
+                if (game.timer) clearTimeout(game.timer);
                 const safeAmount = game.score > 0 ? Math.floor(game.score * 0.25) : 0;
                 if (safeAmount > 0) {
                     updateBalance(userId, safeAmount);
@@ -217,6 +309,7 @@ const handler = async (command, args, msg, userId, user, resolve) => {
         case 'quit': {
             const game = activeGames[userId];
             if (!game) return msg.reply('⚠️ Aktif oyunun yok.');
+            if (game.timer) clearTimeout(game.timer);
 
             if (game.score > 0) {
                 updateBalance(userId, game.score);
