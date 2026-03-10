@@ -29,6 +29,9 @@ if (isTermux) {
 
 const client = new Client(clientOptions);
 
+const BOT_START_TIME = Date.now();
+const activeUsers = new Map(); // userId -> { chat, time }
+
 // ─── In-memory cache for ID resolution ───
 const idCache = new Map();
 
@@ -87,6 +90,19 @@ client.on('message', async msg => {
 
     const userId = await resolveUserId(msg);
 
+    // Track active user for graceful shutdown
+    activeUsers.set(userId, { chat: msg.from, time: Date.now() });
+
+    // Check if message was sent while bot was offline
+    if (msg.body.startsWith('!')) {
+        const msgTimeMs = msg.timestamp * 1000;
+        if (BOT_START_TIME - msgTimeMs > 15000) {
+            try {
+                await msg.reply('✅ Bot güncellendi ve yeniden aktif! İşleminiz yapılıyor...');
+            } catch (e) {}
+        }
+    }
+
     try {
         let user = getUser(userId);
         if (!user) user = addUser(userId);
@@ -114,6 +130,28 @@ client.on('message', async msg => {
     } catch (cmdError) {
         console.error('Command Execution Error:', cmdError);
     }
+});
+
+// Graceful Shutdown on Ctrl+C (Update alert)
+process.on('SIGINT', async () => {
+    console.log('\n🔄 Kapanma sinyali alındı. Aktif kullanıcılara haber veriliyor...');
+    const now = Date.now();
+    const notified = new Set();
+    
+    // Broadcast warning to anyone who used a command in the last 60 seconds
+    for (const [uId, data] of activeUsers.entries()) {
+        if (now - data.time < 60000 && !notified.has(data.chat)) {
+            try {
+                await client.sendMessage(data.chat, '🔄 Bot şu anda güncelleme/bakım için yeniden başlatılıyor. Lütfen birkaç dakika bekleyin...');
+                notified.add(data.chat);
+            } catch (e) {}
+        }
+    }
+    
+    console.log('Mesajlar kuyruğa alındı. 2 saniye içinde kapatılıyor...');
+    setTimeout(() => {
+        process.exit(0);
+    }, 2000);
 });
 
 client.initialize();
