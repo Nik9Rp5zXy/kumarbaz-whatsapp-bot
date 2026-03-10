@@ -490,6 +490,55 @@ const deleteTournament = (id) => {
   db.prepare('DELETE FROM tournaments WHERE id = ?').run(id);
 };
 
+// ─── Admin Roles Table ───
+db.exec(`
+  CREATE TABLE IF NOT EXISTS admins (
+    user_id TEXT PRIMARY KEY,
+    role TEXT NOT NULL DEFAULT 'mod',
+    added_by TEXT,
+    added_at INTEGER NOT NULL
+  )
+`);
+
+// Seed owner (hardcoded, cannot be removed via commands)
+const OWNER_ID = '905510395152@c.us';
+const existingOwner = db.prepare('SELECT * FROM admins WHERE user_id = ?').get(OWNER_ID);
+if (!existingOwner) {
+  db.prepare('INSERT OR REPLACE INTO admins (user_id, role, added_by, added_at) VALUES (?, ?, ?, ?)').run(OWNER_ID, 'owner', 'system', Date.now());
+  console.log('[DB] Owner seed edildi:', OWNER_ID);
+}
+
+// ─── Admin Role Functions ───
+const getAdmin = (userId) => db.prepare('SELECT * FROM admins WHERE user_id = ?').get(userId);
+
+const addAdmin = (userId, role, addedBy) => {
+  db.prepare('INSERT OR REPLACE INTO admins (user_id, role, added_by, added_at) VALUES (?, ?, ?, ?)').run(userId, role, addedBy, Date.now());
+};
+
+const removeAdmin = (userId) => {
+  if (userId === OWNER_ID) return false; // Owner cannot be removed
+  db.prepare('DELETE FROM admins WHERE user_id = ?').run(userId);
+  return true;
+};
+
+const getAllAdmins = () => db.prepare('SELECT * FROM admins ORDER BY role ASC, added_at ASC').all();
+
+/**
+ * Check if user has at least the given role level
+ * Hierarchy: owner > admin > mod
+ */
+const hasRole = (userId, minRole) => {
+  const admin = getAdmin(userId);
+  if (!admin) return false;
+  const hierarchy = { 'owner': 3, 'admin': 2, 'mod': 1 };
+  return (hierarchy[admin.role] || 0) >= (hierarchy[minRole] || 0);
+};
+
+const isOwner = (userId) => {
+  const admin = getAdmin(userId);
+  return admin && admin.role === 'owner';
+};
+
 module.exports = {
   db, getUser, addUser, updateBalance, setDaily, getTopUsers, getTopActiveUsers, getAllUsers,
   incrementMsgCount, recordWin, recordLoss,
@@ -505,5 +554,8 @@ module.exports = {
   // Stocks
   getStocks, getStock, updateStockPrices, buyStock, sellStock, getPortfolio,
   // Tournaments
-  createTournament, joinTournament, getTournament, getTournamentById, getParticipants, updateTournament, deleteTournament
+  createTournament, joinTournament, getTournament, getTournamentById, getParticipants, updateTournament, deleteTournament,
+  // Admin Roles
+  OWNER_ID, getAdmin, addAdmin, removeAdmin, getAllAdmins, hasRole, isOwner
 };
+

@@ -55,9 +55,11 @@ src/
 *   **`!unvan`**: Bakiyeye göre değişen unvanlar (Çöpçü -> Sultan).
 
 ### 🛡️ Güvenlik & Sistem
+*   **WhatsApp Admin Paneli**: Artık tüm yönetim WhatsApp üzerinden! `Owner`, `Admin` ve `Mod` rolleri.
+    *   `!admin_ata`, `!bakiye_ayarla`, `!istatistik`, `!ban`, `!spamlog` gibi komutlarla tam kontrol.
 *   **Spam Koruması**: Hızlı komut kullanımında uyarı -> soft ban -> hard ban (+para cezası).
 *   **ID Linking**: Farklı cihaz ID'lerini (`@lid`) ve numara ID'lerini (`@c.us`) otomatik eşleştirir.
-*   **Admin Paneli**: `http://localhost:3000` adresinden kullanıcı yönetimi, loglar ve istatistikler.
+*   **Oto-Güncelleme (Termux)**: Tek komutla (`bash update.sh`) botu güncelleyebilirsiniz.
 
 ---
 

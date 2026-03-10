@@ -2,7 +2,6 @@ const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const { handleCommand } = require('./commands');
 const { getUser, addUser, incrementMsgCount, getAlias, setAlias, migrateUser } = require('./database/db');
-const { startWebServer } = require('./web/server');
 const hangmanHandler = require('./commands/hangman');
 
 const isTermux = !!process.env.TERMUX_VERSION;
@@ -74,13 +73,13 @@ const resolveMentionedId = (rawId) => {
 };
 
 client.on('qr', (qr) => {
+    console.clear();
     qrcode.generate(qr, { small: true });
-    console.log('Scan the QR code above to log in!');
+    console.log('QR kodu WhatsApp\'dan okutun!');
 });
 
 client.on('ready', () => {
-    console.log('Client is ready!');
-    startWebServer();
+    console.log('✅ Bot hazır! WhatsApp bağlantısı kuruldu.');
 });
 
 client.on('message', async msg => {

@@ -29,6 +29,12 @@ const handleCommand = async (msg, client) => {
         const args = body.slice(1).trim().split(/ +/);
         const command = args.shift().toLowerCase();
 
+        // Check manual ban (admin.js)
+        if (adminHandler.isManuallyBanned(userId)) {
+            const rem = adminHandler.getManualBanRemaining(userId);
+            return msg.reply(`🚫 Admin tarafından banlandın. ${Math.ceil(rem / 60)} dakika kaldı.`);
+        }
+
         // Spam check
         const spamResult = checkSpam(userId, command);
         if (!spamResult.allowed) {
