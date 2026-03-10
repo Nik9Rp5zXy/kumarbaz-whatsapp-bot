@@ -1,5 +1,5 @@
 const { getUser, addUser, updateBalance, setDaily } = require('../database/db');
-const { centeredBox, troll, getRandom, getTitle } = require('./utils');
+const { centeredBox, troll, getRandom, getTitle, checkBrokeAdvice } = require('./utils');
 
 const ADMINS = ['905510395152@c.us'];
 
@@ -43,7 +43,9 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
             }
             const title = getTitle(user.balance);
             const balanceArt = ['      ', ` 💸 ${user.balance} $ `, title, '      '];
-            return msg.reply(centeredBox(balanceArt, 'CÜZDAN'));
+            
+            const advice = checkBrokeAdvice(user.balance);
+            return msg.reply(centeredBox(balanceArt, 'CÜZDAN') + advice);
         }
 
         case 'menu':

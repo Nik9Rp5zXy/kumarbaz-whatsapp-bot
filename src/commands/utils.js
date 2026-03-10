@@ -85,4 +85,20 @@ const progressBar = (current, max, length = 15) => {
     return '█'.repeat(Math.max(0, filled)) + '░'.repeat(Math.max(0, empty));
 };
 
-module.exports = { sleep, centeredBox, troll, getRandom, getTitle, progressBar };
+const checkBrokeAdvice = (balance) => {
+    // Only target people who are broke but not bankrupt yet
+    if (balance <= 0 || balance > 500) return '';
+    
+    // 30% chance to trigger the advice simulation
+    if (Math.random() > 0.3) return '';
+
+    const advices = [
+        "📉 Paran eriyor! Tüm paranı Rulete basmak yerine zenginler gibi akıllıca davran, !banka hesabına koyup saat başı garanti %5 faiz al!",
+        "💼 Kumarhane her zaman kazanır. Sıfırlanmaktansa şirketlere ortak ol, !borsa yatırımları uzun vadede kazandırır.",
+        "🏦 Cebinde üç kuruş kalmış. Batmadan önce en azından birazını !banka yatirarak güvenceye al.",
+        "📊 Grafikler yalan söylemez! Paranı aptalca hiç etmek yerine akıllı esnaf ol, !borsa ile katla."
+    ];
+    return '\n\n👔 *Danışman:* ' + getRandom(advices);
+};
+
+module.exports = { sleep, centeredBox, troll, getRandom, getTitle, progressBar, checkBrokeAdvice };

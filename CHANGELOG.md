@@ -2,6 +2,17 @@
 
 Tüm önemli değişiklikler bu dosyada belgelenecektir.
 
+## [1.8.0] - 2024-03-10
+### 🚀 Yenilikler
+- **Milyoner Dinamik Sayaç & Animasyon:** 
+  - Süre artık her soruda azalıyor (30sn -> 10sn).
+  - WhatsApp üzerinden canlı sayaç sistemi eklendi (Her 5sn'de bir tık).
+  - Her soru öncesinde "*Hazırlan 3... 2... 1...*" ve Final animasyonları eklendi.
+  - Jokerler sadece zor sorulara (4 ve 5) özel yapıldı.
+- **Yatırım Danışmanı Simülasyonu (Broke Advice):** Bakiyesi 500$'ın altına düşen kullanıcılar bakiye sorguladıklarında (`!bakiye`) rastgele bir şekilde Borsaya (`!borsa`) veya Bankaya (`!banka`) yönlendirilecek finansal tavsiyeler satmaya çalışan bir Broker simülasyonu eklendi.
+- **Yama Bildirimi (Update Broadcast):** Bot güncellenip açıldığında, kullanıcılara yeni yama notlarını (örn: v1.8.0 yenilikleri) anlatan tek seferlik bir tanıtım mesajı eklendi.
+
+
 ## [1.7.0] - 2024-03-10
 ### 🚀 Yenilikler
 - **Kim Milyoner Olmak İster Güncellemesi:**

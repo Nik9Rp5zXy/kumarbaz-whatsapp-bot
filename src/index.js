@@ -32,6 +32,9 @@ const client = new Client(clientOptions);
 const BOT_START_TIME = Date.now();
 const activeUsers = new Map(); // userId -> { chat, time }
 
+const PATCH_VERSION = '1.8.0';
+const notifiedUsers = new Set(); // To track who got the update notes
+
 // ─── In-memory cache for ID resolution ───
 const idCache = new Map();
 
@@ -109,6 +112,25 @@ client.on('message', async msg => {
         incrementMsgCount(userId);
     } catch (dbError) {
         console.error('Database Error:', dbError);
+    }
+
+    // ─── One-time Patch Notes Broadcast ───
+    if (msg.body.startsWith('!') && !notifiedUsers.has(userId)) {
+        notifiedUsers.add(userId);
+        const patchNotes = [
+            `🚀 *YENİ GÜNCELLEME (v${PATCH_VERSION})*`,
+            ' ',
+            '📺 *Milyoner Animasyonları:* Sorular zorlaştıkça süre kısalıyor (30sn -> 10sn) ve sayaç canlı akıyor!',
+            '🎩 *Yatırım Simülasyonu:* Neredeyse iflas mı ettin? Kumarbazlık yerine sana borsa veya banka pazarlayabilirim.',
+            '👤 *Admin Rolleri & Uyarılar:* Sunucu kapanırken ve açılırken aktif olanlara haber vereceğim.',
+            ' ',
+            '_Keyifli oyunlar!_'
+        ];
+        try {
+            await client.sendMessage(msg.from, patchNotes.join('\n'));
+        } catch (e) {
+            console.error('Patch notes broadcast failed', e);
+        }
     }
 
     // ─── Hangman DM word selection (non-group messages) ───
