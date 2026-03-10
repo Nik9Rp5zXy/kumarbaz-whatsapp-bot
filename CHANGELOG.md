@@ -2,6 +2,16 @@
 
 Tüm önemli değişiklikler bu dosyada belgelenecektir.
 
+## [1.10.0] - 2024-03-10
+### 🚀 İyileştirmeler & Eklemeler
+- **AFK Sistemi (Çevrimdışı Temizleyici)**: 5 dakika boyunca komut kullanmayan oyuncular arka planda `activeUsers` listesinden (AFK sayılarak) siliniyor. Böylece bakımlarda boş yere uyarı almıyorlar.
+- **Detaylı Rol Menüleri**: Dar kapsamlı `!adminyardim` üçe bölündü: 
+  - `!modyardim` (Ceza/Ban İşlemleri)
+  - `!adminyardim` (Sistem/Bakiye İşlemleri)
+  - `!owneryardim` (Yüksek Yetki/Rol İşlemleri).
+- **Formatlama Fixi**: WhatsApp'ta yanlışlıkla ASCII kutularını bozan metin kalınlaştırma (`*komut*`) işlemleri bot genelinden temizlenip düz metinlere dönüştürüldü. Artık her arayüz cihaz-bağımsız olarak daha temiz görünüyor.
+
+
 ## [1.9.0] - 2024-03-10
 ### 🚀 İyileştirmeler & Düzeltmeler
 - **Mobil Uyumlu Menüler**: `!yardim`, `!yardim full` ve `!adminyardim` içindeki uzun metinler alt satırlara bölünerek daraltıldı. Artık WhatsApp mobil cihazlarında (telefonlarda) satır kayması/ASCİİ tablo bozulması yaşanmayacak.

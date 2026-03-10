@@ -247,42 +247,74 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
       return msg.reply(text);
     }
 
+    case 'modhelp':
+    case 'modyardim': {
+      if (!hasRole(userId, 'mod')) return msg.reply('🚫 Bu komutu sadece Moderatörler kullanabilir.');
+      return msg.reply(
+        '╔═════════════════════╗\n' +
+        '║  🔧 MOD KOMUTLARI   ║\n' +
+        '╠═════════════════════╣\n' +
+        '║\n' +
+        '║ 👤 GENEL İŞLEMLER\n' +
+        '║ !rlchk (Rolünü gör)\n' +
+        '║ !adminler (Yetkili Listesi)\n' +
+        '║ !istatistik (Bot Durumu)\n' +
+        '║ !spamlog (Spam yapanlar)\n' +
+        '║\n' +
+        '║ 🔨 CEZA KOMUTLARI\n' +
+        '║ !ban @kisi (veya numara)\n' +
+        '║  ↳ Süresiz ban atar\n' +
+        '║ !ban @kisi <dakika>\n' +
+        '║  ↳ Süreli ban atar\n' +
+        '║ !unban @kisi (veya numara)\n' +
+        '║\n' +
+        '╚═════════════════════╝'
+      );
+    }
+
     case 'adminhelp':
     case 'adminyardim': {
-      if (!hasRole(userId, 'mod')) return msg.reply('🚫 Yetkisiz erişim.');
-      const myRole = getAdmin(userId);
-      let text = '╔═════════════════════╗\n';
-      text += '║ 🛡️ ADMİN KOMUTLARI ║\n';
-      text += '╠═════════════════════╣\n';
+      if (!hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece Adminler kullanabilir.');
+      return msg.reply(
+        '╔═════════════════════╗\n' +
+        '║  🛡️ ADMİN KOMUTLARI ║\n' +
+        '╠═════════════════════╣\n' +
+        '║\n' +
+        '║ 💡 Kapsam:\n' +
+        '║ Mod komutlarına ek olarak \n' +
+        '║ aşağıdaki yetkiler vardır.\n' +
+        '║\n' +
+        '║ 👥 YETKİLENDİRME\n' +
+        '║ !mod_ata @kisi\n' +
+        '║ !mod_cikar @kisi\n' +
+        '║ !admin_ekle @kisi <para>\n' +
+        '║ !admin_sil @kisi <para>\n' +
+        '║\n' +
+        '║ ⚙️ SİSTEM VE YÖNETİM\n' +
+        '║ !bakiye_ayarla @kisi <para>\n' +
+        '║ !kullanici_sil @kisi\n' +
+        '║\n' +
+        '╚═════════════════════╝'
+      );
+    }
 
-      text += '║\n║ 👥 *GENEL*\n';
-      text += '║ !rlchk (Kendi rolün)\n';
-
-      // Mod commands
-      text += '║\n║ 🔧 *MOD KOMUTLARI*\n';
-      text += '║ !adminler\n';
-      text += '║ !istatistik\n';
-      text += '║ !spamlog\n';
-      text += '║ !ban @kisi <dk>\n';
-      text += '║ !unban @kisi\n';
-
-      if (hasRole(userId, 'admin')) {
-        text += '║\n║ 🛡️ *ADMİN KOMUTLARI*\n';
-        text += '║ !admin_ekle\n';
-        text += '║ !admin_sil\n';
-        text += '║ !bakiye_ayarla\n';
-        text += '║ !kullanici_sil\n';
-        text += '║ !mod_ata / !mod_cikar\n';
-      }
-
-      if (isOwner(userId)) {
-        text += '║\n║ 👑 *OWNER KOMUTLARI*\n';
-        text += '║ !admin_ata\n';
-        text += '║ !admin_cikar\n';
-      }
-
-      text += '╚═════════════════════╝';
-      return msg.reply(text);
+    case 'ownerhelp':
+    case 'owneryardim': {
+      if (!isOwner(userId)) return msg.reply('🚫 Bu komutu sadece Kurucu (Owner) kullanabilir.');
+      return msg.reply(
+        '╔═════════════════════╗\n' +
+        '║  👑 OWNER KOMUTLARI ║\n' +
+        '╠═════════════════════╣\n' +
+        '║\n' +
+        '║ Bütün komutların hakimi:\n' +
+        '║ Admin ekleyip çıkarabilir.\n' +
+        '║\n' +
+        '║ 🔑 TAM YETKİ\n' +
+        '║ !admin_ata @kisi (veya no)\n' +
+        '║ !admin_cikar @kisi\n' +
+        '║\n' +
+        '╚═════════════════════╝'
+      );
     }
 
     case 'rlchk':
@@ -292,7 +324,7 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
       else if (hasRole(userId, 'admin')) roleName = 'Admin 🛡️';
       else if (hasRole(userId, 'mod')) roleName = 'Moderatör 🔧';
 
-      return msg.reply(`🏷️ Senin mevcut rolün: *${roleName}*`);
+      return msg.reply(`🏷️ Senin mevcut rolün: ${roleName}`);
     }
 
     default:

@@ -98,7 +98,7 @@ const checkBrokeAdvice = (balance) => {
         "🏦 Cebinde üç kuruş kalmış. Batmadan önce en azından birazını !banka yatirarak güvenceye al.",
         "📊 Grafikler yalan söylemez! Paranı aptalca hiç etmek yerine akıllı esnaf ol, !borsa ile katla."
     ];
-    return '\n\n👔 *Danışman:* ' + getRandom(advices);
+    return '\n\n👔 Danışman: ' + getRandom(advices);
 };
 
 module.exports = { sleep, centeredBox, troll, getRandom, getTitle, progressBar, checkBrokeAdvice };

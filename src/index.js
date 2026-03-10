@@ -32,8 +32,19 @@ const client = new Client(clientOptions);
 const BOT_START_TIME = Date.now();
 const activeUsers = new Map(); // userId -> { chat, time }
 
-const PATCH_VERSION = '1.9.0';
+const PATCH_VERSION = '1.10.0';
 const notifiedUsers = new Set(); // To track who got the update notes
+
+// ─── AFK Garbage Collector ───
+// Remove users from active list if they haven't sent a command in 5 minutes
+setInterval(() => {
+    const now = Date.now();
+    for (const [uId, data] of activeUsers.entries()) {
+        if (now - data.time > 5 * 60 * 1000) {
+            activeUsers.delete(uId);
+        }
+    }
+}, 60000); // Check every 1 minute
 
 // ─── In-memory cache for ID resolution ───
 const idCache = new Map();
@@ -118,25 +129,27 @@ client.on('message', async msg => {
     if (msg.body.startsWith('!') && !notifiedUsers.has(userId)) {
         notifiedUsers.add(userId);
         const patchNotes = [
-            `🚀 *GÜNCELLEME NOTLARI (v${PATCH_VERSION})* 🚀`,
+            `🚀 GÜNCELLEME NOTLARI (v${PATCH_VERSION}) 🚀`,
             ' ',
-            '📺 *KİM MİLYONER OLMAK İSTER YENİLENDİ!*',
-            '• *Canlı Sayaç:* Artık süre mesajı her 5 saniyede bir WhatsApp üzerinde güncelleniyor.',
-            '• *Zorlaşan Süreler:* 1. soruda 30 saniye verilirken, son soruda sadece 10 saniyeniz var. Eli çabuk tutun!',
-            '• *Zor Jokerler:* `!joker 50` ve `!joker cift` haklarını sadece 4. ve 5. soruda kullanabilirsiniz.',
-            '• *Gerilim Animasyonları:* Sorudan önce "Hazırlan 3 2 1" ve destansı FİNAL girişi eklendi!',
+            '📺 KİM MİLYONER OLMAK İSTER YENİLENDİ!',
+            '• Canlı Sayaç: Artık süre mesajı her 5 saniyede bir WhatsApp üzerinde güncelleniyor.',
+            '• Zorlaşan Süreler: 1. soruda 30 saniye verilirken, son soruda sadece 10 saniyeniz var. Eli çabuk tutun!',
+            '• Zor Jokerler: !joker 50 ve !joker cift haklarını sadece 4. ve 5. soruda kullanabilirsiniz.',
+            '• Gerilim Animasyonları: Sorudan önce "Hazırlan 3 2 1" ve destansı FİNAL girişi eklendi!',
             ' ',
-            '🎩 *YATIRIM DANIŞMANI (SİMÜLASYON)*',
-            '• Paran 500$\'ın altına düştüğünde (fakirleştiğinde) `!bakiye` sorgusu yaparsan, bot %30 ihtimalle sana borsa (`!borsa`) veya banka faizi (`!banka`) pazarlamaya çalışarak yatırım tavsiyeleri satacak.',
+            '🎩 YATIRIM DANIŞMANI (SİMÜLASYON)',
+            '• Paran 500$ ın altına düştüğünde !bakiye sorgusu yaparsan, bot %30 ihtimalle sana borsa (!borsa) veya banka faizi (!banka) pazarlamaya çalışarak yatırım tavsiyeleri satacak.',
             ' ',
-            '📱 *YENİ YARDIM MENÜLERİ*',
-            '• WhatsApp mobil (telefon) ekranlarında satırların kayıp bozulmaması için `!yardim` ve `!adminyardim` kutucukları telefon ekranına göre baştan daraltılarak tasarlandı.',
+            '📱 YENİ YARDIM MENÜLERİ',
+            '• WhatsApp mobil (telefon) ekranlarında satırların kayıp bozulmaması için !yardim ve !adminyardim kutucukları telefon ekranına göre daraltılarak yeniden tasarlandı.',
             ' ',
-            '👤 *ADMİN / SİSTEM*',
-            '• Artık rolünüzü öğrenmek için `!rlchk` kullanabilirsiniz.',
-            '• Bot kapatılırken aktif kullanıcılara "Kapanıyor", açıldığında ise "Aktifleşti" uyarısı gelir.',
+            '👤 ADMİN / SİSTEM',
+            '• AFK Sistemi: 5 dakika boyunca işlem yapmayanlar AFK sayılıp "offline" konuma geçer ve bot kapanış/açılış bildirimlerinden muaf tutulur.',
+            '• Rol Menüleri: !adminyardim, !modyardim ve !owneryardim olarak daha detaylı üçe bölündü.',
+            '• Artık rolünüzü öğrenmek için !rlchk kullanabilirsiniz.',
+            '• Bot kapatılırken aktif kullanıcılara Kapanıyor, açıldığında ise Aktifleşti uyarısı gelir.',
             ' ',
-            '_İyi oyunlar! Yeni özellikleri denemek için !milyoner ile oyuna başla veya paran azsa !bakiye yaz._'
+            'İyi oyunlar! Yeni özellikleri denemek için !milyoner ile oyuna başla veya paran azsa !bakiye yaz.'
         ];
         try {
             await client.sendMessage(msg.from, patchNotes.join('\n'));
