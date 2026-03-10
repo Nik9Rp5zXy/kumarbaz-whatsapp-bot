@@ -1,6 +1,7 @@
 const { getUser, addUser, updateBalance, setBalance, deleteUser,
   getAllUsers, getSpamLogs, getAllAliases,
-  hasRole, isOwner, addAdmin, removeAdmin, getAllAdmins, getAdmin, OWNER_ID } = require('../database/db');
+  hasRole, isOwner, addAdmin, removeAdmin, getAllAdmins, getAdmin, OWNER_ID,
+  getSetting, updateSetting, getAllSettings } = require('../database/db');
 const { centeredBox } = require('./utils');
 
 // ─── Ban system (in-memory, shared with spam.js) ───
@@ -294,6 +295,10 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
         '║ !bakiye_ayarla @kisi <para>\n' +
         '║ !kullanici_sil @kisi\n' +
         '║\n' +
+        '║ ⚙️ DİNAMİK AYARLAR\n' +
+        '║ !set <ayar> <deger>\n' +
+        '║ !ayarlar\n' +
+        '║\n' +
         '╚═════════════════════╝'
       );
     }
@@ -313,8 +318,38 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
         '║ !admin_ata @kisi (veya no)\n' +
         '║ !admin_cikar @kisi\n' +
         '║\n' +
+        '║ ⚙️ SİSTEM VE BAKIM\n' +
+        '║ !set owner_mode true\n' +
+        '║  ↳ Sadece sen görürsün.\n' +
+        '║ !set milyoner_limit 5\n' +
+        '║\n' +
         '╚═════════════════════╝'
       );
+    }
+
+    case 'set':
+    case 'ayar': {
+      if (!hasRole(userId, 'admin') && !isOwner(userId)) return msg.reply('🚫 Yetkisiz işlem.');
+      if (args.length < 2) return msg.reply('Kullanım: !set <ayar_adı> <değer>\nÖrn: !set owner_mode true');
+      
+      const key = args[0].toLowerCase();
+      const val = args.slice(1).join(' ');
+      
+      updateSetting(key, val);
+      return msg.reply(`✅ Ayar güncellendi:\n🔑 ${key} = ${val}`);
+    }
+
+    case 'ayarlar':
+    case 'settings': {
+      if (!hasRole(userId, 'admin') && !isOwner(userId)) return msg.reply('🚫 Yetkisiz işlem.');
+      const settings = getAllSettings();
+      if (settings.length === 0) return msg.reply('Hiç ayar bulunamadı.');
+      
+      let res = '⚙️ *SİSTEM AYARLARI*\n\n';
+      settings.forEach(s => {
+        res += `• ${s.key_name}: ${s.key_value}\n`;
+      });
+      return msg.reply(res);
     }
 
     case 'rlchk':

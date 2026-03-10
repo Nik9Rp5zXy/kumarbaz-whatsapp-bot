@@ -18,7 +18,9 @@ db.exec(`
     games_won INTEGER DEFAULT 0,
     games_lost INTEGER DEFAULT 0,
     spouse TEXT DEFAULT NULL,
-    last_patch_seen TEXT DEFAULT '1.0.0'
+    last_patch_seen TEXT DEFAULT '1.0.0',
+    milyoner_last_date TEXT DEFAULT NULL,
+    milyoner_played_today INTEGER DEFAULT 0
   )
 `);
 
@@ -47,6 +49,17 @@ db.exec(`
   )
 `);
 
+db.exec(`
+  CREATE TABLE IF NOT EXISTS settings (
+    key_name TEXT PRIMARY KEY,
+    key_value TEXT NOT NULL
+  )
+`);
+
+// ─── Seed Default Settings ───
+db.prepare('INSERT OR IGNORE INTO settings (key_name, key_value) VALUES (?, ?)').run('owner_mode', 'false');
+db.prepare('INSERT OR IGNORE INTO settings (key_name, key_value) VALUES (?, ?)').run('milyoner_daily_limit', '2');
+
 // ─── Migrations for existing tables ───
 const migrations = [
   'ALTER TABLE users ADD COLUMN msg_count INTEGER DEFAULT 0',
@@ -56,6 +69,8 @@ const migrations = [
   'ALTER TABLE users ADD COLUMN games_lost INTEGER DEFAULT 0',
   'ALTER TABLE users ADD COLUMN spouse TEXT DEFAULT NULL',
   'ALTER TABLE users ADD COLUMN last_patch_seen TEXT DEFAULT "1.0.0"',
+  'ALTER TABLE users ADD COLUMN milyoner_last_date TEXT DEFAULT NULL',
+  'ALTER TABLE users ADD COLUMN milyoner_played_today INTEGER DEFAULT 0',
 ];
 for (const sql of migrations) {
   try { db.exec(sql); } catch (e) { /* column already exists */ }
@@ -95,6 +110,36 @@ const hasSeenPatch = (id, patchVersion) => {
 
 const markPatchSeen = (id, patchVersion) => {
   db.prepare('UPDATE users SET last_patch_seen = ? WHERE id = ?').run(patchVersion, id);
+};
+
+// ─── Settings Functions ───
+const getSetting = (key) => {
+  const row = db.prepare('SELECT key_value FROM settings WHERE key_name = ?').get(key);
+  return row ? row.key_value : null;
+};
+
+const updateSetting = (key, value) => {
+  db.prepare('INSERT OR REPLACE INTO settings (key_name, key_value) VALUES (?, ?)').run(key, value);
+};
+
+const getAllSettings = () => db.prepare('SELECT * FROM settings').all();
+
+// ─── Milyoner Daily Logic ───
+const getMilyonerPlayed = (id) => {
+  const user = getUser(id);
+  if (!user) return 0;
+  
+  const today = new Date().toLocaleDateString('tr-TR');
+  if (user.milyoner_last_date !== today) {
+    db.prepare('UPDATE users SET milyoner_last_date = ?, milyoner_played_today = 0 WHERE id = ?').run(today, id);
+    return 0; // It was a new day, so reset to 0
+  }
+  return user.milyoner_played_today || 0;
+};
+
+const incrementMilyonerPlayed = (id) => {
+  const today = new Date().toLocaleDateString('tr-TR');
+  db.prepare('UPDATE users SET milyoner_last_date = ?, milyoner_played_today = milyoner_played_today + 1 WHERE id = ?').run(today, id);
 };
 
 // ─── Stats Functions ───
@@ -553,7 +598,8 @@ const isOwner = (userId) => {
 
 module.exports = {
   db, getUser, addUser, updateBalance, setDaily, getTopUsers, getTopActiveUsers, getAllUsers,
-  hasSeenPatch, markPatchSeen,
+  hasSeenPatch, markPatchSeen, getSetting, updateSetting, getAllSettings,
+  getMilyonerPlayed, incrementMilyonerPlayed,
   incrementMsgCount, recordWin, recordLoss,
   marry, divorce,
   addWanted, getWanted, getAllWanted, removeWanted,

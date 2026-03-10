@@ -2,6 +2,13 @@
 
 Tüm önemli değişiklikler bu dosyada belgelenecektir.
 
+## [1.12.0] - 2024-03-10
+### 🚀 İyileştirmeler & Eklemeler (Aşama 8)
+- **Global Ayar Yöneticisi (Config Manager)**: SQLite'a `settings` adında bir tablo eklendi. Admin ve Kurucular artık koda dokunmadan WhatsApp üzerinden `!set <ayar_adı> <değer>` komutuyla botun iç ayarlarını (limitler vb.) dinamik olarak değiştirebilir. `!ayarlar` ile mevcut durum görüntülenebilir.
+- **Owner Mode (Bakım Modu)**: `!set owner_mode true` yapıldığında bot artık Owner haricindeki herkesi reddediyor ve onlara tek seferlik bir "Bakımdayız" uyarısı fırlatarak kendini kapatıyor. Normalleşmek için değer tekrar `false` yapılabilir.
+- **Milyoner Günlük Limit**: Milyoner oyununu sömürmeyi engellemek için günlük limite bağlandı. Standart olarak limit `2` (Günde 2 kere) ayarlandı. Limitsiz oynamak veya bu ayarı değiştirmek isterseniz `!set milyoner_daily_limit 5` gibi komutlar kullanılabilir.
+
+
 ## [1.11.0] - 2024-03-10
 ### 🚀 İyileştirmeler & Ekstralar
 - **Kalıcı (Persistent) Yama Notları**: Yeni güncelleme bildirimleri artık RAM (`new Set()`) üzerinden değil, SQLite (`users.last_patch_seen`) tablosu üzerinden tutuluyor. Bot her yeniden başladığında kullanıcının aynı yamayı ikinci kez görmesi engellendi. Gözünüz aydın!

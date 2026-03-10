@@ -1,5 +1,6 @@
 const { updateBalance, recordWin, recordLoss,
-    getUnseenQuestion, markQuestionSeen, getSeenCount, getTotalQuestionCount } = require('../database/db');
+    getUnseenQuestion, markQuestionSeen, getSeenCount, getTotalQuestionCount,
+    getSetting, getMilyonerPlayed, incrementMilyonerPlayed } = require('../database/db');
 const { sleep, centeredBox, troll, getRandom } = require('./utils');
 
 // ─── Active Games ───
@@ -168,6 +169,16 @@ const handler = async (command, args, msg, userId, user, resolve) => {
         case 'milyoner':
         case 'quiz': {
             if (activeGames[userId]) return msg.reply('⚠️ Zaten aktif bir oyunun var! !cevap A/B/C/D ile devam et.');
+
+            // ─── Daily Limit Check ───
+            const maxDailyLimit = parseInt(getSetting('milyoner_daily_limit')) || 2;
+            const playedToday = getMilyonerPlayed(userId);
+            
+            if (playedToday >= maxDailyLimit) {
+                return msg.reply(`⚠️ Günlük sınırına ulaştın! (Bugün ${playedToday}/${maxDailyLimit} oynadın)\nSınırın sıfırlanması için yarını bekle!`);
+            }
+            incrementMilyonerPlayed(userId);
+            // ─────────────────────────
 
             const seen = getSeenCount(userId);
             const total = getTotalQuestionCount();

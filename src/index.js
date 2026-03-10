@@ -1,7 +1,7 @@
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const { handleCommand } = require('./commands');
-const { getUser, addUser, incrementMsgCount, getAlias, setAlias, migrateUser, hasSeenPatch, markPatchSeen } = require('./database/db');
+const { getUser, addUser, incrementMsgCount, getAlias, setAlias, migrateUser, hasSeenPatch, markPatchSeen, getSetting } = require('./database/db');
 const hangmanHandler = require('./commands/hangman');
 
 const isTermux = !!process.env.TERMUX_VERSION;
@@ -32,7 +32,9 @@ const client = new Client(clientOptions);
 const BOT_START_TIME = Date.now();
 const activeUsers = new Map(); // userId -> { chat, time }
 
-const PATCH_VERSION = '1.11.0';
+const PATCH_VERSION = '1.12.0';
+
+const maintenanceNotified = new Set(); // For Owner Mode one-time alerts
 
 // ─── AFK Garbage Collector ───
 // Remove users from active list if they haven't sent a command in 5 minutes
@@ -160,6 +162,20 @@ client.on('message', async msg => {
                 console.error('Hangman DM error:', e);
             }
             return;
+        }
+    }
+
+    // ─── Owner Mode Check ───
+    if (msg.body.startsWith('!')) {
+        const isOwnerMode = getSetting('owner_mode') === 'true';
+        if (isOwnerMode && msg.from !== OWNER_ID) {
+            if (!maintenanceNotified.has(userId)) {
+                maintenanceNotified.add(userId);
+                try {
+                    await client.sendMessage(msg.from, '⚙️ Bot şu an Yönetici tarafından *Bakım / Geliştirme* moduna alınmıştır. Komutlara geçici olarak kapalıdır.');
+                } catch(e) {}
+            }
+            return; // Ignore command
         }
     }
 
