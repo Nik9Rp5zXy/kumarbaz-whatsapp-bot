@@ -19,6 +19,24 @@ const getManualBanRemaining = (userId) => {
   return Math.max(0, Math.ceil((until - Date.now()) / 1000));
 };
 
+const parseTargetId = (args, msg, resolve) => {
+  // 1. Check mentions first
+  if (msg.mentionedIds && msg.mentionedIds.length > 0) {
+    return resolve(msg.mentionedIds[0]);
+  }
+  
+  // 2. Check for raw phone numbers in args (e.g., 905551234567)
+  for (const arg of args) {
+    const cleanArg = arg.replace(/\D/g, ''); // Remove non-digits
+    // Assume it's a phone number if it's long enough (e.g., 10+ digits)
+    if (cleanArg.length >= 10 && cleanArg.length <= 15) {
+      return resolve(`${cleanArg}@c.us`);
+    }
+  }
+  
+  return null;
+};
+
 module.exports = async (command, args, msg, userId, user, resolve, client) => {
   switch (command) {
 
@@ -28,23 +46,21 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
 
     case 'admin_ata': {
       if (!isOwner(userId)) return msg.reply('🚫 Bu komutu sadece bot sahibi kullanabilir.');
-      const target = msg.mentionedIds && msg.mentionedIds[0];
-      if (!target) return msg.reply('⚠️ Kullanım: !admin_ata @kisi');
-      const normTarget = resolve(target);
+      const normTarget = parseTargetId(args, msg, resolve);
+      if (!normTarget) return msg.reply('⚠️ Kullanım: !admin_ata @kisi veya !admin_ata 905510395152');
       addAdmin(normTarget, 'admin', userId);
-      return msg.reply(`✅ @${normTarget.split('@')[0]} artık *Admin* 🛡️`, undefined, { mentions: [target] });
+      return msg.reply(`✅ @${normTarget.split('@')[0]} artık *Admin* 🛡️`);
     }
 
     case 'admin_cikar': {
       if (!isOwner(userId)) return msg.reply('🚫 Bu komutu sadece bot sahibi kullanabilir.');
-      const target = msg.mentionedIds && msg.mentionedIds[0];
-      if (!target) return msg.reply('⚠️ Kullanım: !admin_cikar @kisi');
-      const normTarget = resolve(target);
+      const normTarget = parseTargetId(args, msg, resolve);
+      if (!normTarget) return msg.reply('⚠️ Kullanım: !admin_cikar @kisi veya !admin_cikar 90...');
       const adminInfo = getAdmin(normTarget);
       if (!adminInfo) return msg.reply('⚠️ Bu kişi zaten admin/mod değil.');
       if (adminInfo.role === 'owner') return msg.reply('⚠️ Owner kaldırılamaz.');
       removeAdmin(normTarget);
-      return msg.reply(`✅ @${normTarget.split('@')[0]} admin yetkisi kaldırıldı.`, undefined, { mentions: [target] });
+      return msg.reply(`✅ @${normTarget.split('@')[0]} admin yetkisi kaldırıldı.`);
     }
 
     // ═══════════════════════════════════════
@@ -53,92 +69,87 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
 
     case 'mod_ata': {
       if (!hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece adminler kullanabilir.');
-      const target = msg.mentionedIds && msg.mentionedIds[0];
-      if (!target) return msg.reply('⚠️ Kullanım: !mod_ata @kisi');
-      const normTarget = resolve(target);
+      const normTarget = parseTargetId(args, msg, resolve);
+      if (!normTarget) return msg.reply('⚠️ Kullanım: !mod_ata @kisi veya !mod_ata 90...');
       addAdmin(normTarget, 'mod', userId);
-      return msg.reply(`✅ @${normTarget.split('@')[0]} artık *Moderatör* 🔧`, undefined, { mentions: [target] });
+      return msg.reply(`✅ @${normTarget.split('@')[0]} artık *Moderatör* 🔧`);
     }
 
     case 'mod_cikar': {
       if (!hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece adminler kullanabilir.');
-      const target = msg.mentionedIds && msg.mentionedIds[0];
-      if (!target) return msg.reply('⚠️ Kullanım: !mod_cikar @kisi');
-      const normTarget = resolve(target);
+      const normTarget = parseTargetId(args, msg, resolve);
+      if (!normTarget) return msg.reply('⚠️ Kullanım: !mod_cikar @kisi veya !mod_cikar 90...');
       const modInfo = getAdmin(normTarget);
       if (!modInfo || modInfo.role !== 'mod') return msg.reply('⚠️ Bu kişi mod değil.');
       removeAdmin(normTarget);
-      return msg.reply(`✅ @${normTarget.split('@')[0]} mod yetkisi kaldırıldı.`, undefined, { mentions: [target] });
+      return msg.reply(`✅ @${normTarget.split('@')[0]} mod yetkisi kaldırıldı.`);
     }
 
     case 'admin_ekle':
     case 'addmoney': {
       if (!hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece adminler kullanabilir.');
-      const addTarget = msg.mentionedIds && msg.mentionedIds[0];
-      if (!addTarget) return msg.reply('⚠️ Kullanım: !admin_ekle @kisi <miktar>');
+      const normAddTarget = parseTargetId(args, msg, resolve);
+      if (!normAddTarget) return msg.reply('⚠️ Kullanım: !admin_ekle @kisi <miktar> veya !admin_ekle 90... <miktar>');
 
       let addAmount = NaN;
       for (const arg of args) {
-        const num = parseInt(arg);
-        if (!isNaN(num) && !arg.includes('@')) { addAmount = num; break; }
+        // Find a pure number parameter that isn't the phone number
+        if (/^\d+$/.test(arg) && arg.length < 10) { 
+            addAmount = parseInt(arg); 
+            break; 
+        }
       }
-      if (isNaN(addAmount)) return msg.reply('⚠️ Miktar gir.');
+      if (isNaN(addAmount)) return msg.reply('⚠️ Miktar gir (Örn: 1000).');
 
-      const normAddTarget = resolve(addTarget);
       let targetUserAdd = getUser(normAddTarget);
       if (!targetUserAdd) targetUserAdd = addUser(normAddTarget);
 
       updateBalance(normAddTarget, addAmount);
-      return msg.reply(`✅ @${normAddTarget.split('@')[0]} hesabına *${addAmount}$* eklendi.`, undefined, { mentions: [addTarget] });
+      return msg.reply(`✅ @${normAddTarget.split('@')[0]} hesabına *${addAmount}$* eklendi.`);
     }
 
     case 'admin_sil':
     case 'removemoney': {
       if (!hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece adminler kullanabilir.');
-      const remTarget = msg.mentionedIds && msg.mentionedIds[0];
-      if (!remTarget) return msg.reply('⚠️ Kullanım: !admin_sil @kisi <miktar>');
+      const normRemTarget = parseTargetId(args, msg, resolve);
+      if (!normRemTarget) return msg.reply('⚠️ Kullanım: !admin_sil @kisi <miktar>');
 
       let remAmount = NaN;
       for (const arg of args) {
-        const num = parseInt(arg);
-        if (!isNaN(num) && !arg.includes('@')) { remAmount = num; break; }
+        if (/^\d+$/.test(arg) && arg.length < 10) { remAmount = parseInt(arg); break; }
       }
       if (isNaN(remAmount)) return msg.reply('⚠️ Miktar gir.');
 
-      const normRemTarget = resolve(remTarget);
       let targetUserRem = getUser(normRemTarget);
       if (!targetUserRem) targetUserRem = addUser(normRemTarget);
 
       updateBalance(normRemTarget, -remAmount);
-      return msg.reply(`✅ @${normRemTarget.split('@')[0]} hesabından *${remAmount}$* silindi.`, undefined, { mentions: [remTarget] });
+      return msg.reply(`✅ @${normRemTarget.split('@')[0]} hesabından *${remAmount}$* silindi.`);
     }
 
     case 'bakiye_ayarla': {
       if (!hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece adminler kullanabilir.');
-      const target = msg.mentionedIds && msg.mentionedIds[0];
-      if (!target) return msg.reply('⚠️ Kullanım: !bakiye_ayarla @kisi <miktar>');
+      const normTarget = parseTargetId(args, msg, resolve);
+      if (!normTarget) return msg.reply('⚠️ Kullanım: !bakiye_ayarla @kisi <miktar> veya !bakiye_ayarla 90555... <miktar>');
 
       let amount = NaN;
       for (const arg of args) {
-        const num = parseInt(arg);
-        if (!isNaN(num) && !arg.includes('@')) { amount = num; break; }
+        if (/^\d+$/.test(arg) && arg.length < 10) { amount = parseInt(arg); break; }
       }
       if (isNaN(amount)) return msg.reply('⚠️ Miktar gir.');
 
-      const normTarget = resolve(target);
       let tUser = getUser(normTarget);
       if (!tUser) tUser = addUser(normTarget);
       setBalance(normTarget, amount);
-      return msg.reply(`✅ @${normTarget.split('@')[0]} bakiyesi *${amount}$* olarak ayarlandı.`, undefined, { mentions: [target] });
+      return msg.reply(`✅ @${normTarget.split('@')[0]} bakiyesi *${amount}$* olarak ayarlandı.`);
     }
 
     case 'kullanici_sil': {
       if (!hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece adminler kullanabilir.');
-      const target = msg.mentionedIds && msg.mentionedIds[0];
-      if (!target) return msg.reply('⚠️ Kullanım: !kullanici_sil @kisi');
-      const normTarget = resolve(target);
+      const normTarget = parseTargetId(args, msg, resolve);
+      if (!normTarget) return msg.reply('⚠️ Kullanım: !kullanici_sil @kisi veya 90555...');
       deleteUser(normTarget);
-      return msg.reply(`✅ @${normTarget.split('@')[0]} veritabanından silindi.`, undefined, { mentions: [target] });
+      return msg.reply(`✅ @${normTarget.split('@')[0]} veritabanından silindi.`);
     }
 
     // ═══════════════════════════════════════
@@ -244,6 +255,9 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
       text += '║   🛡️ ADMİN KOMUTLARI     ║\n';
       text += '╠══════════════════════════╣\n';
 
+      text += '║\n║ 👥 *GENEL*\n';
+      text += '║ !rlchk (veya !rolum) — Kendi rolünü gör\n';
+
       // Mod commands
       text += '║\n║ 🔧 *MOD KOMUTLARI*\n';
       text += '║ !adminler — Yetkili listesi\n';
@@ -254,22 +268,32 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
 
       if (hasRole(userId, 'admin')) {
         text += '║\n║ 🛡️ *ADMİN KOMUTLARI*\n';
-        text += '║ !admin_ekle @kisi <miktar>\n';
-        text += '║ !admin_sil @kisi <miktar>\n';
-        text += '║ !bakiye_ayarla @kisi <miktar>\n';
-        text += '║ !kullanici_sil @kisi\n';
-        text += '║ !mod_ata @kisi\n';
-        text += '║ !mod_cikar @kisi\n';
+        text += '║ !admin_ekle 90555.. <miktar>\n';
+        text += '║ !admin_sil 90555.. <miktar>\n';
+        text += '║ !bakiye_ayarla 90555.. <miktar>\n';
+        text += '║ !kullanici_sil 90555..\n';
+        text += '║ !mod_ata 90555..\n';
+        text += '║ !mod_cikar 90555..\n';
       }
 
       if (isOwner(userId)) {
         text += '║\n║ 👑 *OWNER KOMUTLARI*\n';
-        text += '║ !admin_ata @kisi\n';
-        text += '║ !admin_cikar @kisi\n';
+        text += '║ !admin_ata 90555..\n';
+        text += '║ !admin_cikar 90555..\n';
       }
 
       text += '╚══════════════════════════╝';
       return msg.reply(text);
+    }
+
+    case 'rlchk':
+    case 'rolum': {
+      let roleName = 'Kullanıcı 👤';
+      if (isOwner(userId)) roleName = 'Owner 👑';
+      else if (hasRole(userId, 'admin')) roleName = 'Admin 🛡️';
+      else if (hasRole(userId, 'mod')) roleName = 'Moderatör 🔧';
+
+      return msg.reply(`🏷️ Senin mevcut rolün: *${roleName}*`);
     }
 
     default:
@@ -280,3 +304,4 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
 // Export ban check for use in spam.js / command router
 module.exports.isManuallyBanned = isManuallyBanned;
 module.exports.getManualBanRemaining = getManualBanRemaining;
+

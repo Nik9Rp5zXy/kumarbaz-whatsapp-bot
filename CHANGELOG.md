@@ -15,6 +15,8 @@ Tüm önemli değişiklikler bu dosyada belgelenecektir.
 - **Performans Argümanları:** Termux kısıtlamalarını aşmak için Chromium args eklendi (`--no-sandbox`, `--disable-dev-shm-usage`, `--single-process` vb.).
 - **QR Terminal Spamı Engellendi:** `console.clear()` ile her seferinde terminal temizlenerek gereksiz kaydırma önlendi.
 - **Admin Paneli Yenilendi:** Localhost web paneli silindi, yerine WhatsApp içi komut tabanlı Admin/Mod rol sistemi (`admins` tablosu) kuruldu.
+- **Kullanıcı Rol Kontrolü:** Tüm kullanıcıların kendi rollerini görebilmeleri için `!rlchk` (veya `!rolum`) komutu eklendi.
+- **Numara Desteği (Admin):** Yetkili komutları (örn. `!bakiye_ayarla`) artık salt numara `905551234567` şeklinde (etiket zorunluluğu olmadan) da kullanıma açıldı.
 - **Oto-Güncelleme:** Tüm dosyaları git'ten otomatik çeken `update.sh` entegrasyonu sağlandı.
 
 
