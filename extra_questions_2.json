@@ -1,0 +1,1641 @@
+[
+    {
+        "soru": "Hangisi bir tatlı çeşididir?",
+        "secenekler": [
+            "Baklava",
+            "Mantı",
+            "Dolma",
+            "Pilav"
+        ],
+        "cevap": "Baklava",
+        "zorluk": 1
+    },
+    {
+        "soru": "Türkiye'nin plaka kodu hangisidir?",
+        "secenekler": [
+            "TR",
+            "US",
+            "DE",
+            "FR"
+        ],
+        "cevap": "TR",
+        "zorluk": 1
+    },
+    {
+        "soru": "Hangi hayvanın hörgücü vardır?",
+        "secenekler": [
+            "Deve",
+            "At",
+            "Eşek",
+            "Katır"
+        ],
+        "cevap": "Deve",
+        "zorluk": 1
+    },
+    {
+        "soru": "Futbol maçı kaç kişiyle oynanır?",
+        "secenekler": [
+            "11",
+            "5",
+            "7",
+            "10"
+        ],
+        "cevap": "11",
+        "zorluk": 1
+    },
+    {
+        "soru": "Güneş doğudan mı batıdan mı doğar?",
+        "secenekler": [
+            "Doğu",
+            "Batı",
+            "Kuzey",
+            "Güney"
+        ],
+        "cevap": "Doğu",
+        "zorluk": 1
+    },
+    {
+        "soru": "Hangisi bir kış meyvesidir?",
+        "secenekler": [
+            "Portakal",
+            "Karpuz",
+            "Kiraz",
+            "Çilek"
+        ],
+        "cevap": "Portakal",
+        "zorluk": 1
+    },
+    {
+        "soru": "Kırmızı ışıkta ne yapılır?",
+        "secenekler": [
+            "Durulur",
+            "Geçilir",
+            "Koşulur",
+            "Zıplanır"
+        ],
+        "cevap": "Durulur",
+        "zorluk": 1
+    },
+    {
+        "soru": "Hangi hayvanın uzun bir hortumu vardır?",
+        "secenekler": [
+            "Fil",
+            "Aslan",
+            "Maymun",
+            "Ayı"
+        ],
+        "cevap": "Fil",
+        "zorluk": 1
+    },
+    {
+        "soru": "Deniz ne renktir?",
+        "secenekler": [
+            "Mavi",
+            "Kırmızı",
+            "Sarı",
+            "Pembe"
+        ],
+        "cevap": "Mavi",
+        "zorluk": 1
+    },
+    {
+        "soru": "Türkiye'nin para birimi nedir?",
+        "secenekler": [
+            "Türk Lirası",
+            "Dolar",
+            "Euro",
+            "Sterlin"
+        ],
+        "cevap": "Türk Lirası",
+        "zorluk": 1
+    },
+    {
+        "soru": "Hangi mevsimden sonra yaz gelir?",
+        "secenekler": [
+            "İlkbahar",
+            "Sonbahar",
+            "Kış",
+            "Yaz"
+        ],
+        "cevap": "İlkbahar",
+        "zorluk": 2
+    },
+    {
+        "soru": "Bir haftada kaç gün vardır?",
+        "secenekler": [
+            "7",
+            "5",
+            "10",
+            "12"
+        ],
+        "cevap": "7",
+        "zorluk": 1
+    },
+    {
+        "soru": "Hangi taşıt havada gider?",
+        "secenekler": [
+            "Uçak",
+            "Tren",
+            "Gemi",
+            "Otobüs"
+        ],
+        "cevap": "Uçak",
+        "zorluk": 1
+    },
+    {
+        "soru": "Anıtkabir hangi elimizdedir?",
+        "secenekler": [
+            "Ankara",
+            "İstanbul",
+            "İzmir",
+            "Antalya"
+        ],
+        "cevap": "Ankara",
+        "zorluk": 1
+    },
+    {
+        "soru": "Hangi hayvan bal yapar?",
+        "secenekler": [
+            "Arı",
+            "Sinek",
+            "Kelebek",
+            "Böcek"
+        ],
+        "cevap": "Arı",
+        "zorluk": 1
+    },
+    {
+        "soru": "Domates ne renktir?",
+        "secenekler": [
+            "Kırmızı",
+            "Mavi",
+            "Mor",
+            "Siyah"
+        ],
+        "cevap": "Kırmızı",
+        "zorluk": 1
+    },
+    {
+        "soru": "Okulda ders anlatan kişiye ne denir?",
+        "secenekler": [
+            "Öğretmen",
+            "Doktor",
+            "Mühendis",
+            "Avukat"
+        ],
+        "cevap": "Öğretmen",
+        "zorluk": 1
+    },
+    {
+        "soru": "Dişlerimizi neyle fırçalarız?",
+        "secenekler": [
+            "Diş fırçası",
+            "Tarak",
+            "Kaşık",
+            "Çatal"
+        ],
+        "cevap": "Diş fırçası",
+        "zorluk": 1
+    },
+    {
+        "soru": "Hangi hayvan yumurtlar?",
+        "secenekler": [
+            "Tavuk",
+            "İnek",
+            "Koyun",
+            "Keçi"
+        ],
+        "cevap": "Tavuk",
+        "zorluk": 1
+    },
+    {
+        "soru": "Hangisi bir müzik aletidir?",
+        "secenekler": [
+            "Gitar",
+            "Masa",
+            "Sandalye",
+            "Kalem"
+        ],
+        "cevap": "Gitar",
+        "zorluk": 1
+    },
+    {
+        "soru": "Limonun tadı nasıldır?",
+        "secenekler": [
+            "Ekşi",
+            "Tatlı",
+            "Acı",
+            "Tuzlu"
+        ],
+        "cevap": "Ekşi",
+        "zorluk": 1
+    },
+    {
+        "soru": "Kardan adam neden yapılır?",
+        "secenekler": [
+            "Kar",
+            "Kum",
+            "Taş",
+            "Toprak"
+        ],
+        "cevap": "Kar",
+        "zorluk": 1
+    },
+    {
+        "soru": "Gözlük ne için takılır?",
+        "secenekler": [
+            "Görmek",
+            "Duymak",
+            "Yürümek",
+            "Yemek"
+        ],
+        "cevap": "Görmek",
+        "zorluk": 1
+    },
+    {
+        "soru": "Hangi hayvanın evi kabuğudur?",
+        "secenekler": [
+            "Kaplumbağa",
+            "Kedi",
+            "Köpek",
+            "Kuş"
+        ],
+        "cevap": "Kaplumbağa",
+        "zorluk": 1
+    },
+    {
+        "soru": "Hangisi bir içecektir?",
+        "secenekler": [
+            "Ayran",
+            "Ekmek",
+            "Peynir",
+            "Zeytin"
+        ],
+        "cevap": "Ayran",
+        "zorluk": 1
+    },
+    {
+        "soru": "Saat kaç akrebi vardır?",
+        "secenekler": [
+            "1",
+            "2",
+            "3",
+            "4"
+        ],
+        "cevap": "1",
+        "zorluk": 2
+    },
+    {
+        "soru": "Hangi gezegen halkalıdır?",
+        "secenekler": [
+            "Satürn",
+            "Mars",
+            "Venüs",
+            "Merkür"
+        ],
+        "cevap": "Satürn",
+        "zorluk": 3
+    },
+    {
+        "soru": "Gökkuşağı ne zaman çıkar?",
+        "secenekler": [
+            "Yağmurdan sonra",
+            "Gece",
+            "Kar yağarken",
+            "Rüzgarda"
+        ],
+        "cevap": "Yağmurdan sonra",
+        "zorluk": 2
+    },
+    {
+        "soru": "Hangisi bir sebzedir?",
+        "secenekler": [
+            "Pırasa",
+            "Elma",
+            "Armut",
+            "Muz"
+        ],
+        "cevap": "Pırasa",
+        "zorluk": 2
+    },
+    {
+        "soru": "Türkiye'nin en büyük gölü hangisidir?",
+        "secenekler": [
+            "Van Gölü",
+            "Tuz Gölü",
+            "Beyşehir",
+            "Eğirdir"
+        ],
+        "cevap": "Van Gölü",
+        "zorluk": 3
+    },
+    {
+        "soru": "Hangisi suda yaşar?",
+        "secenekler": [
+            "Balık",
+            "Kedi",
+            "Tavşan",
+            "Kuş"
+        ],
+        "cevap": "Balık",
+        "zorluk": 1
+    },
+    {
+        "soru": "Pusula neyi gösterir?",
+        "secenekler": [
+            "Kuzey",
+            "Güney",
+            "Doğu",
+            "Batı"
+        ],
+        "cevap": "Kuzey",
+        "zorluk": 3
+    },
+    {
+        "soru": "Hangi hayvan kış uykusuna yatar?",
+        "secenekler": [
+            "Ayı",
+            "Kedi",
+            "Köpek",
+            "At"
+        ],
+        "cevap": "Ayı",
+        "zorluk": 2
+    },
+    {
+        "soru": "Hangisi bir spor dalıdır?",
+        "secenekler": [
+            "Basketbol",
+            "Uyku",
+            "Yemek",
+            "Oturmak"
+        ],
+        "cevap": "Basketbol",
+        "zorluk": 1
+    },
+    {
+        "soru": "Nazar boncuğu ne renktir?",
+        "secenekler": [
+            "Mavi",
+            "Kırmızı",
+            "Sarı",
+            "Yeşil"
+        ],
+        "cevap": "Mavi",
+        "zorluk": 1
+    },
+    {
+        "soru": "Hangi ay 28 çeker?",
+        "secenekler": [
+            "Şubat",
+            "Mart",
+            "Nisan",
+            "Mayıs"
+        ],
+        "cevap": "Şubat",
+        "zorluk": 2
+    },
+    {
+        "soru": "Dünya'nın uydusu nedir?",
+        "secenekler": [
+            "Ay",
+            "Güneş",
+            "Mars",
+            "Yıldız"
+        ],
+        "cevap": "Ay",
+        "zorluk": 2
+    },
+    {
+        "soru": "Hangisi bir yön değildir?",
+        "secenekler": [
+            "Aşağı",
+            "Kuzey",
+            "Güney",
+            "Doğu"
+        ],
+        "cevap": "Aşağı",
+        "zorluk": 2
+    },
+    {
+        "soru": "İtfaiyeciler ne söndürür?",
+        "secenekler": [
+            "Yangın",
+            "Işık",
+            "Televizyon",
+            "Mum"
+        ],
+        "cevap": "Yangın",
+        "zorluk": 1
+    },
+    {
+        "soru": "Doktorlar nerede çalışır?",
+        "secenekler": [
+            "Hastane",
+            "Okul",
+            "Postane",
+            "Banka"
+        ],
+        "cevap": "Hastane",
+        "zorluk": 1
+    },
+    {
+        "soru": "Hangi renk trafik lambasında yoktur?",
+        "secenekler": [
+            "Mavi",
+            "Kırmızı",
+            "Sarı",
+            "Yeşil"
+        ],
+        "cevap": "Mavi",
+        "zorluk": 1
+    },
+    {
+        "soru": "Hangisi uçan bir böcektir?",
+        "secenekler": [
+            "Sinek",
+            "Karınca",
+            "Örümcek",
+            "Solucan"
+        ],
+        "cevap": "Sinek",
+        "zorluk": 1
+    },
+    {
+        "soru": "Karpuzun içi ne renktir?",
+        "secenekler": [
+            "Kırmızı",
+            "Sarı",
+            "Mavi",
+            "Mor"
+        ],
+        "cevap": "Kırmızı",
+        "zorluk": 1
+    },
+    {
+        "soru": "Hangi hayvan süt verir?",
+        "secenekler": [
+            "İnek",
+            "Tavuk",
+            "Horoz",
+            "Ördek"
+        ],
+        "cevap": "İnek",
+        "zorluk": 1
+    },
+    {
+        "soru": "Gitarın kaç teli vardır?",
+        "secenekler": [
+            "6",
+            "4",
+            "5",
+            "7"
+        ],
+        "cevap": "6",
+        "zorluk": 3
+    },
+    {
+        "soru": "Hangisi bir oyun konsoludur?",
+        "secenekler": [
+            "PlayStation",
+            "Tost Makinesi",
+            "Ütü",
+            "Fırın"
+        ],
+        "cevap": "PlayStation",
+        "zorluk": 2
+    },
+    {
+        "soru": "Youtube ne sitesidir?",
+        "secenekler": [
+            "Video",
+            "Alışveriş",
+            "Yemek",
+            "Haber"
+        ],
+        "cevap": "Video",
+        "zorluk": 1
+    },
+    {
+        "soru": "Instagram logosu ne renktir?",
+        "secenekler": [
+            "Renkli",
+            "Siyah",
+            "Beyaz",
+            "Mavi"
+        ],
+        "cevap": "Renkli",
+        "zorluk": 2
+    },
+    {
+        "soru": "Hangisi Apple ürünüdür?",
+        "secenekler": [
+            "iPhone",
+            "Galaxy",
+            "Redmi",
+            "Xperia"
+        ],
+        "cevap": "iPhone",
+        "zorluk": 2
+    },
+    {
+        "soru": "Windows hangi şirkete aittir?",
+        "secenekler": [
+            "Microsoft",
+            "Apple",
+            "Google",
+            "Amazon"
+        ],
+        "cevap": "Microsoft",
+        "zorluk": 3
+    },
+    {
+        "soru": "Osmanlı'da Lale Devri hangi isyanla bitmiştir?",
+        "secenekler": [
+            "Patrona Halil",
+            "Kabakçı Mustafa",
+            "Celali",
+            "Şeyh Bedrettin"
+        ],
+        "cevap": "Patrona Halil",
+        "zorluk": 6
+    },
+    {
+        "soru": "Hangi elementin simgesi 'Fe'dir?",
+        "secenekler": [
+            "Demir",
+            "Flor",
+            "Fosfor",
+            "Fransiyum"
+        ],
+        "cevap": "Demir",
+        "zorluk": 5
+    },
+    {
+        "soru": "Avrupa Birliği'nin başkenti neresi kabul edilir?",
+        "secenekler": [
+            "Brüksel",
+            "Paris",
+            "Berlin",
+            "Roma"
+        ],
+        "cevap": "Brüksel",
+        "zorluk": 6
+    },
+    {
+        "soru": "Hangi yazar 'Suç ve Ceza'yı yazmıştır?",
+        "secenekler": [
+            "Dostoyevski",
+            "Tolstoy",
+            "Puşkin",
+            "Gogol"
+        ],
+        "cevap": "Dostoyevski",
+        "zorluk": 5
+    },
+    {
+        "soru": "İnsan vücudundaki en büyük organ hangisidir?",
+        "secenekler": [
+            "Deri",
+            "Karaciğer",
+            "Akciğer",
+            "Beyin"
+        ],
+        "cevap": "Deri",
+        "zorluk": 7
+    },
+    {
+        "soru": "Hangi gezegen 'Akşam Yıldızı' olarak bilinir?",
+        "secenekler": [
+            "Venüs",
+            "Mars",
+            "Jüpiter",
+            "Merkür"
+        ],
+        "cevap": "Venüs",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi ülke piramitleriyle ünlüdür?",
+        "secenekler": [
+            "Mısır",
+            "Meksika",
+            "Peru",
+            "Çin"
+        ],
+        "cevap": "Mısır",
+        "zorluk": 5
+    },
+    {
+        "soru": "Dünyanın en uzun nehrili hangisidir?",
+        "secenekler": [
+            "Nil",
+            "Amazon",
+            "Yangtze",
+            "Mississippi"
+        ],
+        "cevap": "Nil",
+        "zorluk": 6
+    },
+    {
+        "soru": "Hangi savaş 1939-1945 yılları arasında olmuştur?",
+        "secenekler": [
+            "2. Dünya Savaşı",
+            "1. Dünya Savaşı",
+            "Kore Savaşı",
+            "Vietnam Savaşı"
+        ],
+        "cevap": "2. Dünya Savaşı",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi ülke kahvesiyle ünlüdür?",
+        "secenekler": [
+            "Brezilya",
+            "Çin",
+            "Rusya",
+            "Kanada"
+        ],
+        "cevap": "Brezilya",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi hayvanın kemiği yoktur?",
+        "secenekler": [
+            "Köpekbalığı",
+            "Yılan",
+            "Balina",
+            "Yarasa"
+        ],
+        "cevap": "Köpekbalığı",
+        "zorluk": 8
+    },
+    {
+        "soru": "Hangi element havadan hafiftir?",
+        "secenekler": [
+            "Helyum",
+            "Oksijen",
+            "Karbondioksit",
+            "Azot"
+        ],
+        "cevap": "Helyum",
+        "zorluk": 6
+    },
+    {
+        "soru": "Hangi ülke Asya kaplanlarından biri değildir?",
+        "secenekler": [
+            "Çin",
+            "Güney Kore",
+            "Tayvan",
+            "Singapur"
+        ],
+        "cevap": "Çin",
+        "zorluk": 8
+    },
+    {
+        "soru": "Hangi ressam 'Yıldızlı Gece' tablosunu yapmıştır?",
+        "secenekler": [
+            "Van Gogh",
+            "Picasso",
+            "Dali",
+            "Monet"
+        ],
+        "cevap": "Van Gogh",
+        "zorluk": 6
+    },
+    {
+        "soru": "Hangi enstrüman yaylı değildir?",
+        "secenekler": [
+            "Gitar",
+            "Keman",
+            "Viyola",
+            "Çello"
+        ],
+        "cevap": "Gitar",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi vitamin güneşte sentezlenir?",
+        "secenekler": [
+            "D",
+            "C",
+            "A",
+            "B12"
+        ],
+        "cevap": "D",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi ülke Eurovision'a katılmaz?",
+        "secenekler": [
+            "ABD",
+            "Avustralya",
+            "İsrail",
+            "Azerbaycan"
+        ],
+        "cevap": "ABD",
+        "zorluk": 7
+    },
+    {
+        "soru": "Hangi gezegenin halkaları en belirgindir?",
+        "secenekler": [
+            "Satürn",
+            "Uranüs",
+            "Jüpiter",
+            "Neptün"
+        ],
+        "cevap": "Satürn",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi ülke Avrupa'da değildir?",
+        "secenekler": [
+            "Fas",
+            "İspanya",
+            "Portekiz",
+            "İtalya"
+        ],
+        "cevap": "Fas",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi spor 'kralların sporu' olarak bilinir?",
+        "secenekler": [
+            "Tenis",
+            "Golf",
+            "Polo",
+            "Kriket"
+        ],
+        "cevap": "Tenis",
+        "zorluk": 7
+    },
+    {
+        "soru": "Hangi element periyodik tabloda 'K' ile gösterilir?",
+        "secenekler": [
+            "Potasyum",
+            "Kalsiyum",
+            "Krom",
+            "Kobalt"
+        ],
+        "cevap": "Potasyum",
+        "zorluk": 7
+    },
+    {
+        "soru": "Hangi ülke 'Doğan Güneşin Ülkesi' olarak bilinir?",
+        "secenekler": [
+            "Japonya",
+            "Çin",
+            "Kore",
+            "Tayland"
+        ],
+        "cevap": "Japonya",
+        "zorluk": 6
+    },
+    {
+        "soru": "Hangi hayvanın 3 kalbi vardır?",
+        "secenekler": [
+            "Ahtapot",
+            "Mürekkep Balığı",
+            "Yunus",
+            "Balina"
+        ],
+        "cevap": "Ahtapot",
+        "zorluk": 7
+    },
+    {
+        "soru": "Hangi ülke 'Bot çizme' şeklindedir?",
+        "secenekler": [
+            "İtalya",
+            "Yunanistan",
+            "İspanya",
+            "Portekiz"
+        ],
+        "cevap": "İtalya",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi element radyoaktiftir?",
+        "secenekler": [
+            "Uranyum",
+            "Demir",
+            "Bakır",
+            "Altın"
+        ],
+        "cevap": "Uranyum",
+        "zorluk": 6
+    },
+    {
+        "soru": "Hangi gezegen Güneş'e en yakındır?",
+        "secenekler": [
+            "Merkür",
+            "Venüs",
+            "Dünya",
+            "Mars"
+        ],
+        "cevap": "Merkür",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi ülke 'Horoz' simgesiyle bilinir?",
+        "secenekler": [
+            "Fransa",
+            "Almanya",
+            "İngiltere",
+            "İtalya"
+        ],
+        "cevap": "Fransa",
+        "zorluk": 7
+    },
+    {
+        "soru": "Hangi savaşta atom bombası kullanılmıştır?",
+        "secenekler": [
+            "2. Dünya Savaşı",
+            "1. Dünya Savaşı",
+            "Kore Savaşı",
+            "Vietnam Savaşı"
+        ],
+        "cevap": "2. Dünya Savaşı",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi ülke 'Kanguru'larıyla ünlüdür?",
+        "secenekler": [
+            "Avustralya",
+            "Yeni Zelanda",
+            "Güney Afrika",
+            "Kanada"
+        ],
+        "cevap": "Avustralya",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi element 'H' ile gösterilir?",
+        "secenekler": [
+            "Hidrojen",
+            "Helyum",
+            "Hafniyum",
+            "Holmiyum"
+        ],
+        "cevap": "Hidrojen",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi gezegenin uydusu 'Titan'dır?",
+        "secenekler": [
+            "Satürn",
+            "Jüpiter",
+            "Uranüs",
+            "Neptün"
+        ],
+        "cevap": "Satürn",
+        "zorluk": 7
+    },
+    {
+        "soru": "Hangi ülke 'Akçaağaç yaprağı' simgesiyle bilinir?",
+        "secenekler": [
+            "Kanada",
+            "ABD",
+            "İngiltere",
+            "Avustralya"
+        ],
+        "cevap": "Kanada",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi hayvan 'Ormanlar Kralı' olarak bilinir?",
+        "secenekler": [
+            "Aslan",
+            "Kaplan",
+            "Ayı",
+            "Kurt"
+        ],
+        "cevap": "Aslan",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi element 'O' ile gösterilir?",
+        "secenekler": [
+            "Oksijen",
+            "Osmiyum",
+            "Oganesson",
+            "Oksalat"
+        ],
+        "cevap": "Oksijen",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi gezegen 'Kızıl Gezegen' olarak bilinir?",
+        "secenekler": [
+            "Mars",
+            "Venüs",
+            "Jüpiter",
+            "Satürn"
+        ],
+        "cevap": "Mars",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi ülke 'Büyük Set Resifi'ne ev sahipliği yapar?",
+        "secenekler": [
+            "Avustralya",
+            "Endonezya",
+            "Filipinler",
+            "Brezilya"
+        ],
+        "cevap": "Avustralya",
+        "zorluk": 7
+    },
+    {
+        "soru": "Hangi hayvan 'Çöl Gemisi' olarak bilinir?",
+        "secenekler": [
+            "Deve",
+            "At",
+            "Eşek",
+            "Fil"
+        ],
+        "cevap": "Deve",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi element 'C' ile gösterilir?",
+        "secenekler": [
+            "Karbon",
+            "Kalsiyum",
+            "Klor",
+            "Kobalt"
+        ],
+        "cevap": "Karbon",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi gezegen 'Dev Gezegen' olarak bilinir?",
+        "secenekler": [
+            "Jüpiter",
+            "Satürn",
+            "Uranüs",
+            "Neptün"
+        ],
+        "cevap": "Jüpiter",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi ülke 'Tac Mahal'e ev sahipliği yapar?",
+        "secenekler": [
+            "Hindistan",
+            "Pakistan",
+            "Çin",
+            "Nepal"
+        ],
+        "cevap": "Hindistan",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi hayvan 'Kutup'larda yaşar?",
+        "secenekler": [
+            "Kutup Ayısı",
+            "Aslan",
+            "Zürafa",
+            "Fil"
+        ],
+        "cevap": "Kutup Ayısı",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi element 'N' ile gösterilir?",
+        "secenekler": [
+            "Azot",
+            "Neon",
+            "Nikel",
+            "Niobyum"
+        ],
+        "cevap": "Azot",
+        "zorluk": 6
+    },
+    {
+        "soru": "Hangi gezegen 'Mavi Gezegen' olarak bilinir?",
+        "secenekler": [
+            "Dünya",
+            "Neptün",
+            "Uranüs",
+            "Mars"
+        ],
+        "cevap": "Dünya",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi ülke 'Eyfel Kulesi'ne ev sahipliği yapar?",
+        "secenekler": [
+            "Fransa",
+            "İtalya",
+            "Almanya",
+            "İspanya"
+        ],
+        "cevap": "Fransa",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi hayvan 'Panda'larıyla ünlüdür?",
+        "secenekler": [
+            "Çin",
+            "Japonya",
+            "Hindistan",
+            "Avustralya"
+        ],
+        "cevap": "Çin",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi element 'Au' ile gösterilir?",
+        "secenekler": [
+            "Altın",
+            "Gümüş",
+            "Bakır",
+            "Demir"
+        ],
+        "cevap": "Altın",
+        "zorluk": 6
+    },
+    {
+        "soru": "Hangi gezegen 'Halkalı Gezegen' olarak bilinir?",
+        "secenekler": [
+            "Satürn",
+            "Jüpiter",
+            "Uranüs",
+            "Neptün"
+        ],
+        "cevap": "Satürn",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi ülke 'Özgürlük Heykeli'ne ev sahipliği yapar?",
+        "secenekler": [
+            "ABD",
+            "Fransa",
+            "İngiltere",
+            "Kanada"
+        ],
+        "cevap": "ABD",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi hayvan 'Keseli'dir?",
+        "secenekler": [
+            "Kanguru",
+            "Aslan",
+            "Köpek",
+            "Kedi"
+        ],
+        "cevap": "Kanguru",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi yıl İstanbul fethedilmiştir?",
+        "secenekler": [
+            "1453",
+            "1071",
+            "1299",
+            "1923"
+        ],
+        "cevap": "1453",
+        "zorluk": 9
+    },
+    {
+        "soru": "Hangi yıl Fransız İhtilali olmuştur?",
+        "secenekler": [
+            "1789",
+            "1776",
+            "1804",
+            "1848"
+        ],
+        "cevap": "1789",
+        "zorluk": 9
+    },
+    {
+        "soru": "Hangi yıl Amerika keşfedilmiştir?",
+        "secenekler": [
+            "1492",
+            "1453",
+            "1517",
+            "1600"
+        ],
+        "cevap": "1492",
+        "zorluk": 9
+    },
+    {
+        "soru": "Hangi yıl Türkiye Cumhuriyeti kurulmuştur?",
+        "secenekler": [
+            "1923",
+            "1920",
+            "1919",
+            "1924"
+        ],
+        "cevap": "1923",
+        "zorluk": 9
+    },
+    {
+        "soru": "Hangi yıl İnsan Hakları Evrensel Beyannamesi kabul edilmiştir?",
+        "secenekler": [
+            "1948",
+            "1945",
+            "1950",
+            "1960"
+        ],
+        "cevap": "1948",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi yıl Berlin Duvarı yıkılmıştır?",
+        "secenekler": [
+            "1989",
+            "1991",
+            "1985",
+            "1990"
+        ],
+        "cevap": "1989",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi yıl Çernobil faciası olmuştur?",
+        "secenekler": [
+            "1986",
+            "1980",
+            "1990",
+            "1979"
+        ],
+        "cevap": "1986",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi yıl Titanik batmıştır?",
+        "secenekler": [
+            "1912",
+            "1905",
+            "1920",
+            "1899"
+        ],
+        "cevap": "1912",
+        "zorluk": 9
+    },
+    {
+        "soru": "Hangi yıl Ay'a ilk ayak basılmıştır?",
+        "secenekler": [
+            "1969",
+            "1959",
+            "1972",
+            "1965"
+        ],
+        "cevap": "1969",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi yıl Facebook kurulmuştur?",
+        "secenekler": [
+            "2004",
+            "2000",
+            "2006",
+            "1998"
+        ],
+        "cevap": "2004",
+        "zorluk": 9
+    },
+    {
+        "soru": "Hangi yıl iPhone piyasaya çıkmıştır?",
+        "secenekler": [
+            "2007",
+            "2005",
+            "2009",
+            "2003"
+        ],
+        "cevap": "2007",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi yıl Bitcoin ortaya çıkmıştır?",
+        "secenekler": [
+            "2009",
+            "2005",
+            "2011",
+            "2007"
+        ],
+        "cevap": "2009",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi yıl YouTube kurulmuştur?",
+        "secenekler": [
+            "2005",
+            "2004",
+            "2006",
+            "2003"
+        ],
+        "cevap": "2005",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi yıl Google halka arz edilmiştir?",
+        "secenekler": [
+            "2004",
+            "2000",
+            "1998",
+            "2008"
+        ],
+        "cevap": "2004",
+        "zorluk": 11
+    },
+    {
+        "soru": "Hangi yıl Amazon kurulmuştur?",
+        "secenekler": [
+            "1994",
+            "1998",
+            "2000",
+            "1990"
+        ],
+        "cevap": "1994",
+        "zorluk": 11
+    },
+    {
+        "soru": "Hangi yıl Netflix streaming hizmetine başlamıştır?",
+        "secenekler": [
+            "2007",
+            "2005",
+            "2010",
+            "2000"
+        ],
+        "cevap": "2007",
+        "zorluk": 12
+    },
+    {
+        "soru": "Hangi yıl Tesla kurulmuştur?",
+        "secenekler": [
+            "2003",
+            "2000",
+            "2005",
+            "2008"
+        ],
+        "cevap": "2003",
+        "zorluk": 11
+    },
+    {
+        "soru": "Hangi yıl SpaceX kurulmuştur?",
+        "secenekler": [
+            "2002",
+            "2000",
+            "2004",
+            "2006"
+        ],
+        "cevap": "2002",
+        "zorluk": 11
+    },
+    {
+        "soru": "Hangi yıl Vikipedi (Wikipedia) kurulmuştur?",
+        "secenekler": [
+            "2001",
+            "2005",
+            "1999",
+            "2003"
+        ],
+        "cevap": "2001",
+        "zorluk": 11
+    },
+    {
+        "soru": "Hangi yıl İlk SMS gönderilmiştir?",
+        "secenekler": [
+            "1992",
+            "1990",
+            "1995",
+            "1989"
+        ],
+        "cevap": "1992",
+        "zorluk": 11
+    },
+    {
+        "soru": "Hangi yıl İlk web sitesi yayınlanmıştır?",
+        "secenekler": [
+            "1991",
+            "1989",
+            "1993",
+            "1995"
+        ],
+        "cevap": "1991",
+        "zorluk": 12
+    },
+    {
+        "soru": "Hangi yıl DVD formatı icat edilmiştir?",
+        "secenekler": [
+            "1995",
+            "1990",
+            "1998",
+            "2000"
+        ],
+        "cevap": "1995",
+        "zorluk": 12
+    },
+    {
+        "soru": "Hangi yıl USB teknolojisi tanıtılmıştır?",
+        "secenekler": [
+            "1996",
+            "1994",
+            "1998",
+            "2000"
+        ],
+        "cevap": "1996",
+        "zorluk": 12
+    },
+    {
+        "soru": "Hangi yıl Bluetooth teknolojisi icat edilmiştir?",
+        "secenekler": [
+            "1994",
+            "1998",
+            "2000",
+            "1990"
+        ],
+        "cevap": "1994",
+        "zorluk": 12
+    },
+    {
+        "soru": "Hangi yıl MP3 formatı standartlaşmıştır?",
+        "secenekler": [
+            "1993",
+            "1990",
+            "1995",
+            "1998"
+        ],
+        "cevap": "1993",
+        "zorluk": 12
+    },
+    {
+        "soru": "Hangi yıl Java programlama dili çıkmıştır?",
+        "secenekler": [
+            "1995",
+            "1990",
+            "1998",
+            "2000"
+        ],
+        "cevap": "1995",
+        "zorluk": 11
+    },
+    {
+        "soru": "Hangi yıl Python programlama dili çıkmıştır?",
+        "secenekler": [
+            "1991",
+            "1989",
+            "1995",
+            "1998"
+        ],
+        "cevap": "1991",
+        "zorluk": 11
+    },
+    {
+        "soru": "Hangi yıl C programlama dili çıkmıştır?",
+        "secenekler": [
+            "1972",
+            "1970",
+            "1975",
+            "1980"
+        ],
+        "cevap": "1972",
+        "zorluk": 11
+    },
+    {
+        "soru": "Hangi yıl Linux çekirdeği yayınlanmıştır?",
+        "secenekler": [
+            "1991",
+            "1989",
+            "1993",
+            "1995"
+        ],
+        "cevap": "1991",
+        "zorluk": 11
+    },
+    {
+        "soru": "Hangi yıl Windows 95 çıkmıştır?",
+        "secenekler": [
+            "1995",
+            "1994",
+            "1996",
+            "1998"
+        ],
+        "cevap": "1995",
+        "zorluk": 9
+    },
+    {
+        "soru": "Hangi yıl PlayStation 1 çıkmıştır?",
+        "secenekler": [
+            "1994",
+            "1990",
+            "1998",
+            "2000"
+        ],
+        "cevap": "1994",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi yıl Game Boy çıkmıştır?",
+        "secenekler": [
+            "1989",
+            "1985",
+            "1992",
+            "1995"
+        ],
+        "cevap": "1989",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi yıl Super Mario Bros çıkmıştır?",
+        "secenekler": [
+            "1985",
+            "1980",
+            "1990",
+            "1995"
+        ],
+        "cevap": "1985",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi yıl Tetris çıkmıştır?",
+        "secenekler": [
+            "1984",
+            "1980",
+            "1990",
+            "1995"
+        ],
+        "cevap": "1984",
+        "zorluk": 11
+    },
+    {
+        "soru": "Hangi yıl Pac-Man çıkmıştır?",
+        "secenekler": [
+            "1980",
+            "1978",
+            "1982",
+            "1985"
+        ],
+        "cevap": "1980",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi yıl İlk Star Wars filmi vizyona girmiştir?",
+        "secenekler": [
+            "1977",
+            "1975",
+            "1980",
+            "1982"
+        ],
+        "cevap": "1977",
+        "zorluk": 9
+    },
+    {
+        "soru": "Hangi yıl İlk Harry Potter kitabı yayınlanmıştır?",
+        "secenekler": [
+            "1997",
+            "1995",
+            "2000",
+            "1999"
+        ],
+        "cevap": "1997",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi yıl Yüzüklerin Efendisi filmi vizyona girmiştir?",
+        "secenekler": [
+            "2001",
+            "1999",
+            "2003",
+            "2000"
+        ],
+        "cevap": "2001",
+        "zorluk": 9
+    },
+    {
+        "soru": "Hangi yıl Matrix filmi vizyona girmiştir?",
+        "secenekler": [
+            "1999",
+            "1997",
+            "2001",
+            "2000"
+        ],
+        "cevap": "1999",
+        "zorluk": 9
+    },
+    {
+        "soru": "Hangi yıl Avatar filmi vizyona girmiştir?",
+        "secenekler": [
+            "2009",
+            "2007",
+            "2011",
+            "2008"
+        ],
+        "cevap": "2009",
+        "zorluk": 9
+    },
+    {
+        "soru": "Hangi yıl Titanik filmi vizyona girmiştir?",
+        "secenekler": [
+            "1997",
+            "1995",
+            "1999",
+            "1998"
+        ],
+        "cevap": "1997",
+        "zorluk": 9
+    },
+    {
+        "soru": "Hangi yıl Aslan Kral filmi vizyona girmiştir?",
+        "secenekler": [
+            "1994",
+            "1992",
+            "1996",
+            "1995"
+        ],
+        "cevap": "1994",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi yıl Oyuncak Hikayesi (Toy Story) vizyona girmiştir?",
+        "secenekler": [
+            "1995",
+            "1993",
+            "1997",
+            "1996"
+        ],
+        "cevap": "1995",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi yıl Shrek filmi vizyona girmiştir?",
+        "secenekler": [
+            "2001",
+            "1999",
+            "2003",
+            "2000"
+        ],
+        "cevap": "2001",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi yıl Buz Devri filmi vizyona girmiştir?",
+        "secenekler": [
+            "2002",
+            "2000",
+            "2004",
+            "2001"
+        ],
+        "cevap": "2002",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi yıl İnanılmaz Aile filmi vizyona girmiştir?",
+        "secenekler": [
+            "2004",
+            "2002",
+            "2006",
+            "2003"
+        ],
+        "cevap": "2004",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi yıl Kayıp Balık Nemo filmi vizyona girmiştir?",
+        "secenekler": [
+            "2003",
+            "2001",
+            "2005",
+            "2002"
+        ],
+        "cevap": "2003",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi yıl Arabalar (Cars) filmi vizyona girmiştir?",
+        "secenekler": [
+            "2006",
+            "2004",
+            "2008",
+            "2005"
+        ],
+        "cevap": "2006",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi yıl Ratatouille filmi vizyona girmiştir?",
+        "secenekler": [
+            "2007",
+            "2005",
+            "2009",
+            "2006"
+        ],
+        "cevap": "2007",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi yıl Wall-E filmi vizyona girmiştir?",
+        "secenekler": [
+            "2008",
+            "2006",
+            "2010",
+            "2007"
+        ],
+        "cevap": "2008",
+        "zorluk": 10
+    }
+]

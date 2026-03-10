@@ -1,0 +1,552 @@
+[
+    {
+        "soru": "Hangi hayvanın sütü pembe renktedir?",
+        "secenekler": [
+            "Su Aygırı",
+            "Zürafa",
+            "Flamingo",
+            "Zebra"
+        ],
+        "cevap": "Su Aygırı",
+        "zorluk": 3
+    },
+    {
+        "soru": "Dünyanın en çok konuşulan dili hangisidir?",
+        "secenekler": [
+            "İngilizce",
+            "İspanyolca",
+            "Çince (Mandarin)",
+            "Hintçe"
+        ],
+        "cevap": "İngilizce",
+        "zorluk": 2
+    },
+    {
+        "soru": "Hangi ülke hem Asya hem de Avrupa kıtasındadır?",
+        "secenekler": [
+            "Rusya",
+            "Mısır",
+            "Endonezya",
+            "Fas"
+        ],
+        "cevap": "Rusya",
+        "zorluk": 2
+    },
+    {
+        "soru": "İnsan vücudundaki en güçlü kas hangisidir?",
+        "secenekler": [
+            "Dil",
+            "Çene Kası",
+            "Kalp",
+            "Baldır"
+        ],
+        "cevap": "Çene Kası",
+        "zorluk": 4
+    },
+    {
+        "soru": "Satranç tahtasında kaç kare vardır?",
+        "secenekler": [
+            "64",
+            "32",
+            "100",
+            "50"
+        ],
+        "cevap": "64",
+        "zorluk": 1
+    },
+    {
+        "soru": "Hangi gezegenin diğer adı 'Kızıl Gezegen'dir?",
+        "secenekler": [
+            "Mars",
+            "Venüs",
+            "Jüpiter",
+            "Merkür"
+        ],
+        "cevap": "Mars",
+        "zorluk": 1
+    },
+    {
+        "soru": "Avustralya'nın başkenti neresidir?",
+        "secenekler": [
+            "Sydney",
+            "Melbourne",
+            "Canberra",
+            "Perth"
+        ],
+        "cevap": "Canberra",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi elementin simgesi 'Ag'dir?",
+        "secenekler": [
+            "Altın",
+            "Gümüş",
+            "Argon",
+            "Alüminyum"
+        ],
+        "cevap": "Gümüş",
+        "zorluk": 5
+    },
+    {
+        "soru": "Titanik gemisi hangi yıl batmıştır?",
+        "secenekler": [
+            "1912",
+            "1905",
+            "1923",
+            "1899"
+        ],
+        "cevap": "1912",
+        "zorluk": 4
+    },
+    {
+        "soru": "Bir futbol maçında ofsayt kuralı hangi yıl getirilmiştir?",
+        "secenekler": [
+            "1863",
+            "1900",
+            "1925",
+            "1950"
+        ],
+        "cevap": "1863",
+        "zorluk": 9
+    },
+    {
+        "soru": "Mona Lisa tablosunun orijinali hangi müzededir?",
+        "secenekler": [
+            "Louvre",
+            "British Museum",
+            "Vatikan",
+            "Metropolitan"
+        ],
+        "cevap": "Louvre",
+        "zorluk": 3
+    },
+    {
+        "soru": "Hangi ülkenin bayrağı kare şeklindedir?",
+        "secenekler": [
+            "İsviçre",
+            "Japonya",
+            "Kanada",
+            "Belçika"
+        ],
+        "cevap": "İsviçre",
+        "zorluk": 6
+    },
+    {
+        "soru": "İnsan DNA'sı ile hangi meyvenin DNA'sı %50 oranında benzerdir?",
+        "secenekler": [
+            "Muz",
+            "Elma",
+            "Çilek",
+            "Kivi"
+        ],
+        "cevap": "Muz",
+        "zorluk": 6
+    },
+    {
+        "soru": "Hangi savaş 100 yıl sürmüştür?",
+        "secenekler": [
+            "Güller Savaşı",
+            "Yüzyıl Savaşları",
+            "30 Yıl Savaşları",
+            "Haçlı Seferleri"
+        ],
+        "cevap": "Yüzyıl Savaşları",
+        "zorluk": 2
+    },
+    {
+        "soru": "Yüzyıl Savaşları tam olarak kaç yıl sürmüştür?",
+        "secenekler": [
+            "100",
+            "116",
+            "99",
+            "120"
+        ],
+        "cevap": "116",
+        "zorluk": 8
+    },
+    {
+        "soru": "Dünyanın en derin noktası Mariana Çukuru kaç metredir?",
+        "secenekler": [
+            "8.848",
+            "10.994",
+            "12.500",
+            "15.000"
+        ],
+        "cevap": "10.994",
+        "zorluk": 7
+    },
+    {
+        "soru": "Hangi yazar Nobel Edebiyat Ödülü'nü reddetmiştir?",
+        "secenekler": [
+            "Jean-Paul Sartre",
+            "Albert Camus",
+            "Ernest Hemingway",
+            "Orhan Pamuk"
+        ],
+        "cevap": "Jean-Paul Sartre",
+        "zorluk": 10
+    },
+    {
+        "soru": "Olimpiyat halkalarındaki mavi renk hangi kıtayı temsil eder?",
+        "secenekler": [
+            "Avrupa",
+            "Asya",
+            "Amerika",
+            "Okyanusya"
+        ],
+        "cevap": "Avrupa",
+        "zorluk": 6
+    },
+    {
+        "soru": "Hangi hastalığın tedavisinde kinin kullanılır?",
+        "secenekler": [
+            "Sıtma",
+            "Veba",
+            "Kolera",
+            "Tifo"
+        ],
+        "cevap": "Sıtma",
+        "zorluk": 8
+    },
+    {
+        "soru": "İlk yapay kalp nakli hangi ülkede yapılmıştır?",
+        "secenekler": [
+            "ABD",
+            "Güney Afrika",
+            "Almanya",
+            "İngiltere"
+        ],
+        "cevap": "ABD",
+        "zorluk": 9
+    },
+    {
+        "soru": "Hangi gezegen Güneş etrafında diğer gezegenlerin aksi yönünde döner?",
+        "secenekler": [
+            "Venüs",
+            "Mars",
+            "Jüpiter",
+            "Satürn"
+        ],
+        "cevap": "Venüs",
+        "zorluk": 8
+    },
+    {
+        "soru": "Tarihte bilinen ilk yazılı antlaşma hangisidir?",
+        "secenekler": [
+            "Kadeş",
+            "Versay",
+            "Magna Carta",
+            "Westphalia"
+        ],
+        "cevap": "Kadeş",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi hayvanın parmak izi insan parmak izine çok benzer?",
+        "secenekler": [
+            "Koala",
+            "Şempanze",
+            "Goril",
+            "Lemur"
+        ],
+        "cevap": "Koala",
+        "zorluk": 7
+    },
+    {
+        "soru": "Ahtapotların kaç kalbi vardır?",
+        "secenekler": [
+            "1",
+            "2",
+            "3",
+            "4"
+        ],
+        "cevap": "3",
+        "zorluk": 6
+    },
+    {
+        "soru": "Eyfel Kulesi hangi yılda tamamlanmıştır?",
+        "secenekler": [
+            "1889",
+            "1900",
+            "1850",
+            "1923"
+        ],
+        "cevap": "1889",
+        "zorluk": 7
+    },
+    {
+        "soru": "Hangi ülkenin ulusal marşı en eskidir?",
+        "secenekler": [
+            "Japonya",
+            "Hollanda",
+            "İngiltere",
+            "Fransa"
+        ],
+        "cevap": "Japonya",
+        "zorluk": 10
+    },
+    {
+        "soru": "Kutup ayılarının derisi ne renktir?",
+        "secenekler": [
+            "Siyah",
+            "Beyaz",
+            "Pembe",
+            "Gri"
+        ],
+        "cevap": "Siyah",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi meyve teknik olarak bir 'dutsu' (berry) meyvedir?",
+        "secenekler": [
+            "Muz",
+            "Çilek",
+            "Ahududu",
+            "Böğürtlen"
+        ],
+        "cevap": "Muz",
+        "zorluk": 9
+    },
+    {
+        "soru": "Google'ın ilk adı neydi?",
+        "secenekler": [
+            "BackRub",
+            "Googol",
+            "SearchMaster",
+            "WebCrawler"
+        ],
+        "cevap": "BackRub",
+        "zorluk": 11
+    },
+    {
+        "soru": "Hangi element oda sıcaklığında sıvı olan tek metaldir?",
+        "secenekler": [
+            "Cıva",
+            "Galyum",
+            "Brom",
+            "Sezyum"
+        ],
+        "cevap": "Cıva",
+        "zorluk": 4
+    },
+    {
+        "soru": "Hangi ülke en çok zaman dilimine sahiptir?",
+        "secenekler": [
+            "Fransa",
+            "Rusya",
+            "ABD",
+            "Çin"
+        ],
+        "cevap": "Fransa",
+        "zorluk": 11
+    },
+    {
+        "soru": "Bir yıl tam olarak kaç gündür?",
+        "secenekler": [
+            "365.2422",
+            "365",
+            "365.5",
+            "366"
+        ],
+        "cevap": "365.2422",
+        "zorluk": 9
+    },
+    {
+        "soru": "Hangi satranç taşı diğer taşların üzerinden atlayabilir?",
+        "secenekler": [
+            "At",
+            "Kale",
+            "Fil",
+            "Vezir"
+        ],
+        "cevap": "At",
+        "zorluk": 2
+    },
+    {
+        "soru": "İlk SMS mesajında ne yazıyordu?",
+        "secenekler": [
+            "Merry Christmas",
+            "Hello World",
+            "Test",
+            "Watson gel"
+        ],
+        "cevap": "Merry Christmas",
+        "zorluk": 8
+    },
+    {
+        "soru": "Hangi hayvan hiç uyumaz?",
+        "secenekler": [
+            "Boğa Kurbağası",
+            "Köpekbalığı",
+            "Karınca",
+            "Yunus"
+        ],
+        "cevap": "Boğa Kurbağası",
+        "zorluk": 12
+    },
+    {
+        "soru": "Dünyanın en eski metrosu hangi şehirdedir?",
+        "secenekler": [
+            "Londra",
+            "New York",
+            "Paris",
+            "Moskova"
+        ],
+        "cevap": "Londra",
+        "zorluk": 6
+    },
+    {
+        "soru": "Hangi spor dalında 'Ace' terimi kullanılır?",
+        "secenekler": [
+            "Tenis",
+            "Futbol",
+            "Basketbol",
+            "Yüzme"
+        ],
+        "cevap": "Tenis",
+        "zorluk": 3
+    },
+    {
+        "soru": "Kedilerin kaç parmağı vardır?",
+        "secenekler": [
+            "18",
+            "20",
+            "16",
+            "22"
+        ],
+        "cevap": "18",
+        "zorluk": 9
+    },
+    {
+        "soru": "Hangi ülkenin bayrağında silah (AK-47) vardır?",
+        "secenekler": [
+            "Mozambik",
+            "Angola",
+            "Vietnam",
+            "Küba"
+        ],
+        "cevap": "Mozambik",
+        "zorluk": 11
+    },
+    {
+        "soru": "Hangi gezegen suyun üzerinde yüzebilecek kadar düşük yoğunluğa sahiptir?",
+        "secenekler": [
+            "Satürn",
+            "Jüpiter",
+            "Uranüs",
+            "Neptün"
+        ],
+        "cevap": "Satürn",
+        "zorluk": 8
+    },
+    {
+        "soru": "Bir insan hayatı boyunca ortalama ne kadar tükürük üretir?",
+        "secenekler": [
+            "2 Havuz Dolusu",
+            "1 Bardak",
+            "10 Litre",
+            "500 Litre"
+        ],
+        "cevap": "2 Havuz Dolusu",
+        "zorluk": 7
+    },
+    {
+        "soru": "Hangi ünlü ressam helikopteri icat etmeden yüzlerce yıl önce çizmiştir?",
+        "secenekler": [
+            "Leonardo da Vinci",
+            "Michelangelo",
+            "Raphael",
+            "Donatello"
+        ],
+        "cevap": "Leonardo da Vinci",
+        "zorluk": 4
+    },
+    {
+        "soru": "Dünyanın en küçük ülkesi neresidir?",
+        "secenekler": [
+            "Vatikan",
+            "Monako",
+            "Nauru",
+            "San Marino"
+        ],
+        "cevap": "Vatikan",
+        "zorluk": 3
+    },
+    {
+        "soru": "Hangi müzik aleti 'piyanoforte'nin kısaltmasıdır?",
+        "secenekler": [
+            "Piyano",
+            "Keman",
+            "Gitar",
+            "Flüt"
+        ],
+        "cevap": "Piyano",
+        "zorluk": 5
+    },
+    {
+        "soru": "Hangi hayvanın dişleri hayatı boyunca uzamaya devam eder?",
+        "secenekler": [
+            "Kunduz",
+            "Köpekbalığı",
+            "Aslan",
+            "Fil"
+        ],
+        "cevap": "Kunduz",
+        "zorluk": 6
+    },
+    {
+        "soru": "İlk internet tarayıcısının adı nedir?",
+        "secenekler": [
+            "WorldWideWeb",
+            "Mosaic",
+            "Netscape",
+            "Internet Explorer"
+        ],
+        "cevap": "WorldWideWeb",
+        "zorluk": 10
+    },
+    {
+        "soru": "Hangi elementin atom numarası 1'dir?",
+        "secenekler": [
+            "Hidrojen",
+            "Helyum",
+            "Lityum",
+            "Karbon"
+        ],
+        "cevap": "Hidrojen",
+        "zorluk": 2
+    },
+    {
+        "soru": "Dünya kupasını en çok kazanan ülke hangisidir?",
+        "secenekler": [
+            "Brezilya",
+            "Almanya",
+            "İtalya",
+            "Arjantin"
+        ],
+        "cevap": "Brezilya",
+        "zorluk": 3
+    },
+    {
+        "soru": "Hangi gezegenin günü yılından daha uzundur?",
+        "secenekler": [
+            "Venüs",
+            "Merkür",
+            "Mars",
+            "Jüpiter"
+        ],
+        "cevap": "Venüs",
+        "zorluk": 9
+    },
+    {
+        "soru": "Hangi kan grubu 'Genel Verici'dir?",
+        "secenekler": [
+            "0 Negatif",
+            "AB Pozitif",
+            "A Pozitif",
+            "0 Pozitif"
+        ],
+        "cevap": "0 Negatif",
+        "zorluk": 4
+    }
+]

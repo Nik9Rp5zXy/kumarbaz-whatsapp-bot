@@ -1,0 +1,3143 @@
+[
+  [
+    1,
+    "Türkiye'nin başkenti neresidir?",
+    "İstanbul",
+    "Ankara",
+    "İzmir",
+    "Bursa",
+    "B"
+  ],
+  [
+    1,
+    "Bir yılda kaç ay vardır?",
+    "10",
+    "11",
+    "12",
+    "13",
+    "C"
+  ],
+  [
+    1,
+    "Hangi gezegen Güneş Sistemi'nde en büyüktür?",
+    "Mars",
+    "Jüpiter",
+    "Satürn",
+    "Venüs",
+    "B"
+  ],
+  [
+    1,
+    "Su kaç derecede kaynar?",
+    "90°C",
+    "100°C",
+    "110°C",
+    "80°C",
+    "B"
+  ],
+  [
+    1,
+    "Bir üçgenin iç açıları toplamı kaç derecedir?",
+    "90",
+    "180",
+    "270",
+    "360",
+    "B"
+  ],
+  [
+    1,
+    "Hangisi bir renk değildir?",
+    "Kırmızı",
+    "Mavi",
+    "Daire",
+    "Yeşil",
+    "C"
+  ],
+  [
+    1,
+    "Dünyanın en büyük okyanusu hangisidir?",
+    "Atlas",
+    "Hint",
+    "Pasifik",
+    "Arktik",
+    "C"
+  ],
+  [
+    1,
+    "Bir futbol takımında kaç oyuncu vardır?",
+    "9",
+    "10",
+    "11",
+    "12",
+    "C"
+  ],
+  [
+    1,
+    "Hangisi bir meyve değildir?",
+    "Elma",
+    "Patates",
+    "Portakal",
+    "Muz",
+    "B"
+  ],
+  [
+    1,
+    "Gökkuşağında kaç renk vardır?",
+    "5",
+    "6",
+    "7",
+    "8",
+    "C"
+  ],
+  [
+    1,
+    "Türk bayrağında hangi renkler vardır?",
+    "Kırmızı-Mavi",
+    "Kırmızı-Beyaz",
+    "Yeşil-Beyaz",
+    "Mavi-Beyaz",
+    "B"
+  ],
+  [
+    1,
+    "Bir dakikada kaç saniye vardır?",
+    "30",
+    "45",
+    "60",
+    "100",
+    "C"
+  ],
+  [
+    1,
+    "Hangi hayvan miyavlar?",
+    "Kedi",
+    "Köpek",
+    "Kuş",
+    "Balık",
+    "A"
+  ],
+  [
+    1,
+    "Türkiye'nin plaka kodu nedir?",
+    "TR",
+    "TC",
+    "TUR",
+    "TÜR",
+    "A"
+  ],
+  [
+    1,
+    "İstiklal Marşı'nın şairi kimdir?",
+    "Mehmet Akif Ersoy",
+    "Namık Kemal",
+    "Ziya Gökalp",
+    "Orhan Veli",
+    "A"
+  ],
+  [
+    1,
+    "Hangi mevsimde kar yağar?",
+    "Yaz",
+    "Kış",
+    "Sonbahar",
+    "İlkbahar",
+    "B"
+  ],
+  [
+    1,
+    "Futbol maçları kaç dakika sürer?",
+    "45",
+    "60",
+    "90",
+    "100",
+    "C"
+  ],
+  [
+    1,
+    "Hangisi uçabilen bir hayvandır?",
+    "Fil",
+    "Zürafa",
+    "Kartal",
+    "Aslan",
+    "C"
+  ],
+  [
+    1,
+    "Muz hangi renktir?",
+    "Kırmızı",
+    "Mavi",
+    "Sarı",
+    "Mor",
+    "C"
+  ],
+  [
+    1,
+    "Hangi ilimiz Ege bölgesindedir?",
+    "İzmir",
+    "Erzurum",
+    "Sivas",
+    "Van",
+    "A"
+  ],
+  [
+    1,
+    "Hangisi bir ilimizdir?",
+    "Alanya",
+    "Çorlu",
+    "Adana",
+    "Gebze",
+    "C"
+  ],
+  [
+    1,
+    "Türkiye'nin en kalabalık şehri hangisidir?",
+    "Ankara",
+    "İzmir",
+    "İstanbul",
+    "Bursa",
+    "C"
+  ],
+  [
+    1,
+    "Hangisi bir okul eşyasıdır?",
+    "Tencere",
+    "Kalem",
+    "Çekiç",
+    "Yastık",
+    "B"
+  ],
+  [
+    1,
+    "Hangi taşıt denizde gider?",
+    "Otobüs",
+    "Uçak",
+    "Gemi",
+    "Tren",
+    "C"
+  ],
+  [
+    1,
+    "Nasrettin Hoca denince akla gelen hayvan hangisidir?",
+    "At",
+    "Eşek",
+    "Deve",
+    "Katır",
+    "B"
+  ],
+  [
+    1,
+    "Pamuk Prenses'in kaç cücesi vardır?",
+    "3",
+    "5",
+    "7",
+    "9",
+    "C"
+  ],
+  [
+    1,
+    "Hangi ay 28 veya 29 çeker ve en kısa aydır?",
+    "Ocak",
+    "Şubat",
+    "Mart",
+    "Nisan",
+    "B"
+  ],
+  [
+    1,
+    "Sıcaklığı ölçen alet nedir?",
+    "Barometre",
+    "Termometre",
+    "Kronometre",
+    "Metre",
+    "B"
+  ],
+  [
+    1,
+    "Çayın yanına en çok ne yakışır?",
+    "Ketçap",
+    "Mayonez",
+    "Simit",
+    "Turşu",
+    "C"
+  ],
+  [
+    1,
+    "Trafik ışıklarında 'Dur' anlamına gelen renk hangisidir?",
+    "Sarı",
+    "Yeşil",
+    "Kırmızı",
+    "Mavi",
+    "C"
+  ],
+  [
+    2,
+    "İstanbul hangi kıtalar arasında yer alır?",
+    "Asya-Afrika",
+    "Avrupa-Asya",
+    "Avrupa-Afrika",
+    "Asya-Amerika",
+    "B"
+  ],
+  [
+    2,
+    "Hangisi Nobel ödülü kategorisi değildir?",
+    "Fizik",
+    "Matematik",
+    "Edebiyat",
+    "Barış",
+    "B"
+  ],
+  [
+    2,
+    "DNA'nın açılımı nedir?",
+    "Deoksiribonükleik Asit",
+    "Dinitro Amino Asit",
+    "Disodyum Nitrik Asit",
+    "Direkt Nükleer Analiz",
+    "A"
+  ],
+  [
+    2,
+    "Hangisi bir programlama dili değildir?",
+    "Python",
+    "Java",
+    "Photoshop",
+    "C++",
+    "C"
+  ],
+  [
+    2,
+    "Osmanlı İmparatorluğu hangi yılda kurulmuştur?",
+    "1071",
+    "1299",
+    "1453",
+    "1520",
+    "B"
+  ],
+  [
+    2,
+    "Ay'ın Dünya'nın etrafında dönme süresi nedir?",
+    "7 gün",
+    "14 gün",
+    "27 gün",
+    "30 gün",
+    "C"
+  ],
+  [
+    2,
+    "Hangisi bir element sembolü değildir?",
+    "Au",
+    "Fe",
+    "Wt",
+    "Ag",
+    "C"
+  ],
+  [
+    2,
+    "Mona Lisa tablosunu kim yapmıştır?",
+    "Picasso",
+    "Da Vinci",
+    "Van Gogh",
+    "Michelangelo",
+    "B"
+  ],
+  [
+    2,
+    "Işık hızı saniyede yaklaşık kaç km'dir?",
+    "150.000",
+    "300.000",
+    "450.000",
+    "600.000",
+    "B"
+  ],
+  [
+    2,
+    "Türkiye'nin en uzun nehri hangisidir?",
+    "Fırat",
+    "Kızılırmak",
+    "Sakarya",
+    "Dicle",
+    "B"
+  ],
+  [
+    2,
+    "Pi sayısının ilk 3 basamağı nedir?",
+    "3.12",
+    "3.14",
+    "3.16",
+    "3.18",
+    "B"
+  ],
+  [
+    2,
+    "Hangisi Akdeniz ülkesidir?",
+    "Almanya",
+    "İsveç",
+    "İtalya",
+    "İrlanda",
+    "C"
+  ],
+  [
+    2,
+    "Anıtkabir hangi şehrimizdedir?",
+    "İstanbul",
+    "Ankara",
+    "Samsun",
+    "Erzurum",
+    "B"
+  ],
+  [
+    2,
+    "Hangisi bir doğal sayıdır?",
+    "-5",
+    "0.5",
+    "10",
+    "√2",
+    "C"
+  ],
+  [
+    2,
+    "'Sefiller' romanının yazarı kimdir?",
+    "Victor Hugo",
+    "Dostoyevski",
+    "Tolstoy",
+    "Balzac",
+    "A"
+  ],
+  [
+    2,
+    "Türkiye'nin telefon kodu nedir?",
+    "+49",
+    "+90",
+    "+1",
+    "+44",
+    "B"
+  ],
+  [
+    2,
+    "Hangi elementin sembolü 'O' dur?",
+    "Osmiyum",
+    "Oksijen",
+    "Orta",
+    "Okaliptus",
+    "B"
+  ],
+  [
+    2,
+    "Dünya Kupası kaç yılda bir düzenlenir?",
+    "2",
+    "3",
+    "4",
+    "5",
+    "C"
+  ],
+  [
+    2,
+    "Hangisi bir sürüngen değildir?",
+    "Yılan",
+    "Timsah",
+    "Kurbağa",
+    "Kertenkele",
+    "C"
+  ],
+  [
+    2,
+    "Van Gölü hangi bölgededir?",
+    "Ege",
+    "Karadeniz",
+    "Doğu Anadolu",
+    "Akdeniz",
+    "C"
+  ],
+  [
+    2,
+    "Hangisi İngilizce'de 'Elma' demektir?",
+    "Pear",
+    "Apple",
+    "Grape",
+    "Melon",
+    "B"
+  ],
+  [
+    2,
+    "Telefonu kim icat etti?",
+    "Edison",
+    "Graham Bell",
+    "Tesla",
+    "Marconi",
+    "B"
+  ],
+  [
+    2,
+    "Hangi gezegenin halkaları vardır?",
+    "Mars",
+    "Satürn",
+    "Venüs",
+    "Merkür",
+    "B"
+  ],
+  [
+    2,
+    "Ekmek kadayıfı hangi ilimize özgü bir tatlıdır?",
+    "Bursa",
+    "Afyon",
+    "Gaziantep",
+    "Hatay",
+    "B"
+  ],
+  [
+    2,
+    "Aspirinin ham maddesi hangi ağaçtan elde edilir?",
+    "Söğüt",
+    "Çam",
+    "Meşe",
+    "Kavak",
+    "A"
+  ],
+  [
+    2,
+    "Hangisi bir kuş türü değildir?",
+    "Penguen",
+    "Yarasa",
+    "Devekuşu",
+    "Kivi",
+    "B"
+  ],
+  [
+    2,
+    "Hangisi Asya kıtasında değildir?",
+    "Çin",
+    "Hindistan",
+    "Japonya",
+    "Brezilya",
+    "D"
+  ],
+  [
+    2,
+    "Mimar Sinan'ın 'Ustalık Eserim' dediği cami hangisidir?",
+    "Süleymaniye",
+    "Şehzade",
+    "Selimiye",
+    "Ayasofya",
+    "C"
+  ],
+  [
+    2,
+    "Fatih Sultan Mehmet İstanbul'u kaç yaşında fethetti?",
+    "19",
+    "21",
+    "25",
+    "30",
+    "B"
+  ],
+  [
+    2,
+    "Eurovision şarkı yarışmasını kazanan tek şarkımız hangisidir?",
+    "Petr'Oil",
+    "Düm Tek Tek",
+    "Everyway That I Can",
+    "We Could Be The Same",
+    "C"
+  ],
+  [
+    3,
+    "Kuantum fiziğinin babası kimdir?",
+    "Einstein",
+    "Max Planck",
+    "Bohr",
+    "Heisenberg",
+    "B"
+  ],
+  [
+    3,
+    "Hangi vitamin eksikliği skorbüte neden olur?",
+    "A",
+    "B12",
+    "C",
+    "D",
+    "C"
+  ],
+  [
+    3,
+    "Mariana Çukuru hangi okyanustadır?",
+    "Atlas",
+    "Hint",
+    "Pasifik",
+    "Arktik",
+    "C"
+  ],
+  [
+    3,
+    "Binary (ikili) sistemde 1010 hangi sayıya eşittir?",
+    "8",
+    "10",
+    "12",
+    "14",
+    "B"
+  ],
+  [
+    3,
+    "Hangisi bir kriptopara birimi değildir?",
+    "Bitcoin",
+    "Ethereum",
+    "Nasdaq",
+    "Solana",
+    "C"
+  ],
+  [
+    3,
+    "İnsan vücudunda kaç kemik vardır?",
+    "186",
+    "206",
+    "226",
+    "246",
+    "B"
+  ],
+  [
+    3,
+    "Türkiye'de kadınlara seçme hakkı hangi yılda verildi?",
+    "1923",
+    "1930",
+    "1934",
+    "1938",
+    "C"
+  ],
+  [
+    3,
+    "Dünya'nın çekirdeği ağırlıklı olarak neden oluşur?",
+    "Silikon",
+    "Demir",
+    "Karbon",
+    "Altın",
+    "B"
+  ],
+  [
+    3,
+    "TCP/IP protokolünde HTTP hangi porta varsayılandır?",
+    "21",
+    "25",
+    "80",
+    "443",
+    "C"
+  ],
+  [
+    3,
+    "Roma İmparatorluğu hangi yılda ikiye ayrıldı?",
+    "295",
+    "395",
+    "476",
+    "527",
+    "B"
+  ],
+  [
+    3,
+    "Hangisi Güney Amerika ülkesi değildir?",
+    "Peru",
+    "Şili",
+    "Küba",
+    "Arjantin",
+    "C"
+  ],
+  [
+    3,
+    "E=mc² formülünde 'c' neyi ifade eder?",
+    "Karbon",
+    "Sabit",
+    "Işık hızı",
+    "Kütle",
+    "C"
+  ],
+  [
+    3,
+    "Hangisi 7 harikadan biri değildir?",
+    "Keops Piramidi",
+    "Zeus Heykeli",
+    "Kolezyum",
+    "İskenderiye Feneri",
+    "C"
+  ],
+  [
+    3,
+    "Magna Carta hangi ülkede imzalanmıştır?",
+    "Fransa",
+    "İngiltere",
+    "Almanya",
+    "İtalya",
+    "B"
+  ],
+  [
+    3,
+    "Satrançta 'Fianchetto' ne demektir?",
+    "Atın L çizmesi",
+    "Filin kanattan gelişimi",
+    "Şah mat",
+    "Rok yapmak",
+    "B"
+  ],
+  [
+    3,
+    "Hangisi bir İslam halifesi değildir?",
+    "Hz. Ebubekir",
+    "Hz. Ömer",
+    "Hz. Bilâl",
+    "Hz. Osman",
+    "C"
+  ],
+  [
+    3,
+    "Fransız İhtilali hangi yılda gerçekleşti?",
+    "1776",
+    "1789",
+    "1804",
+    "1815",
+    "B"
+  ],
+  [
+    3,
+    "Periyodik tabloda 'Au' hangi elementtir?",
+    "Gümüş",
+    "Altın",
+    "Bakır",
+    "Alüminyum",
+    "B"
+  ],
+  [
+    3,
+    "Dede Korkut Hikayeleri hangi topluluğa aittir?",
+    "Oğuzlar",
+    "Kıpçaklar",
+    "Karluklar",
+    "Uygurlar",
+    "A"
+  ],
+  [
+    3,
+    "Hangisi bir kan grubu değildir?",
+    "A",
+    "B",
+    "AB",
+    "C",
+    "D"
+  ],
+  [
+    3,
+    "Google hangi yıl kurulmuştur?",
+    "1996",
+    "1998",
+    "2000",
+    "2004",
+    "B"
+  ],
+  [
+    3,
+    "Harry Potter serisinin yazarı kimdir?",
+    "J.R.R. Tolkien",
+    "J.K. Rowling",
+    "George R.R. Martin",
+    "Stephen King",
+    "B"
+  ],
+  [
+    3,
+    "Hangisi bir tenis turnuvası değildir?",
+    "Wimbledon",
+    "Roland Garros",
+    "Super Bowl",
+    "US Open",
+    "C"
+  ],
+  [
+    3,
+    "Türkiye NATO'ya hangi yıl üye olmuştur?",
+    "1949",
+    "1952",
+    "1960",
+    "1974",
+    "B"
+  ],
+  [
+    3,
+    "Tarihte ilk yazıyı kimler bulmuştur?",
+    "Mısırlılar",
+    "Sümerler",
+    "Hititler",
+    "Asurlar",
+    "B"
+  ],
+  [
+    3,
+    "Hangisi bir şairimiz değildir?",
+    "Cemal Süreya",
+    "Attilâ İlhan",
+    "Yaşar Kemal",
+    "Orhan Veli",
+    "C"
+  ],
+  [
+    3,
+    "Hangi ülkenin bayrağında akçaağaç yaprağı vardır?",
+    "Kanada",
+    "Brezilya",
+    "Japonya",
+    "Norveç",
+    "A"
+  ],
+  [
+    3,
+    "Ozon tabakası hangi gazdan oluşur?",
+    "Oksijen",
+    "Ozon (O3)",
+    "Azot",
+    "Karbon",
+    "B"
+  ],
+  [
+    3,
+    "James Bond karakterinin kod adı nedir?",
+    "001",
+    "007",
+    "777",
+    "911",
+    "B"
+  ],
+  [
+    3,
+    "Hangisi 'Sıcak Savaş' aracı değildir?",
+    "Tank",
+    "Tüfek",
+    "Ambargo",
+    "Füze",
+    "C"
+  ],
+  [
+    4,
+    "Schrödinger deneyinde kutu içindeki hayvan nedir?",
+    "Köpek",
+    "Tavşan",
+    "Kedi",
+    "Kuş",
+    "C"
+  ],
+  [
+    4,
+    "Enigma makinesi hangi savaşta kırılmıştır?",
+    "1. Dünya Savaşı",
+    "2. Dünya Savaşı",
+    "Kore Savaşı",
+    "Soğuk Savaş",
+    "B"
+  ],
+  [
+    4,
+    "Hangisi bir sıralama algoritması değildir?",
+    "Bubble Sort",
+    "Quick Sort",
+    "Hash Sort",
+    "Merge Sort",
+    "C"
+  ],
+  [
+    4,
+    "Fibonacci dizisinde 8. terim kaçtır?",
+    "13",
+    "21",
+    "34",
+    "55",
+    "B"
+  ],
+  [
+    4,
+    "Hangi element oda sıcaklığında sıvı haldedir?",
+    "Demir",
+    "Cıva",
+    "Bakır",
+    "Çinko",
+    "B"
+  ],
+  [
+    4,
+    "Git versiyon kontrol sistemini kim geliştirmiştir?",
+    "Bill Gates",
+    "Linus Torvalds",
+    "Steve Jobs",
+    "Dennis Ritchie",
+    "B"
+  ],
+  [
+    4,
+    "Teori-i İzafiyet hangi yılda yayımlanmıştır?",
+    "1905",
+    "1915",
+    "1925",
+    "1935",
+    "A"
+  ],
+  [
+    4,
+    "Yapay zekanın babası olarak kim kabul edilir?",
+    "Ada Lovelace",
+    "Alan Turing",
+    "John McCarthy",
+    "Marvin Minsky",
+    "C"
+  ],
+  [
+    4,
+    "Hangisi NoSQL veritabanı değildir?",
+    "MongoDB",
+    "PostgreSQL",
+    "Redis",
+    "CouchDB",
+    "B"
+  ],
+  [
+    4,
+    "Mutlak sıfır kaç santigrat derecedir?",
+    "-173",
+    "-273",
+    "-373",
+    "-473",
+    "B"
+  ],
+  [
+    4,
+    "Osmanlı'nın son padişahı kimdir?",
+    "Abdülhamid II",
+    "Mehmed V",
+    "Mehmed VI",
+    "Abdülmecid II",
+    "C"
+  ],
+  [
+    4,
+    "Bitcoin whitepaper'ı hangi yılda yayımlandı?",
+    "2006",
+    "2008",
+    "2010",
+    "2012",
+    "B"
+  ],
+  [
+    4,
+    "Sefiller romanındaki ana karakter kimdir?",
+    "Jean Valjean",
+    "Cosette",
+    "Javert",
+    "Marius",
+    "A"
+  ],
+  [
+    4,
+    "Hangisi bir asal sayıdır?",
+    "51",
+    "57",
+    "61",
+    "91",
+    "C"
+  ],
+  [
+    4,
+    "Hangi ressam kulağını kesmiştir?",
+    "Picasso",
+    "Van Gogh",
+    "Dali",
+    "Monet",
+    "B"
+  ],
+  [
+    4,
+    "Habeşistan günümüzde hangi ülkedir?",
+    "Mısır",
+    "Sudan",
+    "Etiyopya",
+    "Libya",
+    "C"
+  ],
+  [
+    4,
+    "Nobel Edebiyat Ödülü'nü kazanan ilk Türk yazar kimdir?",
+    "Yaşar Kemal",
+    "Orhan Pamuk",
+    "Aziz Nesin",
+    "Halide Edip",
+    "B"
+  ],
+  [
+    4,
+    "Hangisi Shakespeare eseri değildir?",
+    "Hamlet",
+    "Macbeth",
+    "Sefiller",
+    "Othello",
+    "C"
+  ],
+  [
+    4,
+    "Hangi ülke hem Asya hem de Avrupa kıtasındadır?",
+    "Mısır",
+    "Türkiye",
+    "İran",
+    "Yunanistan",
+    "B"
+  ],
+  [
+    4,
+    "Dünyanın en derin gölü hangisidir?",
+    "Hazar",
+    "Baykal",
+    "Viktoria",
+    "Titicaca",
+    "B"
+  ],
+  [
+    4,
+    "Satrancın ana vatanı neresidir?",
+    "Çin",
+    "Hindistan",
+    "İran",
+    "Rusya",
+    "B"
+  ],
+  [
+    4,
+    "Hangisi Atatürk'ün yazdığı bir kitaptır?",
+    "Nutuk",
+    "Safahat",
+    "Çalıkuşu",
+    "İnce Memed",
+    "A"
+  ],
+  [
+    4,
+    "Hangi gezegenin uydusu yoktur?",
+    "Mars",
+    "Neptün",
+    "Venüs",
+    "Uranüs",
+    "C"
+  ],
+  [
+    4,
+    "İlk yerli Türk romanı hangisidir?",
+    "Taaşşuk-ı Talat ve Fitnat",
+    "Mai ve Siyah",
+    "Aşk-ı Memnu",
+    "Eylül",
+    "A"
+  ],
+  [
+    4,
+    "Aspirinin kimyasal adı nedir?",
+    "Askorbik Asit",
+    "Asetilsalisilik Asit",
+    "Sitrik Asit",
+    "Folik Asit",
+    "B"
+  ],
+  [
+    4,
+    "Hangisi Balkan ülkesi değildir?",
+    "Bulgaristan",
+    "Sırbistan",
+    "Makedonya",
+    "İspanya",
+    "D"
+  ],
+  [
+    4,
+    "Tarihte parayı ilk kimler kullandı?",
+    "Lidyalılar",
+    "Persler",
+    "Yunanlılar",
+    "Romalılar",
+    "A"
+  ],
+  [
+    4,
+    "Guernica tablosu kime aittir?",
+    "Dali",
+    "Picasso",
+    "Goya",
+    "Miro",
+    "B"
+  ],
+  [
+    4,
+    "Hangisi Kanuni Sultan Süleyman'ın eşidir?",
+    "Hürrem Sultan",
+    "Kösem Sultan",
+    "Safiye Sultan",
+    "Mihrimah Sultan",
+    "A"
+  ],
+  [
+    4,
+    "Türkiye'nin en yüksek dağı hangisidir?",
+    "Erciyes",
+    "Süphan",
+    "Kaçkar",
+    "Ağrı",
+    "D"
+  ],
+  [
+    5,
+    "Gödel'in eksiklik teoremleri hangi alanla ilgilidir?",
+    "Fizik",
+    "Matematik",
+    "Biyoloji",
+    "Kimya",
+    "B"
+  ],
+  [
+    5,
+    "P vs NP problemi hangi alanın açık sorusudur?",
+    "Fizik",
+    "Ekonomi",
+    "Bilgisayar Bilimi",
+    "Biyoloji",
+    "C"
+  ],
+  [
+    5,
+    "RSA şifrelemenin güvenliği neye dayanır?",
+    "Hash fonks.",
+    "Asal çarpanlara ayırma",
+    "Simetrik anahtar",
+    "Kuantum dolanıklık",
+    "B"
+  ],
+  [
+    5,
+    "Turing makinesi kavramı hangi yılda ortaya atıldı?",
+    "1926",
+    "1936",
+    "1946",
+    "1956",
+    "B"
+  ],
+  [
+    5,
+    "Dünya'nın yaşı yaklaşık kaç milyar yıldır?",
+    "2.5",
+    "3.5",
+    "4.5",
+    "5.5",
+    "C"
+  ],
+  [
+    5,
+    "Higgs bozonu deneysel olarak hangi yıl doğrulandı?",
+    "2008",
+    "2010",
+    "2012",
+    "2014",
+    "C"
+  ],
+  [
+    5,
+    "Lambda kalkülüsü kim tarafından geliştirildi?",
+    "Kurt Gödel",
+    "Alonzo Church",
+    "Alan Turing",
+    "John von Neumann",
+    "B"
+  ],
+  [
+    5,
+    "Halting problemi neyi ifade eder?",
+    "Programın durup durmayacağı",
+    "CPU sıcaklığı",
+    "Bellek sızıntısı",
+    "Ağ gecikmesi",
+    "A"
+  ],
+  [
+    5,
+    "Planck sabiti yaklaşık kaçtır?",
+    "6.626×10⁻³⁴",
+    "3.14×10⁻²⁰",
+    "9.8×10⁻¹⁵",
+    "1.6×10⁻¹⁹",
+    "A"
+  ],
+  [
+    5,
+    "Kolmogorov karmaşıklığı neyi ölçer?",
+    "Algoritma hızını",
+    "Veri sıkıştırılabilirliğini",
+    "Ağ trafiğini",
+    "CPU kullanımını",
+    "B"
+  ],
+  [
+    5,
+    "Kuantum bilgisayarın temel birimi nedir?",
+    "Bit",
+    "Byte",
+    "Qubit",
+    "Quark",
+    "C"
+  ],
+  [
+    5,
+    "İlk mekanik bilgisayarı kim tasarlamıştır?",
+    "Turing",
+    "Babbage",
+    "Pascal",
+    "Leibniz",
+    "B"
+  ],
+  [
+    5,
+    "Hangisi 100 yıl savaşlarında savaşmış ülkelerdir?",
+    "İngiltere-Almanya",
+    "İngiltere-Fransa",
+    "Fransa-İspanya",
+    "Almanya-Rusya",
+    "B"
+  ],
+  [
+    5,
+    "Hangi ülke BM Güvenlik Konseyi daimi üyesi değildir?",
+    "Çin",
+    "Fransa",
+    "Almanya",
+    "Rusya",
+    "C"
+  ],
+  [
+    5,
+    "Dante'nin İlahi Komedya'sı kaç bölümden oluşur?",
+    "2",
+    "3",
+    "4",
+    "5",
+    "B"
+  ],
+  [
+    5,
+    "Hangisi İbni Sina'nın eseridir?",
+    "El-Kanun fi't-Tıb",
+    "Mesnevi",
+    "Kutadgu Bilig",
+    "Seyahatname",
+    "A"
+  ],
+  [
+    5,
+    "Hangi notanın diğer adı 'Do'dur?",
+    "Ut",
+    "Re",
+    "Mi",
+    "Fa",
+    "A"
+  ],
+  [
+    5,
+    "Dünyanın en eski üniversitesi hangi ülkededir?",
+    "İngiltere",
+    "İtalya",
+    "Fas",
+    "Mısır",
+    "C"
+  ],
+  [
+    5,
+    "Hangi film 11 Oscar ödülü kazanmıştır?",
+    "Titanik",
+    "Godfather",
+    "Star Wars",
+    "Pulp Fiction",
+    "A"
+  ],
+  [
+    5,
+    "Hangisi tarihteki 7 harikadan günümüze kalan tek eserdir?",
+    "Keops Piramidi",
+    "Babil'in Asma Bahçeleri",
+    "Artemis Tapınağı",
+    "Rodos Heykeli",
+    "A"
+  ],
+  [
+    5,
+    "Satrançta 'En Passant' (Geçerken Alma) hangi taşla yapılır?",
+    "Kale",
+    "Fil",
+    "Piyon",
+    "Vezir",
+    "C"
+  ],
+  [
+    5,
+    "Voyager 1 uzay aracı hangi yıl fırlatılmıştır?",
+    "1969",
+    "1977",
+    "1981",
+    "1990",
+    "B"
+  ],
+  [
+    5,
+    "Hangisi bir asal gaz değildir?",
+    "Helyum",
+    "Neon",
+    "Argon",
+    "Hidrojen",
+    "D"
+  ],
+  [
+    5,
+    "Hangi ülke Schengen bölgesine dahil değildir?",
+    "Norveç",
+    "İsviçre",
+    "İngiltere",
+    "İzlanda",
+    "C"
+  ],
+  [
+    5,
+    "Tarihte 'Muhteşem' lakabıyla bilinen Osmanlı padişahı kimdir?",
+    "Fatih Sultan Mehmet",
+    "Yavuz Sultan Selim",
+    "Kanuni Sultan Süleyman",
+    "II. Abdülhamid",
+    "C"
+  ],
+  [
+    5,
+    "Mona Lisa tablosu hangi müzededir?",
+    "British Museum",
+    "Louvre",
+    "Metropolitan",
+    "Prado",
+    "B"
+  ],
+  [
+    5,
+    "Hangisi Dostoyevski'nin 'Suç ve Ceza' romanındaki karakterdir?",
+    "Raskolnikov",
+    "Levin",
+    "Oblomov",
+    "Bazarov",
+    "A"
+  ],
+  [
+    5,
+    "ASCII tablosunda 'A' harfinin onluk (decimal) değeri nedir?",
+    "64",
+    "65",
+    "97",
+    "126",
+    "B"
+  ],
+  [
+    5,
+    "Hangisi bir Linux dağıtımı değildir?",
+    "Ubuntu",
+    "Fedora",
+    "Debian",
+    "Solaris",
+    "D"
+  ],
+  [
+    5,
+    "Hangi programlama dili 'Yılan' logosuna sahiptir?",
+    "Java",
+    "Python",
+    "Go",
+    "Ruby",
+    "B"
+  ],
+  [
+    1,
+    "Hangi hayvanın sütü pembe renktedir?",
+    "Su Aygırı",
+    "Zürafa",
+    "Flamingo",
+    "Zebra",
+    "A"
+  ],
+  [
+    1,
+    "Dünyanın en çok konuşulan dili hangisidir?",
+    "İngilizce",
+    "İspanyolca",
+    "Çince (Mandarin)",
+    "Hintçe",
+    "A"
+  ],
+  [
+    1,
+    "Hangi ülke hem Asya hem de Avrupa kıtasındadır?",
+    "Rusya",
+    "Mısır",
+    "Endonezya",
+    "Fas",
+    "A"
+  ],
+  [
+    1,
+    "İnsan vücudundaki en güçlü kas hangisidir?",
+    "Dil",
+    "Çene Kası",
+    "Kalp",
+    "Baldır",
+    "B"
+  ],
+  [
+    1,
+    "Satranç tahtasında kaç kare vardır?",
+    "64",
+    "32",
+    "100",
+    "50",
+    "A"
+  ],
+  [
+    1,
+    "Hangi gezegenin diğer adı 'Kızıl Gezegen'dir?",
+    "Mars",
+    "Venüs",
+    "Jüpiter",
+    "Merkür",
+    "A"
+  ],
+  [
+    2,
+    "Avustralya'nın başkenti neresidir?",
+    "Sydney",
+    "Melbourne",
+    "Canberra",
+    "Perth",
+    "C"
+  ],
+  [
+    2,
+    "Hangi elementin simgesi 'Ag'dir?",
+    "Altın",
+    "Gümüş",
+    "Argon",
+    "Alüminyum",
+    "B"
+  ],
+  [
+    1,
+    "Titanik gemisi hangi yıl batmıştır?",
+    "1912",
+    "1905",
+    "1923",
+    "1899",
+    "A"
+  ],
+  [
+    4,
+    "Bir futbol maçında ofsayt kuralı hangi yıl getirilmiştir?",
+    "1863",
+    "1900",
+    "1925",
+    "1950",
+    "A"
+  ],
+  [
+    1,
+    "Mona Lisa tablosunun orijinali hangi müzededir?",
+    "Louvre",
+    "British Museum",
+    "Vatikan",
+    "Metropolitan",
+    "A"
+  ],
+  [
+    2,
+    "Hangi ülkenin bayrağı kare şeklindedir?",
+    "İsviçre",
+    "Japonya",
+    "Kanada",
+    "Belçika",
+    "A"
+  ],
+  [
+    2,
+    "İnsan DNA'sı ile hangi meyvenin DNA'sı %50 oranında benzerdir?",
+    "Muz",
+    "Elma",
+    "Çilek",
+    "Kivi",
+    "A"
+  ],
+  [
+    1,
+    "Hangi savaş 100 yıl sürmüştür?",
+    "Güller Savaşı",
+    "Yüzyıl Savaşları",
+    "30 Yıl Savaşları",
+    "Haçlı Seferleri",
+    "B"
+  ],
+  [
+    3,
+    "Yüzyıl Savaşları tam olarak kaç yıl sürmüştür?",
+    "100",
+    "116",
+    "99",
+    "120",
+    "B"
+  ],
+  [
+    3,
+    "Dünyanın en derin noktası Mariana Çukuru kaç metredir?",
+    "8.848",
+    "10.994",
+    "12.500",
+    "15.000",
+    "B"
+  ],
+  [
+    4,
+    "Hangi yazar Nobel Edebiyat Ödülü'nü reddetmiştir?",
+    "Jean-Paul Sartre",
+    "Albert Camus",
+    "Ernest Hemingway",
+    "Orhan Pamuk",
+    "A"
+  ],
+  [
+    2,
+    "Olimpiyat halkalarındaki mavi renk hangi kıtayı temsil eder?",
+    "Avrupa",
+    "Asya",
+    "Amerika",
+    "Okyanusya",
+    "A"
+  ],
+  [
+    3,
+    "Hangi hastalığın tedavisinde kinin kullanılır?",
+    "Sıtma",
+    "Veba",
+    "Kolera",
+    "Tifo",
+    "A"
+  ],
+  [
+    4,
+    "İlk yapay kalp nakli hangi ülkede yapılmıştır?",
+    "ABD",
+    "Güney Afrika",
+    "Almanya",
+    "İngiltere",
+    "A"
+  ],
+  [
+    3,
+    "Hangi gezegen Güneş etrafında diğer gezegenlerin aksi yönünde döner?",
+    "Venüs",
+    "Mars",
+    "Jüpiter",
+    "Satürn",
+    "A"
+  ],
+  [
+    2,
+    "Tarihte bilinen ilk yazılı antlaşma hangisidir?",
+    "Kadeş",
+    "Versay",
+    "Magna Carta",
+    "Westphalia",
+    "A"
+  ],
+  [
+    3,
+    "Hangi hayvanın parmak izi insan parmak izine çok benzer?",
+    "Koala",
+    "Şempanze",
+    "Goril",
+    "Lemur",
+    "A"
+  ],
+  [
+    2,
+    "Ahtapotların kaç kalbi vardır?",
+    "1",
+    "2",
+    "3",
+    "4",
+    "C"
+  ],
+  [
+    3,
+    "Eyfel Kulesi hangi yılda tamamlanmıştır?",
+    "1889",
+    "1900",
+    "1850",
+    "1923",
+    "A"
+  ],
+  [
+    4,
+    "Hangi ülkenin ulusal marşı en eskidir?",
+    "Japonya",
+    "Hollanda",
+    "İngiltere",
+    "Fransa",
+    "A"
+  ],
+  [
+    2,
+    "Kutup ayılarının derisi ne renktir?",
+    "Siyah",
+    "Beyaz",
+    "Pembe",
+    "Gri",
+    "A"
+  ],
+  [
+    4,
+    "Hangi meyve teknik olarak bir 'dutsu' (berry) meyvedir?",
+    "Muz",
+    "Çilek",
+    "Ahududu",
+    "Böğürtlen",
+    "A"
+  ],
+  [
+    5,
+    "Google'ın ilk adı neydi?",
+    "BackRub",
+    "Googol",
+    "SearchMaster",
+    "WebCrawler",
+    "A"
+  ],
+  [
+    1,
+    "Hangi element oda sıcaklığında sıvı olan tek metaldir?",
+    "Cıva",
+    "Galyum",
+    "Brom",
+    "Sezyum",
+    "A"
+  ],
+  [
+    5,
+    "Hangi ülke en çok zaman dilimine sahiptir?",
+    "Fransa",
+    "Rusya",
+    "ABD",
+    "Çin",
+    "A"
+  ],
+  [
+    4,
+    "Bir yıl tam olarak kaç gündür?",
+    "365.2422",
+    "365",
+    "365.5",
+    "366",
+    "A"
+  ],
+  [
+    1,
+    "Hangi satranç taşı diğer taşların üzerinden atlayabilir?",
+    "At",
+    "Kale",
+    "Fil",
+    "Vezir",
+    "A"
+  ],
+  [
+    3,
+    "İlk SMS mesajında ne yazıyordu?",
+    "Merry Christmas",
+    "Hello World",
+    "Test",
+    "Watson gel",
+    "A"
+  ],
+  [
+    5,
+    "Hangi hayvan hiç uyumaz?",
+    "Boğa Kurbağası",
+    "Köpekbalığı",
+    "Karınca",
+    "Yunus",
+    "A"
+  ],
+  [
+    2,
+    "Dünyanın en eski metrosu hangi şehirdedir?",
+    "Londra",
+    "New York",
+    "Paris",
+    "Moskova",
+    "A"
+  ],
+  [
+    1,
+    "Hangi spor dalında 'Ace' terimi kullanılır?",
+    "Tenis",
+    "Futbol",
+    "Basketbol",
+    "Yüzme",
+    "A"
+  ],
+  [
+    4,
+    "Kedilerin kaç parmağı vardır?",
+    "18",
+    "20",
+    "16",
+    "22",
+    "A"
+  ],
+  [
+    5,
+    "Hangi ülkenin bayrağında silah (AK-47) vardır?",
+    "Mozambik",
+    "Angola",
+    "Vietnam",
+    "Küba",
+    "A"
+  ],
+  [
+    3,
+    "Hangi gezegen suyun üzerinde yüzebilecek kadar düşük yoğunluğa sahiptir?",
+    "Satürn",
+    "Jüpiter",
+    "Uranüs",
+    "Neptün",
+    "A"
+  ],
+  [
+    3,
+    "Bir insan hayatı boyunca ortalama ne kadar tükürük üretir?",
+    "2 Havuz Dolusu",
+    "1 Bardak",
+    "10 Litre",
+    "500 Litre",
+    "A"
+  ],
+  [
+    1,
+    "Hangi ünlü ressam helikopteri icat etmeden yüzlerce yıl önce çizmiştir?",
+    "Leonardo da Vinci",
+    "Michelangelo",
+    "Raphael",
+    "Donatello",
+    "A"
+  ],
+  [
+    1,
+    "Dünyanın en küçük ülkesi neresidir?",
+    "Vatikan",
+    "Monako",
+    "Nauru",
+    "San Marino",
+    "A"
+  ],
+  [
+    2,
+    "Hangi müzik aleti 'piyanoforte'nin kısaltmasıdır?",
+    "Piyano",
+    "Keman",
+    "Gitar",
+    "Flüt",
+    "A"
+  ],
+  [
+    2,
+    "Hangi hayvanın dişleri hayatı boyunca uzamaya devam eder?",
+    "Kunduz",
+    "Köpekbalığı",
+    "Aslan",
+    "Fil",
+    "A"
+  ],
+  [
+    4,
+    "İlk internet tarayıcısının adı nedir?",
+    "WorldWideWeb",
+    "Mosaic",
+    "Netscape",
+    "Internet Explorer",
+    "A"
+  ],
+  [
+    1,
+    "Hangi elementin atom numarası 1'dir?",
+    "Hidrojen",
+    "Helyum",
+    "Lityum",
+    "Karbon",
+    "A"
+  ],
+  [
+    1,
+    "Dünya kupasını en çok kazanan ülke hangisidir?",
+    "Brezilya",
+    "Almanya",
+    "İtalya",
+    "Arjantin",
+    "A"
+  ],
+  [
+    4,
+    "Hangi gezegenin günü yılından daha uzundur?",
+    "Venüs",
+    "Merkür",
+    "Mars",
+    "Jüpiter",
+    "A"
+  ],
+  [
+    1,
+    "Hangi kan grubu 'Genel Verici'dir?",
+    "0 Negatif",
+    "AB Pozitif",
+    "A Pozitif",
+    "0 Pozitif",
+    "A"
+  ],
+  [
+    1,
+    "Hangisi bir tatlı çeşididir?",
+    "Baklava",
+    "Mantı",
+    "Dolma",
+    "Pilav",
+    "A"
+  ],
+  [
+    1,
+    "Türkiye'nin plaka kodu hangisidir?",
+    "TR",
+    "US",
+    "DE",
+    "FR",
+    "A"
+  ],
+  [
+    1,
+    "Hangi hayvanın hörgücü vardır?",
+    "Deve",
+    "At",
+    "Eşek",
+    "Katır",
+    "A"
+  ],
+  [
+    1,
+    "Futbol maçı kaç kişiyle oynanır?",
+    "11",
+    "5",
+    "7",
+    "10",
+    "A"
+  ],
+  [
+    1,
+    "Güneş doğudan mı batıdan mı doğar?",
+    "Doğu",
+    "Batı",
+    "Kuzey",
+    "Güney",
+    "A"
+  ],
+  [
+    1,
+    "Hangisi bir kış meyvesidir?",
+    "Portakal",
+    "Karpuz",
+    "Kiraz",
+    "Çilek",
+    "A"
+  ],
+  [
+    1,
+    "Kırmızı ışıkta ne yapılır?",
+    "Durulur",
+    "Geçilir",
+    "Koşulur",
+    "Zıplanır",
+    "A"
+  ],
+  [
+    1,
+    "Hangi hayvanın uzun bir hortumu vardır?",
+    "Fil",
+    "Aslan",
+    "Maymun",
+    "Ayı",
+    "A"
+  ],
+  [
+    1,
+    "Deniz ne renktir?",
+    "Mavi",
+    "Kırmızı",
+    "Sarı",
+    "Pembe",
+    "A"
+  ],
+  [
+    1,
+    "Türkiye'nin para birimi nedir?",
+    "Türk Lirası",
+    "Dolar",
+    "Euro",
+    "Sterlin",
+    "A"
+  ],
+  [
+    1,
+    "Hangi mevsimden sonra yaz gelir?",
+    "İlkbahar",
+    "Sonbahar",
+    "Kış",
+    "Yaz",
+    "A"
+  ],
+  [
+    1,
+    "Bir haftada kaç gün vardır?",
+    "7",
+    "5",
+    "10",
+    "12",
+    "A"
+  ],
+  [
+    1,
+    "Hangi taşıt havada gider?",
+    "Uçak",
+    "Tren",
+    "Gemi",
+    "Otobüs",
+    "A"
+  ],
+  [
+    1,
+    "Anıtkabir hangi elimizdedir?",
+    "Ankara",
+    "İstanbul",
+    "İzmir",
+    "Antalya",
+    "A"
+  ],
+  [
+    1,
+    "Hangi hayvan bal yapar?",
+    "Arı",
+    "Sinek",
+    "Kelebek",
+    "Böcek",
+    "A"
+  ],
+  [
+    1,
+    "Domates ne renktir?",
+    "Kırmızı",
+    "Mavi",
+    "Mor",
+    "Siyah",
+    "A"
+  ],
+  [
+    1,
+    "Okulda ders anlatan kişiye ne denir?",
+    "Öğretmen",
+    "Doktor",
+    "Mühendis",
+    "Avukat",
+    "A"
+  ],
+  [
+    1,
+    "Dişlerimizi neyle fırçalarız?",
+    "Diş fırçası",
+    "Tarak",
+    "Kaşık",
+    "Çatal",
+    "A"
+  ],
+  [
+    1,
+    "Hangi hayvan yumurtlar?",
+    "Tavuk",
+    "İnek",
+    "Koyun",
+    "Keçi",
+    "A"
+  ],
+  [
+    1,
+    "Hangisi bir müzik aletidir?",
+    "Gitar",
+    "Masa",
+    "Sandalye",
+    "Kalem",
+    "A"
+  ],
+  [
+    1,
+    "Limonun tadı nasıldır?",
+    "Ekşi",
+    "Tatlı",
+    "Acı",
+    "Tuzlu",
+    "A"
+  ],
+  [
+    1,
+    "Kardan adam neden yapılır?",
+    "Kar",
+    "Kum",
+    "Taş",
+    "Toprak",
+    "A"
+  ],
+  [
+    1,
+    "Gözlük ne için takılır?",
+    "Görmek",
+    "Duymak",
+    "Yürümek",
+    "Yemek",
+    "A"
+  ],
+  [
+    1,
+    "Hangi hayvanın evi kabuğudur?",
+    "Kaplumbağa",
+    "Kedi",
+    "Köpek",
+    "Kuş",
+    "A"
+  ],
+  [
+    1,
+    "Hangisi bir içecektir?",
+    "Ayran",
+    "Ekmek",
+    "Peynir",
+    "Zeytin",
+    "A"
+  ],
+  [
+    1,
+    "Saat kaç akrebi vardır?",
+    "1",
+    "2",
+    "3",
+    "4",
+    "A"
+  ],
+  [
+    1,
+    "Hangi gezegen halkalıdır?",
+    "Satürn",
+    "Mars",
+    "Venüs",
+    "Merkür",
+    "A"
+  ],
+  [
+    1,
+    "Gökkuşağı ne zaman çıkar?",
+    "Yağmurdan sonra",
+    "Gece",
+    "Kar yağarken",
+    "Rüzgarda",
+    "A"
+  ],
+  [
+    1,
+    "Hangisi bir sebzedir?",
+    "Pırasa",
+    "Elma",
+    "Armut",
+    "Muz",
+    "A"
+  ],
+  [
+    1,
+    "Türkiye'nin en büyük gölü hangisidir?",
+    "Van Gölü",
+    "Tuz Gölü",
+    "Beyşehir",
+    "Eğirdir",
+    "A"
+  ],
+  [
+    1,
+    "Hangisi suda yaşar?",
+    "Balık",
+    "Kedi",
+    "Tavşan",
+    "Kuş",
+    "A"
+  ],
+  [
+    1,
+    "Pusula neyi gösterir?",
+    "Kuzey",
+    "Güney",
+    "Doğu",
+    "Batı",
+    "A"
+  ],
+  [
+    1,
+    "Hangi hayvan kış uykusuna yatar?",
+    "Ayı",
+    "Kedi",
+    "Köpek",
+    "At",
+    "A"
+  ],
+  [
+    1,
+    "Hangisi bir spor dalıdır?",
+    "Basketbol",
+    "Uyku",
+    "Yemek",
+    "Oturmak",
+    "A"
+  ],
+  [
+    1,
+    "Nazar boncuğu ne renktir?",
+    "Mavi",
+    "Kırmızı",
+    "Sarı",
+    "Yeşil",
+    "A"
+  ],
+  [
+    1,
+    "Hangi ay 28 çeker?",
+    "Şubat",
+    "Mart",
+    "Nisan",
+    "Mayıs",
+    "A"
+  ],
+  [
+    1,
+    "Dünya'nın uydusu nedir?",
+    "Ay",
+    "Güneş",
+    "Mars",
+    "Yıldız",
+    "A"
+  ],
+  [
+    1,
+    "Hangisi bir yön değildir?",
+    "Aşağı",
+    "Kuzey",
+    "Güney",
+    "Doğu",
+    "A"
+  ],
+  [
+    1,
+    "İtfaiyeciler ne söndürür?",
+    "Yangın",
+    "Işık",
+    "Televizyon",
+    "Mum",
+    "A"
+  ],
+  [
+    1,
+    "Doktorlar nerede çalışır?",
+    "Hastane",
+    "Okul",
+    "Postane",
+    "Banka",
+    "A"
+  ],
+  [
+    1,
+    "Hangi renk trafik lambasında yoktur?",
+    "Mavi",
+    "Kırmızı",
+    "Sarı",
+    "Yeşil",
+    "A"
+  ],
+  [
+    1,
+    "Hangisi uçan bir böcektir?",
+    "Sinek",
+    "Karınca",
+    "Örümcek",
+    "Solucan",
+    "A"
+  ],
+  [
+    1,
+    "Karpuzun içi ne renktir?",
+    "Kırmızı",
+    "Sarı",
+    "Mavi",
+    "Mor",
+    "A"
+  ],
+  [
+    1,
+    "Hangi hayvan süt verir?",
+    "İnek",
+    "Tavuk",
+    "Horoz",
+    "Ördek",
+    "A"
+  ],
+  [
+    1,
+    "Gitarın kaç teli vardır?",
+    "6",
+    "4",
+    "5",
+    "7",
+    "A"
+  ],
+  [
+    1,
+    "Hangisi bir oyun konsoludur?",
+    "PlayStation",
+    "Tost Makinesi",
+    "Ütü",
+    "Fırın",
+    "A"
+  ],
+  [
+    1,
+    "Youtube ne sitesidir?",
+    "Video",
+    "Alışveriş",
+    "Yemek",
+    "Haber",
+    "A"
+  ],
+  [
+    1,
+    "Instagram logosu ne renktir?",
+    "Renkli",
+    "Siyah",
+    "Beyaz",
+    "Mavi",
+    "A"
+  ],
+  [
+    1,
+    "Hangisi Apple ürünüdür?",
+    "iPhone",
+    "Galaxy",
+    "Redmi",
+    "Xperia",
+    "A"
+  ],
+  [
+    1,
+    "Windows hangi şirkete aittir?",
+    "Microsoft",
+    "Apple",
+    "Google",
+    "Amazon",
+    "A"
+  ],
+  [
+    2,
+    "Osmanlı'da Lale Devri hangi isyanla bitmiştir?",
+    "Patrona Halil",
+    "Kabakçı Mustafa",
+    "Celali",
+    "Şeyh Bedrettin",
+    "A"
+  ],
+  [
+    2,
+    "Hangi elementin simgesi 'Fe'dir?",
+    "Demir",
+    "Flor",
+    "Fosfor",
+    "Fransiyum",
+    "A"
+  ],
+  [
+    2,
+    "Avrupa Birliği'nin başkenti neresi kabul edilir?",
+    "Brüksel",
+    "Paris",
+    "Berlin",
+    "Roma",
+    "A"
+  ],
+  [
+    2,
+    "Hangi yazar 'Suç ve Ceza'yı yazmıştır?",
+    "Dostoyevski",
+    "Tolstoy",
+    "Puşkin",
+    "Gogol",
+    "A"
+  ],
+  [
+    3,
+    "İnsan vücudundaki en büyük organ hangisidir?",
+    "Deri",
+    "Karaciğer",
+    "Akciğer",
+    "Beyin",
+    "A"
+  ],
+  [
+    2,
+    "Hangi gezegen 'Akşam Yıldızı' olarak bilinir?",
+    "Venüs",
+    "Mars",
+    "Jüpiter",
+    "Merkür",
+    "A"
+  ],
+  [
+    2,
+    "Hangi ülke piramitleriyle ünlüdür?",
+    "Mısır",
+    "Meksika",
+    "Peru",
+    "Çin",
+    "A"
+  ],
+  [
+    2,
+    "Dünyanın en uzun nehrili hangisidir?",
+    "Nil",
+    "Amazon",
+    "Yangtze",
+    "Mississippi",
+    "A"
+  ],
+  [
+    2,
+    "Hangi savaş 1939-1945 yılları arasında olmuştur?",
+    "2. Dünya Savaşı",
+    "1. Dünya Savaşı",
+    "Kore Savaşı",
+    "Vietnam Savaşı",
+    "A"
+  ],
+  [
+    2,
+    "Hangi ülke kahvesiyle ünlüdür?",
+    "Brezilya",
+    "Çin",
+    "Rusya",
+    "Kanada",
+    "A"
+  ],
+  [
+    3,
+    "Hangi hayvanın kemiği yoktur?",
+    "Köpekbalığı",
+    "Yılan",
+    "Balina",
+    "Yarasa",
+    "A"
+  ],
+  [
+    2,
+    "Hangi element havadan hafiftir?",
+    "Helyum",
+    "Oksijen",
+    "Karbondioksit",
+    "Azot",
+    "A"
+  ],
+  [
+    3,
+    "Hangi ülke Asya kaplanlarından biri değildir?",
+    "Çin",
+    "Güney Kore",
+    "Tayvan",
+    "Singapur",
+    "A"
+  ],
+  [
+    2,
+    "Hangi ressam 'Yıldızlı Gece' tablosunu yapmıştır?",
+    "Van Gogh",
+    "Picasso",
+    "Dali",
+    "Monet",
+    "A"
+  ],
+  [
+    2,
+    "Hangi enstrüman yaylı değildir?",
+    "Gitar",
+    "Keman",
+    "Viyola",
+    "Çello",
+    "A"
+  ],
+  [
+    2,
+    "Hangi vitamin güneşte sentezlenir?",
+    "D",
+    "C",
+    "A",
+    "B12",
+    "A"
+  ],
+  [
+    3,
+    "Hangi ülke Eurovision'a katılmaz?",
+    "ABD",
+    "Avustralya",
+    "İsrail",
+    "Azerbaycan",
+    "A"
+  ],
+  [
+    2,
+    "Hangi gezegenin halkaları en belirgindir?",
+    "Satürn",
+    "Uranüs",
+    "Jüpiter",
+    "Neptün",
+    "A"
+  ],
+  [
+    2,
+    "Hangi ülke Avrupa'da değildir?",
+    "Fas",
+    "İspanya",
+    "Portekiz",
+    "İtalya",
+    "A"
+  ],
+  [
+    3,
+    "Hangi spor 'kralların sporu' olarak bilinir?",
+    "Tenis",
+    "Golf",
+    "Polo",
+    "Kriket",
+    "A"
+  ],
+  [
+    3,
+    "Hangi element periyodik tabloda 'K' ile gösterilir?",
+    "Potasyum",
+    "Kalsiyum",
+    "Krom",
+    "Kobalt",
+    "A"
+  ],
+  [
+    2,
+    "Hangi ülke 'Doğan Güneşin Ülkesi' olarak bilinir?",
+    "Japonya",
+    "Çin",
+    "Kore",
+    "Tayland",
+    "A"
+  ],
+  [
+    3,
+    "Hangi hayvanın 3 kalbi vardır?",
+    "Ahtapot",
+    "Mürekkep Balığı",
+    "Yunus",
+    "Balina",
+    "A"
+  ],
+  [
+    2,
+    "Hangi ülke 'Bot çizme' şeklindedir?",
+    "İtalya",
+    "Yunanistan",
+    "İspanya",
+    "Portekiz",
+    "A"
+  ],
+  [
+    2,
+    "Hangi element radyoaktiftir?",
+    "Uranyum",
+    "Demir",
+    "Bakır",
+    "Altın",
+    "A"
+  ],
+  [
+    2,
+    "Hangi gezegen Güneş'e en yakındır?",
+    "Merkür",
+    "Venüs",
+    "Dünya",
+    "Mars",
+    "A"
+  ],
+  [
+    3,
+    "Hangi ülke 'Horoz' simgesiyle bilinir?",
+    "Fransa",
+    "Almanya",
+    "İngiltere",
+    "İtalya",
+    "A"
+  ],
+  [
+    2,
+    "Hangi savaşta atom bombası kullanılmıştır?",
+    "2. Dünya Savaşı",
+    "1. Dünya Savaşı",
+    "Kore Savaşı",
+    "Vietnam Savaşı",
+    "A"
+  ],
+  [
+    2,
+    "Hangi ülke 'Kanguru'larıyla ünlüdür?",
+    "Avustralya",
+    "Yeni Zelanda",
+    "Güney Afrika",
+    "Kanada",
+    "A"
+  ],
+  [
+    2,
+    "Hangi element 'H' ile gösterilir?",
+    "Hidrojen",
+    "Helyum",
+    "Hafniyum",
+    "Holmiyum",
+    "A"
+  ],
+  [
+    3,
+    "Hangi gezegenin uydusu 'Titan'dır?",
+    "Satürn",
+    "Jüpiter",
+    "Uranüs",
+    "Neptün",
+    "A"
+  ],
+  [
+    2,
+    "Hangi ülke 'Akçaağaç yaprağı' simgesiyle bilinir?",
+    "Kanada",
+    "ABD",
+    "İngiltere",
+    "Avustralya",
+    "A"
+  ],
+  [
+    2,
+    "Hangi hayvan 'Ormanlar Kralı' olarak bilinir?",
+    "Aslan",
+    "Kaplan",
+    "Ayı",
+    "Kurt",
+    "A"
+  ],
+  [
+    2,
+    "Hangi element 'O' ile gösterilir?",
+    "Oksijen",
+    "Osmiyum",
+    "Oganesson",
+    "Oksalat",
+    "A"
+  ],
+  [
+    2,
+    "Hangi gezegen 'Kızıl Gezegen' olarak bilinir?",
+    "Mars",
+    "Venüs",
+    "Jüpiter",
+    "Satürn",
+    "A"
+  ],
+  [
+    3,
+    "Hangi ülke 'Büyük Set Resifi'ne ev sahipliği yapar?",
+    "Avustralya",
+    "Endonezya",
+    "Filipinler",
+    "Brezilya",
+    "A"
+  ],
+  [
+    2,
+    "Hangi hayvan 'Çöl Gemisi' olarak bilinir?",
+    "Deve",
+    "At",
+    "Eşek",
+    "Fil",
+    "A"
+  ],
+  [
+    2,
+    "Hangi element 'C' ile gösterilir?",
+    "Karbon",
+    "Kalsiyum",
+    "Klor",
+    "Kobalt",
+    "A"
+  ],
+  [
+    2,
+    "Hangi gezegen 'Dev Gezegen' olarak bilinir?",
+    "Jüpiter",
+    "Satürn",
+    "Uranüs",
+    "Neptün",
+    "A"
+  ],
+  [
+    2,
+    "Hangi ülke 'Tac Mahal'e ev sahipliği yapar?",
+    "Hindistan",
+    "Pakistan",
+    "Çin",
+    "Nepal",
+    "A"
+  ],
+  [
+    2,
+    "Hangi hayvan 'Kutup'larda yaşar?",
+    "Kutup Ayısı",
+    "Aslan",
+    "Zürafa",
+    "Fil",
+    "A"
+  ],
+  [
+    2,
+    "Hangi element 'N' ile gösterilir?",
+    "Azot",
+    "Neon",
+    "Nikel",
+    "Niobyum",
+    "A"
+  ],
+  [
+    2,
+    "Hangi gezegen 'Mavi Gezegen' olarak bilinir?",
+    "Dünya",
+    "Neptün",
+    "Uranüs",
+    "Mars",
+    "A"
+  ],
+  [
+    2,
+    "Hangi ülke 'Eyfel Kulesi'ne ev sahipliği yapar?",
+    "Fransa",
+    "İtalya",
+    "Almanya",
+    "İspanya",
+    "A"
+  ],
+  [
+    2,
+    "Hangi hayvan 'Panda'larıyla ünlüdür?",
+    "Çin",
+    "Japonya",
+    "Hindistan",
+    "Avustralya",
+    "A"
+  ],
+  [
+    2,
+    "Hangi element 'Au' ile gösterilir?",
+    "Altın",
+    "Gümüş",
+    "Bakır",
+    "Demir",
+    "A"
+  ],
+  [
+    2,
+    "Hangi gezegen 'Halkalı Gezegen' olarak bilinir?",
+    "Satürn",
+    "Jüpiter",
+    "Uranüs",
+    "Neptün",
+    "A"
+  ],
+  [
+    2,
+    "Hangi ülke 'Özgürlük Heykeli'ne ev sahipliği yapar?",
+    "ABD",
+    "Fransa",
+    "İngiltere",
+    "Kanada",
+    "A"
+  ],
+  [
+    2,
+    "Hangi hayvan 'Keseli'dir?",
+    "Kanguru",
+    "Aslan",
+    "Köpek",
+    "Kedi",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl İstanbul fethedilmiştir?",
+    "1453",
+    "1071",
+    "1299",
+    "1923",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Fransız İhtilali olmuştur?",
+    "1789",
+    "1776",
+    "1804",
+    "1848",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Amerika keşfedilmiştir?",
+    "1492",
+    "1453",
+    "1517",
+    "1600",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Türkiye Cumhuriyeti kurulmuştur?",
+    "1923",
+    "1920",
+    "1919",
+    "1924",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl İnsan Hakları Evrensel Beyannamesi kabul edilmiştir?",
+    "1948",
+    "1945",
+    "1950",
+    "1960",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Berlin Duvarı yıkılmıştır?",
+    "1989",
+    "1991",
+    "1985",
+    "1990",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Çernobil faciası olmuştur?",
+    "1986",
+    "1980",
+    "1990",
+    "1979",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Titanik batmıştır?",
+    "1912",
+    "1905",
+    "1920",
+    "1899",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Ay'a ilk ayak basılmıştır?",
+    "1969",
+    "1959",
+    "1972",
+    "1965",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Facebook kurulmuştur?",
+    "2004",
+    "2000",
+    "2006",
+    "1998",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl iPhone piyasaya çıkmıştır?",
+    "2007",
+    "2005",
+    "2009",
+    "2003",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Bitcoin ortaya çıkmıştır?",
+    "2009",
+    "2005",
+    "2011",
+    "2007",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl YouTube kurulmuştur?",
+    "2005",
+    "2004",
+    "2006",
+    "2003",
+    "A"
+  ],
+  [
+    5,
+    "Hangi yıl Google halka arz edilmiştir?",
+    "2004",
+    "2000",
+    "1998",
+    "2008",
+    "A"
+  ],
+  [
+    5,
+    "Hangi yıl Amazon kurulmuştur?",
+    "1994",
+    "1998",
+    "2000",
+    "1990",
+    "A"
+  ],
+  [
+    5,
+    "Hangi yıl Netflix streaming hizmetine başlamıştır?",
+    "2007",
+    "2005",
+    "2010",
+    "2000",
+    "A"
+  ],
+  [
+    5,
+    "Hangi yıl Tesla kurulmuştur?",
+    "2003",
+    "2000",
+    "2005",
+    "2008",
+    "A"
+  ],
+  [
+    5,
+    "Hangi yıl SpaceX kurulmuştur?",
+    "2002",
+    "2000",
+    "2004",
+    "2006",
+    "A"
+  ],
+  [
+    5,
+    "Hangi yıl Vikipedi (Wikipedia) kurulmuştur?",
+    "2001",
+    "2005",
+    "1999",
+    "2003",
+    "A"
+  ],
+  [
+    5,
+    "Hangi yıl İlk SMS gönderilmiştir?",
+    "1992",
+    "1990",
+    "1995",
+    "1989",
+    "A"
+  ],
+  [
+    5,
+    "Hangi yıl İlk web sitesi yayınlanmıştır?",
+    "1991",
+    "1989",
+    "1993",
+    "1995",
+    "A"
+  ],
+  [
+    5,
+    "Hangi yıl DVD formatı icat edilmiştir?",
+    "1995",
+    "1990",
+    "1998",
+    "2000",
+    "A"
+  ],
+  [
+    5,
+    "Hangi yıl USB teknolojisi tanıtılmıştır?",
+    "1996",
+    "1994",
+    "1998",
+    "2000",
+    "A"
+  ],
+  [
+    5,
+    "Hangi yıl Bluetooth teknolojisi icat edilmiştir?",
+    "1994",
+    "1998",
+    "2000",
+    "1990",
+    "A"
+  ],
+  [
+    5,
+    "Hangi yıl MP3 formatı standartlaşmıştır?",
+    "1993",
+    "1990",
+    "1995",
+    "1998",
+    "A"
+  ],
+  [
+    5,
+    "Hangi yıl Java programlama dili çıkmıştır?",
+    "1995",
+    "1990",
+    "1998",
+    "2000",
+    "A"
+  ],
+  [
+    5,
+    "Hangi yıl Python programlama dili çıkmıştır?",
+    "1991",
+    "1989",
+    "1995",
+    "1998",
+    "A"
+  ],
+  [
+    5,
+    "Hangi yıl C programlama dili çıkmıştır?",
+    "1972",
+    "1970",
+    "1975",
+    "1980",
+    "A"
+  ],
+  [
+    5,
+    "Hangi yıl Linux çekirdeği yayınlanmıştır?",
+    "1991",
+    "1989",
+    "1993",
+    "1995",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Windows 95 çıkmıştır?",
+    "1995",
+    "1994",
+    "1996",
+    "1998",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl PlayStation 1 çıkmıştır?",
+    "1994",
+    "1990",
+    "1998",
+    "2000",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Game Boy çıkmıştır?",
+    "1989",
+    "1985",
+    "1992",
+    "1995",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Super Mario Bros çıkmıştır?",
+    "1985",
+    "1980",
+    "1990",
+    "1995",
+    "A"
+  ],
+  [
+    5,
+    "Hangi yıl Tetris çıkmıştır?",
+    "1984",
+    "1980",
+    "1990",
+    "1995",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Pac-Man çıkmıştır?",
+    "1980",
+    "1978",
+    "1982",
+    "1985",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl İlk Star Wars filmi vizyona girmiştir?",
+    "1977",
+    "1975",
+    "1980",
+    "1982",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl İlk Harry Potter kitabı yayınlanmıştır?",
+    "1997",
+    "1995",
+    "2000",
+    "1999",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Yüzüklerin Efendisi filmi vizyona girmiştir?",
+    "2001",
+    "1999",
+    "2003",
+    "2000",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Matrix filmi vizyona girmiştir?",
+    "1999",
+    "1997",
+    "2001",
+    "2000",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Avatar filmi vizyona girmiştir?",
+    "2009",
+    "2007",
+    "2011",
+    "2008",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Titanik filmi vizyona girmiştir?",
+    "1997",
+    "1995",
+    "1999",
+    "1998",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Aslan Kral filmi vizyona girmiştir?",
+    "1994",
+    "1992",
+    "1996",
+    "1995",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Oyuncak Hikayesi (Toy Story) vizyona girmiştir?",
+    "1995",
+    "1993",
+    "1997",
+    "1996",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Shrek filmi vizyona girmiştir?",
+    "2001",
+    "1999",
+    "2003",
+    "2000",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Buz Devri filmi vizyona girmiştir?",
+    "2002",
+    "2000",
+    "2004",
+    "2001",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl İnanılmaz Aile filmi vizyona girmiştir?",
+    "2004",
+    "2002",
+    "2006",
+    "2003",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Kayıp Balık Nemo filmi vizyona girmiştir?",
+    "2003",
+    "2001",
+    "2005",
+    "2002",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Arabalar (Cars) filmi vizyona girmiştir?",
+    "2006",
+    "2004",
+    "2008",
+    "2005",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Ratatouille filmi vizyona girmiştir?",
+    "2007",
+    "2005",
+    "2009",
+    "2006",
+    "A"
+  ],
+  [
+    4,
+    "Hangi yıl Wall-E filmi vizyona girmiştir?",
+    "2008",
+    "2006",
+    "2010",
+    "2007",
+    "A"
+  ]
+]
