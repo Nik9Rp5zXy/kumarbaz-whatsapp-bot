@@ -2,6 +2,12 @@
 
 Tüm önemli değişiklikler bu dosyada belgelenecektir.
 
+## [1.9.0] - 2024-03-10
+### 🚀 İyileştirmeler & Düzeltmeler
+- **Mobil Uyumlu Menüler**: `!yardim`, `!yardim full` ve `!adminyardim` içindeki uzun metinler alt satırlara bölünerek daraltıldı. Artık WhatsApp mobil cihazlarında (telefonlarda) satır kayması/ASCİİ tablo bozulması yaşanmayacak.
+- **Kapsamlı Yama Bildirimi (Broadcast)**: Yama notları sistemi güncellendi. Artık update geldikten sonra komut yazan kullanıcılara, yeni Milyoner mekaniklerini ve Yatırım Danışmanı simülasyonunu detaylıca anlatan çok daha uzun ve öğretici bir "GÜNCELLEME NOTLARI" mesajı gönderiliyor.
+
+
 ## [1.8.0] - 2024-03-10
 ### 🚀 Yenilikler
 - **Milyoner Dinamik Sayaç & Animasyon:** 

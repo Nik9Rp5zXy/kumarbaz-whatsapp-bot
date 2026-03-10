@@ -32,7 +32,7 @@ const client = new Client(clientOptions);
 const BOT_START_TIME = Date.now();
 const activeUsers = new Map(); // userId -> { chat, time }
 
-const PATCH_VERSION = '1.8.0';
+const PATCH_VERSION = '1.9.0';
 const notifiedUsers = new Set(); // To track who got the update notes
 
 // ─── In-memory cache for ID resolution ───
@@ -118,13 +118,25 @@ client.on('message', async msg => {
     if (msg.body.startsWith('!') && !notifiedUsers.has(userId)) {
         notifiedUsers.add(userId);
         const patchNotes = [
-            `🚀 *YENİ GÜNCELLEME (v${PATCH_VERSION})*`,
+            `🚀 *GÜNCELLEME NOTLARI (v${PATCH_VERSION})* 🚀`,
             ' ',
-            '📺 *Milyoner Animasyonları:* Sorular zorlaştıkça süre kısalıyor (30sn -> 10sn) ve sayaç canlı akıyor!',
-            '🎩 *Yatırım Simülasyonu:* Neredeyse iflas mı ettin? Kumarbazlık yerine sana borsa veya banka pazarlayabilirim.',
-            '👤 *Admin Rolleri & Uyarılar:* Sunucu kapanırken ve açılırken aktif olanlara haber vereceğim.',
+            '📺 *KİM MİLYONER OLMAK İSTER YENİLENDİ!*',
+            '• *Canlı Sayaç:* Artık süre mesajı her 5 saniyede bir WhatsApp üzerinde güncelleniyor.',
+            '• *Zorlaşan Süreler:* 1. soruda 30 saniye verilirken, son soruda sadece 10 saniyeniz var. Eli çabuk tutun!',
+            '• *Zor Jokerler:* `!joker 50` ve `!joker cift` haklarını sadece 4. ve 5. soruda kullanabilirsiniz.',
+            '• *Gerilim Animasyonları:* Sorudan önce "Hazırlan 3 2 1" ve destansı FİNAL girişi eklendi!',
             ' ',
-            '_Keyifli oyunlar!_'
+            '🎩 *YATIRIM DANIŞMANI (SİMÜLASYON)*',
+            '• Paran 500$\'ın altına düştüğünde (fakirleştiğinde) `!bakiye` sorgusu yaparsan, bot %30 ihtimalle sana borsa (`!borsa`) veya banka faizi (`!banka`) pazarlamaya çalışarak yatırım tavsiyeleri satacak.',
+            ' ',
+            '📱 *YENİ YARDIM MENÜLERİ*',
+            '• WhatsApp mobil (telefon) ekranlarında satırların kayıp bozulmaması için `!yardim` ve `!adminyardim` kutucukları telefon ekranına göre baştan daraltılarak tasarlandı.',
+            ' ',
+            '👤 *ADMİN / SİSTEM*',
+            '• Artık rolünüzü öğrenmek için `!rlchk` kullanabilirsiniz.',
+            '• Bot kapatılırken aktif kullanıcılara "Kapanıyor", açıldığında ise "Aktifleşti" uyarısı gelir.',
+            ' ',
+            '_İyi oyunlar! Yeni özellikleri denemek için !milyoner ile oyuna başla veya paran azsa !bakiye yaz._'
         ];
         try {
             await client.sendMessage(msg.from, patchNotes.join('\n'));

@@ -251,38 +251,37 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
     case 'adminyardim': {
       if (!hasRole(userId, 'mod')) return msg.reply('🚫 Yetkisiz erişim.');
       const myRole = getAdmin(userId);
-      let text = '╔══════════════════════════╗\n';
-      text += '║   🛡️ ADMİN KOMUTLARI     ║\n';
-      text += '╠══════════════════════════╣\n';
+      let text = '╔═════════════════════╗\n';
+      text += '║ 🛡️ ADMİN KOMUTLARI ║\n';
+      text += '╠═════════════════════╣\n';
 
       text += '║\n║ 👥 *GENEL*\n';
-      text += '║ !rlchk (veya !rolum) — Kendi rolünü gör\n';
+      text += '║ !rlchk (Kendi rolün)\n';
 
       // Mod commands
       text += '║\n║ 🔧 *MOD KOMUTLARI*\n';
-      text += '║ !adminler — Yetkili listesi\n';
-      text += '║ !istatistik — Bot istatistikleri\n';
-      text += '║ !spamlog — Spam kayıtları\n';
-      text += '║ !ban @kisi <dk> — Banla\n';
-      text += '║ !unban @kisi — Ban kaldır\n';
+      text += '║ !adminler\n';
+      text += '║ !istatistik\n';
+      text += '║ !spamlog\n';
+      text += '║ !ban @kisi <dk>\n';
+      text += '║ !unban @kisi\n';
 
       if (hasRole(userId, 'admin')) {
         text += '║\n║ 🛡️ *ADMİN KOMUTLARI*\n';
-        text += '║ !admin_ekle 90555.. <miktar>\n';
-        text += '║ !admin_sil 90555.. <miktar>\n';
-        text += '║ !bakiye_ayarla 90555.. <miktar>\n';
-        text += '║ !kullanici_sil 90555..\n';
-        text += '║ !mod_ata 90555..\n';
-        text += '║ !mod_cikar 90555..\n';
+        text += '║ !admin_ekle\n';
+        text += '║ !admin_sil\n';
+        text += '║ !bakiye_ayarla\n';
+        text += '║ !kullanici_sil\n';
+        text += '║ !mod_ata / !mod_cikar\n';
       }
 
       if (isOwner(userId)) {
         text += '║\n║ 👑 *OWNER KOMUTLARI*\n';
-        text += '║ !admin_ata 90555..\n';
-        text += '║ !admin_cikar 90555..\n';
+        text += '║ !admin_ata\n';
+        text += '║ !admin_cikar\n';
       }
 
-      text += '╚══════════════════════════╝';
+      text += '╚═════════════════════╝';
       return msg.reply(text);
     }
 
