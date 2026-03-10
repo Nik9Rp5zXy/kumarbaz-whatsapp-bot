@@ -17,7 +17,8 @@ db.exec(`
     total_lost INTEGER DEFAULT 0,
     games_won INTEGER DEFAULT 0,
     games_lost INTEGER DEFAULT 0,
-    spouse TEXT DEFAULT NULL
+    spouse TEXT DEFAULT NULL,
+    last_patch_seen TEXT DEFAULT '1.0.0'
   )
 `);
 
@@ -54,6 +55,7 @@ const migrations = [
   'ALTER TABLE users ADD COLUMN games_won INTEGER DEFAULT 0',
   'ALTER TABLE users ADD COLUMN games_lost INTEGER DEFAULT 0',
   'ALTER TABLE users ADD COLUMN spouse TEXT DEFAULT NULL',
+  'ALTER TABLE users ADD COLUMN last_patch_seen TEXT DEFAULT "1.0.0"',
 ];
 for (const sql of migrations) {
   try { db.exec(sql); } catch (e) { /* column already exists */ }
@@ -84,6 +86,16 @@ const setDaily = (id) => {
 const getTopUsers = (limit = 10) => db.prepare('SELECT * FROM users ORDER BY balance DESC LIMIT ?').all(limit);
 const getTopActiveUsers = (limit = 10) => db.prepare('SELECT * FROM users ORDER BY msg_count DESC LIMIT ?').all(limit);
 const getAllUsers = () => db.prepare('SELECT * FROM users ORDER BY balance DESC').all();
+
+const hasSeenPatch = (id, patchVersion) => {
+  const user = getUser(id);
+  if (!user) return false;
+  return user.last_patch_seen === patchVersion;
+};
+
+const markPatchSeen = (id, patchVersion) => {
+  db.prepare('UPDATE users SET last_patch_seen = ? WHERE id = ?').run(patchVersion, id);
+};
 
 // ─── Stats Functions ───
 
@@ -541,6 +553,7 @@ const isOwner = (userId) => {
 
 module.exports = {
   db, getUser, addUser, updateBalance, setDaily, getTopUsers, getTopActiveUsers, getAllUsers,
+  hasSeenPatch, markPatchSeen,
   incrementMsgCount, recordWin, recordLoss,
   marry, divorce,
   addWanted, getWanted, getAllWanted, removeWanted,

@@ -1,7 +1,7 @@
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const { handleCommand } = require('./commands');
-const { getUser, addUser, incrementMsgCount, getAlias, setAlias, migrateUser } = require('./database/db');
+const { getUser, addUser, incrementMsgCount, getAlias, setAlias, migrateUser, hasSeenPatch, markPatchSeen } = require('./database/db');
 const hangmanHandler = require('./commands/hangman');
 
 const isTermux = !!process.env.TERMUX_VERSION;
@@ -32,8 +32,7 @@ const client = new Client(clientOptions);
 const BOT_START_TIME = Date.now();
 const activeUsers = new Map(); // userId -> { chat, time }
 
-const PATCH_VERSION = '1.10.0';
-const notifiedUsers = new Set(); // To track who got the update notes
+const PATCH_VERSION = '1.11.0';
 
 // ─── AFK Garbage Collector ───
 // Remove users from active list if they haven't sent a command in 5 minutes
@@ -125,31 +124,25 @@ client.on('message', async msg => {
         console.error('Database Error:', dbError);
     }
 
-    // ─── One-time Patch Notes Broadcast ───
-    if (msg.body.startsWith('!') && !notifiedUsers.has(userId)) {
-        notifiedUsers.add(userId);
+    // ─── One-time Persistent Patch Notes Broadcast ───
+    if (msg.body.startsWith('!') && !hasSeenPatch(userId, PATCH_VERSION)) {
+        markPatchSeen(userId, PATCH_VERSION);
         const patchNotes = [
             `🚀 GÜNCELLEME NOTLARI (v${PATCH_VERSION}) 🚀`,
             ' ',
-            '📺 KİM MİLYONER OLMAK İSTER YENİLENDİ!',
-            '• Canlı Sayaç: Artık süre mesajı her 5 saniyede bir WhatsApp üzerinde güncelleniyor.',
-            '• Zorlaşan Süreler: 1. soruda 30 saniye verilirken, son soruda sadece 10 saniyeniz var. Eli çabuk tutun!',
-            '• Zor Jokerler: !joker 50 ve !joker cift haklarını sadece 4. ve 5. soruda kullanabilirsiniz.',
-            '• Gerilim Animasyonları: Sorudan önce "Hazırlan 3 2 1" ve destansı FİNAL girişi eklendi!',
+            '📺 KİM MİLYONER YENİLENDİ!',
+            '• Canlı Sayaç: Süre WhatsApp üzerinde canlı güncellenir (5sn).',
+            '• Süre ve Joker Sınırı: Sorular zorlaştıkça süre azalır. Jokerler sadece 4-5. sorularda açılır.',
             ' ',
-            '🎩 YATIRIM DANIŞMANI (SİMÜLASYON)',
-            '• Paran 500$ ın altına düştüğünde !bakiye sorgusu yaparsan, bot %30 ihtimalle sana borsa (!borsa) veya banka faizi (!banka) pazarlamaya çalışarak yatırım tavsiyeleri satacak.',
+            '🎩 YATIRIM SİMÜLASYONU',
+            '• 500$ ın altındayken !bakiye yazarsan bot borsa ve banka danışmanlığı rolü yapabilir.',
             ' ',
-            '📱 YENİ YARDIM MENÜLERİ',
-            '• WhatsApp mobil (telefon) ekranlarında satırların kayıp bozulmaması için !yardim ve !adminyardim kutucukları telefon ekranına göre daraltılarak yeniden tasarlandı.',
+            '👤 SİSTEM & YENİ MENÜLER',
+            '• Yardım: Tüm !yardim, !modyardim formları mobil ekranlara (telefon) %100 uyumlu daraltıldı.',
+            '• Rol: Rolünü !rlchk ile görebilirsin.',
+            '• Sinyal: Bot artık bakım için kapandığında aktif oyunculara %100 bildirim garantisiyle haber veriyor.',
             ' ',
-            '👤 ADMİN / SİSTEM',
-            '• AFK Sistemi: 5 dakika boyunca işlem yapmayanlar AFK sayılıp "offline" konuma geçer ve bot kapanış/açılış bildirimlerinden muaf tutulur.',
-            '• Rol Menüleri: !adminyardim, !modyardim ve !owneryardim olarak daha detaylı üçe bölündü.',
-            '• Artık rolünüzü öğrenmek için !rlchk kullanabilirsiniz.',
-            '• Bot kapatılırken aktif kullanıcılara Kapanıyor, açıldığında ise Aktifleşti uyarısı gelir.',
-            ' ',
-            'İyi oyunlar! Yeni özellikleri denemek için !milyoner ile oyuna başla veya paran azsa !bakiye yaz.'
+            'Yeni özellikleri denemek için !milyoner ile oyuna başla veya !yardim yaz!'
         ];
         try {
             await client.sendMessage(msg.from, patchNotes.join('\n'));
@@ -184,21 +177,23 @@ process.on('SIGINT', async () => {
     console.log('\n🔄 Kapanma sinyali alındı. Aktif kullanıcılara haber veriliyor...');
     const now = Date.now();
     const notified = new Set();
+    const promises = [];
     
-    // Broadcast warning to anyone who used a command in the last 60 seconds
+    // Broadcast warning to anyone active (in Map, not wiped by AFK GC)
     for (const [uId, data] of activeUsers.entries()) {
-        if (now - data.time < 60000 && !notified.has(data.chat)) {
-            try {
-                await client.sendMessage(data.chat, '🔄 Bot şu anda güncelleme/bakım için yeniden başlatılıyor. Lütfen birkaç dakika bekleyin...');
-                notified.add(data.chat);
-            } catch (e) {}
+        if (!notified.has(data.chat)) {
+            promises.push(client.sendMessage(data.chat, '🔄 Bot şu anda güncelleme/bakım için yeniden başlatılıyor. Lütfen birkaç dakika bekleyin...').catch(() => {}));
+            notified.add(data.chat);
         }
     }
     
-    console.log('Mesajlar kuyruğa alındı. 2 saniye içinde kapatılıyor...');
+    console.log(`Mesajlar kuyruğa alındı (${promises.length} adet). Çıkış bekleniyor...`);
+    
+    await Promise.allSettled(promises);
+    
     setTimeout(() => {
         process.exit(0);
-    }, 2000);
+    }, 5000); // Wait full 5 seconds to ensure WA Web API network dispatches
 });
 
 client.initialize();

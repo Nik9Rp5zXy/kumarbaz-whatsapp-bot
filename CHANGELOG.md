@@ -2,6 +2,12 @@
 
 Tüm önemli değişiklikler bu dosyada belgelenecektir.
 
+## [1.11.0] - 2024-03-10
+### 🚀 İyileştirmeler & Ekstralar
+- **Kalıcı (Persistent) Yama Notları**: Yeni güncelleme bildirimleri artık RAM (`new Set()`) üzerinden değil, SQLite (`users.last_patch_seen`) tablosu üzerinden tutuluyor. Bot her yeniden başladığında kullanıcının aynı yamayı ikinci kez görmesi engellendi. Gözünüz aydın!
+- **Garanti Kapanış (Graceful Shutdown)**: Bot kapatılırken (`Ctrl+C`) aktif kullanıcılara gönderilen "Kapanıyor" uyarısının WhatsApp API sunucularına iletimi `Promise.allSettled` ile garantilendi. Node.js process.exit 5 saniye bekletilerek paket kayıpları engellendi.
+
+
 ## [1.10.0] - 2024-03-10
 ### 🚀 İyileştirmeler & Eklemeler
 - **AFK Sistemi (Çevrimdışı Temizleyici)**: 5 dakika boyunca komut kullanmayan oyuncular arka planda `activeUsers` listesinden (AFK sayılarak) siliniyor. Böylece bakımlarda boş yere uyarı almıyorlar.
