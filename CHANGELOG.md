@@ -2,6 +2,22 @@
 
 Tüm önemli değişiklikler bu dosyada belgelenecektir.
 
+## [1.6.0] - 2024-03-10
+### 📦 Çevre Birimleri ve Paket Çözümleri (Termux & Android)
+- **Chromium Bağımlılıkları:** Termux üzerinde `x11-repo` sisteme eklendi ve `chromium` paketi başarıyla kuruldu.
+- **C++ Derleme Araçları:** `better-sqlite3` paketinin Termux'ta derlenebilmesi için `clang` ve `binutils` ayarlandı.
+- **Node-Gyp NDK Hatası:** Termux'ta Android NDK yolu değişkeni atlatıldı (`android_ndk_path=`).
+- **LLVM Toolchain:** Derleyici araçları standart GNU yerine Termux LLVM'ine yönlendirildi (`llvm-ar`, `clang++`).
+- **Puppeteer Hatası Atlatıldı:** ARM64 Android için `PUPPETEER_SKIP_DOWNLOAD=true` eklendi.
+
+### ⚙️ Kaynak Kod Güncellemeleri
+- **Chromium Yolu:** `whatsapp-web.js` için Termux'taki yerel Chromium dizini eklendi (`/data/data/com.termux/...`).
+- **Performans Argümanları:** Termux kısıtlamalarını aşmak için Chromium args eklendi (`--no-sandbox`, `--disable-dev-shm-usage`, `--single-process` vb.).
+- **QR Terminal Spamı Engellendi:** `console.clear()` ile her seferinde terminal temizlenerek gereksiz kaydırma önlendi.
+- **Admin Paneli Yenilendi:** Localhost web paneli silindi, yerine WhatsApp içi komut tabanlı Admin/Mod rol sistemi (`admins` tablosu) kuruldu.
+- **Oto-Güncelleme:** Tüm dosyaları git'ten otomatik çeken `update.sh` entegrasyonu sağlandı.
+
+
 ## [1.5.0] - 2024-02-13
 ### Eklendi (Milyoner & Sorular)
 - **Kim Milyoner Olmak İster (!milyoner):** 5 soruluk bilgi yarışması.
