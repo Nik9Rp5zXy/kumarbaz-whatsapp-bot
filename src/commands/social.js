@@ -1,5 +1,5 @@
 const { getUser, addUser, updateBalance, recordWin, recordLoss, getTopUsers, getTopActiveUsers,
-    addWanted, getWanted, getAllWanted, removeWanted, marry, divorce } = require('../database/db');
+    addWanted, getWanted, getAllWanted, removeWanted, marry, divorce, hasRole, isOwner } = require('../database/db');
 const { sleep, centeredBox, troll, getRandom, getTitle, progressBar } = require('./utils');
 const hangmanModule = require('./hangman');
 
@@ -600,6 +600,17 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
             const isDetailed = args[0] && (args[0].toLowerCase() === 'full' || args[0].toLowerCase() === 'detay');
 
             if (isDetailed) {
+                const adminOwnerSection = [];
+                if (hasRole(userId, 'mod')) {
+                    adminOwnerSection.push(' ', '🔧 ═══ MOD KOMUTLARI ═══ 🔧', ' ', '!ban @kisi <süre> · !unban', '!adminler · !istatistik · !spamlog', '!modyardim');
+                }
+                if (hasRole(userId, 'admin')) {
+                    adminOwnerSection.push(' ', '🛡️ ═══ ADMİN KOMUTLARI ═══ 🛡️', ' ', '!mod_ata · !mod_cikar', '!admin_ekle · !admin_sil', '!bakiye_ayarla · !kullanici_sil', '!set <ayar> <deger> · !ayarlar', '!adminyardim');
+                }
+                if (isOwner(userId)) {
+                    adminOwnerSection.push(' ', '👑 ═══ OWNER KOMUTLARI ═══ 👑', ' ', '!admin_ata · !admin_cikar', '!safemod ac/kapat', '!ownerhelp');
+                }
+
                 return msg.reply(centeredBox([
                     '🎰 ═══ KUMARHANELER ═══ 🎰',
                     ' ',
@@ -668,8 +679,13 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
                     '!transfer @kisi <para>',
                     '!siralama — Zenginler',
                     '!iptal — Buglı menüyü kapat',
+                    ...adminOwnerSection
                 ], 'DETAYLI KOMUT KILAVUZU'));
             }
+
+            const shortAdmin = [];
+            if (hasRole(userId, 'mod')) shortAdmin.push(' ', '🔧 --- MOD & ADMIN --- 🔧', '!modyardim · !adminyardim');
+            if (isOwner(userId)) shortAdmin.push('!ownerhelp · !safemod');
 
             return msg.reply(centeredBox([
                 '🎰 ---- KUMARHANELER ---- 🎰',
@@ -694,6 +710,7 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
                 '!hava <şehir> · !gunluk',
                 '!bakiye · !transfer',
                 '!siralama · !iptal',
+                ...shortAdmin,
                 ' ',
                 '📖 !yardim full → Detaylı Liste',
             ], 'TÜM KOMUTLAR'));

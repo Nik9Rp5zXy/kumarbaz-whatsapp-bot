@@ -66,7 +66,18 @@ const troll = {
     ]
 };
 
-const getRandom = (arr) => arr[Math.floor(Math.random() * arr.length)];
+const { getSetting } = require('../database/db');
+
+const getRandom = (arr) => {
+    if (getSetting('safe_mode') === 'true') {
+        if (arr === troll.poor) return "Şu an yeterli bakiyen yok gibi görünüyor, biraz daha biriktir istersen \uD83D\uDE0A";
+        if (arr === troll.win) return "Tebrikler, çok şanslısın! 🎉";
+        if (arr === troll.lose) return "Bu sefer olmadı, umudunu kaybetme şansını tekrar dene! 🍀";
+        if (arr === troll.cooldown) return "Lütfen biraz bekleyip tekrar dene ⏱️";
+        if (arr === troll.spam) return "Lütfen çok sık komut göndermeyelim 🌸";
+    }
+    return arr[Math.floor(Math.random() * arr.length)];
+};
 
 const getTitle = (balance) => {
     if (balance >= 50000) return '👑 Sultan';

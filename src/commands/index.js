@@ -1,5 +1,5 @@
 // Command router — dispatches to individual modules
-const { getUser, addUser, updateBalance } = require('../database/db');
+const { getUser, addUser, updateBalance, getSetting } = require('../database/db');
 const { checkSpam } = require('../spam');
 const { centeredBox, troll, getRandom } = require('./utils');
 
@@ -33,6 +33,15 @@ const handleCommand = async (msg, client) => {
         if (adminHandler.isManuallyBanned(userId)) {
             const rem = adminHandler.getManualBanRemaining(userId);
             return msg.reply(`🚫 Admin tarafından banlandın. ${Math.ceil(rem / 60)} dakika kaldı.`);
+        }
+
+        // Check Safe Mode
+        const isSafeMode = getSetting('safe_mode') === 'true';
+        if (isSafeMode) {
+            const blockedCommands = ['gay', 'gey', 'yalan', 'lie', 'soygun', 'cal', 'wanted'];
+            if (blockedCommands.includes(command)) {
+                return msg.reply('😇 Safe Mod aktif. Bu komut şu an devre dışı.');
+            }
         }
 
         // Spam check

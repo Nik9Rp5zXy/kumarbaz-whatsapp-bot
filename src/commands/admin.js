@@ -64,6 +64,21 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
       return msg.reply(`✅ @${normTarget.split('@')[0]} admin yetkisi kaldırıldı.`);
     }
 
+    case 'safemod': {
+      if (!isOwner(userId)) return msg.reply('🚫 Bu komutu sadece bot sahibi kullanabilir.');
+      const arg = args[0] ? args[0].toLowerCase() : '';
+      if (arg === 'ac' || arg === 'aç' || arg === 'true' || arg === 'on') {
+        updateSetting('safe_mode', 'true');
+        return msg.reply('✅ Safe mod aktifleştirildi. Uygunsuz komutlar ve kaba mesajlar devre dışı bırakıldı.');
+      } else if (arg === 'kapat' || arg === 'false' || arg === 'off') {
+        updateSetting('safe_mode', 'false');
+        return msg.reply('❌ Safe mod kapatıldı. Sokak kuralları geri döndü.');
+      } else {
+        const status = getSetting('safe_mode') === 'true' ? 'Açık ✅' : 'Kapalı ❌';
+        return msg.reply(`Kullanım: !safemod ac/kapat\nŞu anki durum: ${status}`);
+      }
+    }
+
     // ═══════════════════════════════════════
     //  ADMIN + OWNER KOMUTLARI
     // ═══════════════════════════════════════
@@ -320,7 +335,8 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
         '║\n' +
         '║ ⚙️ SİSTEM VE BAKIM\n' +
         '║ !set owner_mode true\n' +
-        '║  ↳ Sadece sen görürsün.\n' +
+        '║ !safemod ac/kapat\n' +
+        '║  ↳ Küfür ve argoyu engeller\n' +
         '║ !set milyoner_limit 5\n' +
         '║\n' +
         '╚═════════════════════╝'
