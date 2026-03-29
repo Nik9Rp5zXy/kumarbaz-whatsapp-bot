@@ -238,7 +238,7 @@ const handler = async (command, args, msg, userId, user, resolve, client) => {
             if (selected.length === 0) return msg.reply('⚠️ Uygun hayvan bulunamadı.');
 
             await clearTeam(userId);
-            selected.forEach((a, i) => await setTeamSlot(userId, i + 1, a.id));
+            for (let i = 0; i < selected.length; i++) { await setTeamSlot(userId, i + 1, selected[i].id); }
 
             const teamPower = selected.reduce((s, a) => s + totalPower(a), 0);
             const lines = [
@@ -267,10 +267,11 @@ const handler = async (command, args, msg, userId, user, resolve, client) => {
             const slots = indices.slice(0, 3);
             await clearTeam(userId);
             const selected = [];
-            slots.forEach((idx, i) => {
+            for (let i = 0; i < slots.length; i++) {
+                const idx = slots[i];
                 await setTeamSlot(userId, i + 1, inv[idx].id);
                 selected.push(inv[idx]);
-            });
+            }
 
             const lines = ['✅ Takım kuruldu!', ' '];
             selected.forEach((a, i) => {

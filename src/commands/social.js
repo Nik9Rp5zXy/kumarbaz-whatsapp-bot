@@ -198,7 +198,7 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
 
                 await updateBalance(winner.id, totalPot);
                 await recordWin(winner.id, totalPot - winner.bet);
-                participants.filter(p => p.id !== winner.id).forEach(p => await recordLoss(p.id, p.bet));
+                for (const p of participants.filter(p => p.id !== winner.id)) { await recordLoss(p.id, p.bet); }
 
                 await ruletMsg.edit(centeredBox([
                     '🎯 SONUÇ 🎯', ' ',
