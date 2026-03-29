@@ -181,7 +181,7 @@ const updateBalance = async (id, amount) => {
     return await User.findOneAndUpdate(
         { id },
         { $inc: { balance: amount } },
-        { new: true, upsert: false } // Only act if doc exists (most cases it does via addUser)
+        { returnDocument: 'after', upsert: false } // Only act if doc exists (most cases it does via addUser)
     ).lean();
 };
 
@@ -306,7 +306,7 @@ const getAlias = async (aliasId) => {
 };
 
 const setAlias = async (aliasId, primaryId) => {
-    await UserAlias.updateOne({ alias_id: aliasId }, { primary_id }, { upsert: true });
+    await UserAlias.updateOne({ alias_id: aliasId }, { primary_id: primaryId }, { upsert: true });
 };
 
 const getAllAliases = async () => {
