@@ -1,5 +1,5 @@
 const { getUser, addUser, updateBalance, recordWin, recordLoss,
-    addAnimal, getInventory, getTeam, setTeamSlot, clearTeam } = require('../database/db');
+    addAnimal, getInventory, getTeam, setTeamSlot, clearTeam } = require('../database/mongo');
 const { sleep, centeredBox, troll, getRandom, progressBar } = require('./utils');
 
 // ─── Hayvan Veritabanı ───
@@ -143,15 +143,15 @@ const handler = async (command, args, msg, userId, user, resolve, client) => {
         case 'av':
         case 'hunt': {
             const cost = 200;
-            if (user.balance < cost) return msg.reply(`⚠️ Av ücreti ${cost} $. ${getRandom(troll.poor)}`);
+            if (user.balance < cost) return msg.reply(`⚠️ Av ücreti ${cost} $. ${await getRandom(troll.poor)}`);
 
-            updateBalance(userId, -cost);
+            await updateBalance(userId, -cost);
 
             const huntMsg = await msg.reply(centeredBox(['🏹 Ava çıkılıyor...', 'Ormanın derinliklerine giriyorsun...'], 'HAYVANAT'));
 
             await sleep(2000);
             const caught = rollAnimal();
-            const invId = addAnimal(userId, caught.key, caught.hp, caught.str, caught.rarity);
+            const invId = await addAnimal(userId, caught.key, caught.hp, caught.str, caught.rarity);
 
             const isDivine = caught.rarity === 'divine';
             const lines = [];
@@ -186,7 +186,7 @@ const handler = async (command, args, msg, userId, user, resolve, client) => {
         case 'envanter':
         case 'inventory':
         case 'hayvanlar': {
-            const inv = getInventory(userId);
+            const inv = await getInventory(userId);
             if (inv.length === 0) return msg.reply(centeredBox(['Hiç hayvanın yok!', '!av ile avlanmaya başla.'], 'ENVANTER'));
 
             const lines = [`📦 Toplam: ${inv.length} hayvan`, ' '];
@@ -202,7 +202,7 @@ const handler = async (command, args, msg, userId, user, resolve, client) => {
         // ─── TAKİM ───
         case 'takim':
         case 'team': {
-            const team = getTeam(userId);
+            const team = await getTeam(userId);
             if (team.length === 0) return msg.reply(centeredBox([
                 'Aktif takımın yok!', ' ',
                 '!otoolustur → Otomatik kadro',
@@ -222,7 +222,7 @@ const handler = async (command, args, msg, userId, user, resolve, client) => {
         // ─── OTO OLUŞTUR (Auto Team) ───
         case 'otoolustur':
         case 'autoteam': {
-            const inv = getInventory(userId);
+            const inv = await getInventory(userId);
             if (inv.length === 0) return msg.reply('⚠️ Hayvanın yok! Önce !av ile avlan.');
 
             // Pick top 3 different animal types
@@ -237,8 +237,8 @@ const handler = async (command, args, msg, userId, user, resolve, client) => {
 
             if (selected.length === 0) return msg.reply('⚠️ Uygun hayvan bulunamadı.');
 
-            clearTeam(userId);
-            selected.forEach((a, i) => setTeamSlot(userId, i + 1, a.id));
+            await clearTeam(userId);
+            selected.forEach((a, i) => await setTeamSlot(userId, i + 1, a.id));
 
             const teamPower = selected.reduce((s, a) => s + totalPower(a), 0);
             const lines = [
@@ -257,7 +257,7 @@ const handler = async (command, args, msg, userId, user, resolve, client) => {
         // ─── TAKİMKUR (Manuel Team) ───
         case 'takimkur':
         case 'setteam': {
-            const inv = getInventory(userId);
+            const inv = await getInventory(userId);
             if (inv.length === 0) return msg.reply('⚠️ Hayvanın yok! Önce !av ile avlan.');
 
             // Parse slot numbers (1-indexed from envanter)
@@ -265,10 +265,10 @@ const handler = async (command, args, msg, userId, user, resolve, client) => {
             if (indices.length === 0) return msg.reply('⚠️ Kullanım: !takimkur 1 2 3\n(Envanterdeki sıra numaralarını yaz)');
 
             const slots = indices.slice(0, 3);
-            clearTeam(userId);
+            await clearTeam(userId);
             const selected = [];
             slots.forEach((idx, i) => {
-                setTeamSlot(userId, i + 1, inv[idx].id);
+                await setTeamSlot(userId, i + 1, inv[idx].id);
                 selected.push(inv[idx]);
             });
 
@@ -287,7 +287,7 @@ const handler = async (command, args, msg, userId, user, resolve, client) => {
         case 'pvp': {
             const opponentMention = msg.mentionedIds && msg.mentionedIds[0];
             if (!opponentMention) return msg.reply('⚠️ Kullanım: !savas @kisi <bahis>\nBahis opsiyonel.');
-            const opponentId = resolve(opponentMention);
+            const opponentId = await resolve(opponentMention);
             if (opponentId === userId) return msg.reply('⚠️ Kendinle mi savaşacaksın?');
 
             let bet = 0;
@@ -296,19 +296,19 @@ const handler = async (command, args, msg, userId, user, resolve, client) => {
                 if (!isNaN(num) && !arg.includes('@') && num > 0) { bet = num; break; }
             }
 
-            const myTeam = getTeam(userId);
-            const oppTeam = getTeam(opponentId);
+            const myTeam = await getTeam(userId);
+            const oppTeam = await getTeam(opponentId);
 
             if (myTeam.length === 0) return msg.reply('⚠️ Takımın yok! !otoolustur ile kadro kur.');
             if (oppTeam.length === 0) return msg.reply('⚠️ Rakibin takım kurmamış.');
 
             if (bet > 0) {
-                if (user.balance < bet) return msg.reply(`⚠️ ${getRandom(troll.poor)}`);
-                let opp = getUser(opponentId);
-                if (!opp) opp = addUser(opponentId);
+                if (user.balance < bet) return msg.reply(`⚠️ ${await getRandom(troll.poor)}`);
+                let opp = await getUser(opponentId);
+                if (!opp) opp = await addUser(opponentId);
                 if (opp.balance < bet) return msg.reply('⚠️ Rakibinin parası yok.');
-                updateBalance(userId, -bet);
-                updateBalance(opponentId, -bet);
+                await updateBalance(userId, -bet);
+                await updateBalance(opponentId, -bet);
             }
 
             // Show preparation
@@ -335,9 +335,9 @@ const handler = async (command, args, msg, userId, user, resolve, client) => {
 
             const totalPot = bet * 2;
             if (winnerId && totalPot > 0) {
-                updateBalance(winnerId, totalPot);
-                recordWin(winnerId, bet);
-                recordLoss(loserId, bet);
+                await updateBalance(winnerId, totalPot);
+                await recordWin(winnerId, bet);
+                await recordLoss(loserId, bet);
             }
 
             const resultLines = [
@@ -354,7 +354,7 @@ const handler = async (command, args, msg, userId, user, resolve, client) => {
                 if (totalPot > 0) resultLines.push(`Kazanç: +${totalPot} $`);
             } else {
                 resultLines.push('Berabere! Bahisler iade.');
-                if (bet > 0) { updateBalance(userId, bet); updateBalance(opponentId, bet); }
+                if (bet > 0) { await updateBalance(userId, bet); await updateBalance(opponentId, bet); }
             }
 
             await prepMsg.edit(centeredBox(resultLines, '⚔️ ARENA SONUCU'));

@@ -1,5 +1,5 @@
 // Spam protection module — rate limiting with troll responses and escalating penalties
-const { addSpamLog } = require('./database/db');
+const { addSpamLog } = require('./database/mongo');
 
 // In-memory tracking
 const userMessages = new Map();  // userId -> [timestamp, timestamp, ...]
@@ -18,7 +18,7 @@ const HARD_BAN_PENALTY = 500;     // $ penalty for hard ban
  * { allowed: true } if OK
  * { allowed: false, reason: string, penalty: number } if blocked
  */
-const checkSpam = (userId, command) => {
+const checkSpam = async (userId, command) => {
     const now = Date.now();
 
     // Check if user is banned
@@ -51,18 +51,18 @@ const checkSpam = (userId, command) => {
             // Hard ban
             warning.bannedUntil = now + HARD_BAN_DURATION;
             userWarnings.set(userId, warning);
-            addSpamLog(userId, `HARD_BAN (${HARD_BAN_DURATION / 1000}s, -${HARD_BAN_PENALTY}$)`);
+            await addSpamLog(userId, `HARD_BAN (${HARD_BAN_DURATION / 1000}s, -${HARD_BAN_PENALTY}$)`);
             return { allowed: false, reason: 'hard_ban', remaining: HARD_BAN_DURATION / 1000, penalty: HARD_BAN_PENALTY };
         } else if (warning.count >= 2) {
             // Soft ban
             warning.bannedUntil = now + SOFT_BAN_DURATION;
             userWarnings.set(userId, warning);
-            addSpamLog(userId, `SOFT_BAN (${SOFT_BAN_DURATION / 1000}s)`);
+            await addSpamLog(userId, `SOFT_BAN (${SOFT_BAN_DURATION / 1000}s)`);
             return { allowed: false, reason: 'soft_ban', remaining: SOFT_BAN_DURATION / 1000, penalty: 0 };
         } else {
             // Warning
             userWarnings.set(userId, warning);
-            addSpamLog(userId, 'WARNING');
+            await addSpamLog(userId, 'WARNING');
             return { allowed: false, reason: 'warning', remaining: 0, penalty: 0 };
         }
     }

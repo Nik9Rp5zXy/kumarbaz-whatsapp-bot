@@ -1,6 +1,6 @@
 const { getUser, addUser, updateBalance, recordWin, recordLoss,
     createTournament, joinTournament, getTournament, getParticipants,
-    updateTournament, deleteTournament } = require('../database/db');
+    updateTournament, deleteTournament } = require('../database/mongo');
 const { sleep, centeredBox, troll, getRandom } = require('./utils');
 
 // In-memory timers for tournament countdowns
@@ -30,15 +30,15 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
         case 'turnuva':
         case 'tournament': {
             const communityId = await getCommunityId(chatId, client);
-            const existing = getTournament(communityId);
+            const existing = await getTournament(communityId);
             if (existing) return msg.reply('⚠️ Zaten aktif bir turnuva var! !katil ile katıl veya bitmesini bekle.');
 
             const bet = parseInt(args[0]);
             if (isNaN(bet) || bet <= 0) return msg.reply('⚠️ Bahis miktarı gir.\nKullanım: !turnuva <bahis>\nÖrnek: !turnuva 500');
-            if (bet > user.balance) return msg.reply(`⚠️ ${getRandom(troll.poor)}`);
+            if (bet > user.balance) return msg.reply(`⚠️ ${await getRandom(troll.poor)}`);
 
-            updateBalance(userId, -bet);
-            const tid = createTournament(communityId, userId, bet);
+            await updateBalance(userId, -bet);
+            const tid = await createTournament(communityId, userId, bet);
 
             const isCommunity = communityId !== chatId;
             const joinNote = isCommunity
@@ -73,18 +73,18 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
         case 'katil':
         case 'join': {
             const communityId = await getCommunityId(chatId, client);
-            const tournament = getTournament(communityId);
+            const tournament = await getTournament(communityId);
             if (!tournament) return false; // Let other handlers (rulet) try
             if (tournament.status !== 'waiting') return msg.reply('⚠️ Turnuva zaten başlamış, geç kaldın.');
 
-            const participants = getParticipants(tournament.id);
+            const participants = await getParticipants(tournament.id);
             if (participants.includes(userId)) return msg.reply('⚠️ Zaten katılmışsın, sabırsız.');
             if (participants.length >= 8) return msg.reply('⚠️ Turnuva dolu (maks 8 kişi).');
 
-            if (user.balance < tournament.bet) return msg.reply(`⚠️ ${getRandom(troll.poor)}\nGiriş ücreti: ${tournament.bet} $`);
+            if (user.balance < tournament.bet) return msg.reply(`⚠️ ${await getRandom(troll.poor)}\nGiriş ücreti: ${tournament.bet} $`);
 
-            updateBalance(userId, -tournament.bet);
-            joinTournament(tournament.id, userId);
+            await updateBalance(userId, -tournament.bet);
+            await joinTournament(tournament.id, userId);
 
             const newCount = participants.length + 1;
             const isCommunity = communityId !== chatId;
@@ -114,9 +114,9 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
         case 'bracket':
         case 'tablo': {
             const communityId = await getCommunityId(chatId, client);
-            const tournament = getTournament(communityId);
+            const tournament = await getTournament(communityId);
             if (!tournament) return msg.reply('⚠️ Aktif turnuva yok.');
-            const participants = getParticipants(tournament.id);
+            const participants = await getParticipants(tournament.id);
 
             if (tournament.status === 'waiting') {
                 const lines = ['🏆 TURNUVA BEKLEMEDE', ' '];
@@ -155,10 +155,10 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
 
 // ─── Tournament Engine ───
 async function startTournament(communityId, tournamentId, msg, client, originChatId) {
-    const tournament = getTournament(communityId);
+    const tournament = await getTournament(communityId);
     if (!tournament) return;
 
-    let participants = getParticipants(tournamentId);
+    let participants = await getParticipants(tournamentId);
 
     // Helper to send message to the origin chat
     const sendToOrigin = async (text) => {
@@ -174,9 +174,9 @@ async function startTournament(communityId, tournamentId, msg, client, originCha
     if (participants.length < 2) {
         // Refund and cancel
         for (const p of participants) {
-            updateBalance(p, tournament.bet);
+            await updateBalance(p, tournament.bet);
         }
-        deleteTournament(tournamentId);
+        await deleteTournament(tournamentId);
         return sendToOrigin(centeredBox([
             '❌ TURNUVA İPTAL',
             ' ',
@@ -195,7 +195,7 @@ async function startTournament(communityId, tournamentId, msg, client, originCha
         const eliminated = participants.slice(size);
         participants = participants.slice(0, size);
         for (const p of eliminated) {
-            updateBalance(p, tournament.bet);
+            await updateBalance(p, tournament.bet);
         }
     } else {
         participants = shuffle(participants);
@@ -205,7 +205,7 @@ async function startTournament(communityId, tournamentId, msg, client, originCha
     const secondPrize = Math.floor(totalPool * 0.25);
     const firstPrize = totalPool - secondPrize;
 
-    updateTournament(tournamentId, { status: 'active' });
+    await updateTournament(tournamentId, { status: 'active' });
 
     // Announce
     const introLines = ['🏆 TURNUVA BAŞLIYOR!', ' '];
@@ -277,13 +277,13 @@ async function startTournament(communityId, tournamentId, msg, client, originCha
     // Final results
     const champion = currentPlayers[0];
 
-    updateBalance(champion, firstPrize);
-    recordWin(champion, firstPrize);
+    await updateBalance(champion, firstPrize);
+    await recordWin(champion, firstPrize);
     if (runnerUp) {
-        updateBalance(runnerUp, secondPrize);
+        await updateBalance(runnerUp, secondPrize);
     }
 
-    updateTournament(tournamentId, {
+    await updateTournament(tournamentId, {
         status: 'finished',
         bracket: JSON.stringify(bracket)
     });

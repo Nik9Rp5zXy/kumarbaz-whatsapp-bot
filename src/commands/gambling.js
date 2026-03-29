@@ -1,4 +1,4 @@
-const { updateBalance, recordWin, recordLoss } = require('../database/db');
+const { updateBalance, recordWin, recordLoss } = require('../database/mongo');
 const { sleep, centeredBox, troll, getRandom } = require('./utils');
 
 // ─── Blackjack State ───
@@ -71,25 +71,25 @@ async function finishBlackjack(userId, game, msg) {
 
     if (pVal > 21) {
         // Player bust (handled before calling this, but just in case)
-        updateBalance(userId, -game.bet);
-        recordLoss(userId, game.bet);
-        resultText = `💀 BATTM! (${pVal}) — ${getRandom(troll.lose)}`;
+        await updateBalance(userId, -game.bet);
+        await recordLoss(userId, game.bet);
+        resultText = `💀 BATTM! (${pVal}) — ${await getRandom(troll.lose)}`;
         net = `-${game.bet} $`;
     } else if (dVal > 21) {
-        updateBalance(userId, game.bet);
-        recordWin(userId, game.bet);
+        await updateBalance(userId, game.bet);
+        await recordWin(userId, game.bet);
         resultText = `🎉 Krupiye battı! (${dVal})`;
         net = `+${game.bet} $`;
     } else if (pVal > dVal) {
         const winAmount = pVal === 21 && game.playerHand.length === 2 ? Math.floor(game.bet * 1.5) : game.bet;
-        updateBalance(userId, winAmount);
-        recordWin(userId, winAmount);
+        await updateBalance(userId, winAmount);
+        await recordWin(userId, winAmount);
         resultText = pVal === 21 && game.playerHand.length === 2 ? '🃏 BLACKJACK! x1.5' : `🎉 Kazandın! (${pVal} > ${dVal})`;
         net = `+${winAmount} $`;
     } else if (pVal < dVal) {
-        updateBalance(userId, -game.bet);
-        recordLoss(userId, game.bet);
-        resultText = `💀 Kaybettin (${pVal} < ${dVal}) — ${getRandom(troll.lose)}`;
+        await updateBalance(userId, -game.bet);
+        await recordLoss(userId, game.bet);
+        resultText = `💀 Kaybettin (${pVal} < ${dVal}) — ${await getRandom(troll.lose)}`;
         net = `-${game.bet} $`;
     } else {
         resultText = `🤝 Berabere! (${pVal} = ${dVal})`;
@@ -120,7 +120,7 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
             let bet = parseInt(args[0]);
             if (args[0] === 'all' || args[0] === 'hepsi') bet = user.balance;
             if (isNaN(bet) || bet <= 0) return msg.reply('⚠️ Geçerli sayı gir.');
-            if (bet > user.balance) return msg.reply(`⚠️ ${getRandom(troll.poor)}`);
+            if (bet > user.balance) return msg.reply(`⚠️ ${await getRandom(troll.poor)}`);
 
             const sentMsg = await msg.reply(centeredBox(['🪙 Para havada...'], 'YAZI TURA'));
             await sleep(1000);
@@ -139,13 +139,13 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
             won = playerChoice ? (playerChoice === outcome) : (Math.random() < 0.5);
 
             if (won) {
-                updateBalance(userId, bet);
-                recordWin(userId, bet);
-                await sentMsg.edit(centeredBox([`🪙 ${outcome} 🪙`, getRandom(troll.win), `+${bet} $`], 'YAZI TURA'));
+                await updateBalance(userId, bet);
+                await recordWin(userId, bet);
+                await sentMsg.edit(centeredBox([`🪙 ${outcome} 🪙`, await getRandom(troll.win), `+${bet} $`], 'YAZI TURA'));
             } else {
-                updateBalance(userId, -bet);
-                recordLoss(userId, bet);
-                await sentMsg.edit(centeredBox([`🪙 ${outcome} 🪙`, getRandom(troll.lose), `-${bet} $`], 'YAZI TURA'));
+                await updateBalance(userId, -bet);
+                await recordLoss(userId, bet);
+                await sentMsg.edit(centeredBox([`🪙 ${outcome} 🪙`, await getRandom(troll.lose), `-${bet} $`], 'YAZI TURA'));
             }
             return;
         }
@@ -156,7 +156,7 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
             let dBet = parseInt(args[0]);
             if (args[0] === 'all' || args[0] === 'hepsi') dBet = user.balance;
             if (isNaN(dBet) || dBet <= 0) return msg.reply('⚠️ Sayı girmeyi öğren.');
-            if (dBet > user.balance) return msg.reply(`⚠️ ${getRandom(troll.poor)}`);
+            if (dBet > user.balance) return msg.reply(`⚠️ ${await getRandom(troll.poor)}`);
 
             const diceMsg = await msg.reply(centeredBox(['🎲 Sallıyorum...'], 'ZAR OYUNU'));
             await sleep(1500);
@@ -167,13 +167,13 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
             if (userRoll === botRoll) {
                 await diceMsg.edit(centeredBox([`Sen: ${userRoll} 🎲`, `Ben: ${botRoll} 🎲`, 'Berabere kaldık...', 'Paranı geri al git.'], 'ZAR OYUNU'));
             } else if (userRoll > botRoll) {
-                updateBalance(userId, dBet);
-                recordWin(userId, dBet);
-                await diceMsg.edit(centeredBox([`Sen: ${userRoll} 🎲`, `Ben: ${botRoll} 🎲`, getRandom(troll.win), `+${dBet} $`], 'ZAR OYUNU'));
+                await updateBalance(userId, dBet);
+                await recordWin(userId, dBet);
+                await diceMsg.edit(centeredBox([`Sen: ${userRoll} 🎲`, `Ben: ${botRoll} 🎲`, await getRandom(troll.win), `+${dBet} $`], 'ZAR OYUNU'));
             } else {
-                updateBalance(userId, -dBet);
-                recordLoss(userId, dBet);
-                await diceMsg.edit(centeredBox([`Sen: ${userRoll} 🎲`, `Ben: ${botRoll} 🎲`, getRandom(troll.lose), `-${dBet} $`], 'ZAR OYUNU'));
+                await updateBalance(userId, -dBet);
+                await recordLoss(userId, dBet);
+                await diceMsg.edit(centeredBox([`Sen: ${userRoll} 🎲`, `Ben: ${botRoll} 🎲`, await getRandom(troll.lose), `-${dBet} $`], 'ZAR OYUNU'));
             }
             return;
         }
@@ -184,9 +184,9 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
             let sBet = parseInt(args[0]);
             if (args[0] === 'all' || args[0] === 'hepsi') sBet = user.balance;
             if (isNaN(sBet) || sBet <= 0) return msg.reply('⚠️ Düzgün sayı gir.');
-            if (sBet > user.balance) return msg.reply(`⚠️ ${getRandom(troll.poor)}`);
+            if (sBet > user.balance) return msg.reply(`⚠️ ${await getRandom(troll.poor)}`);
 
-            updateBalance(userId, -sBet);
+            await updateBalance(userId, -sBet);
 
             const symbols = ['🍒', '🍋', '🍇', '🍉', '⭐', '💎'];
             const slotMsg = await msg.reply(centeredBox(['| ❓ | ❓ | ❓ |', '🎰 Dönüyor...'], 'SLOT MAKİNESİ'));
@@ -208,12 +208,12 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
 
             if (multiplier > 0) {
                 const winnings = Math.floor(sBet * multiplier);
-                updateBalance(userId, winnings);
-                recordWin(userId, winnings - sBet);
-                await slotMsg.edit(centeredBox([slotRes, ' ', multiplier >= 10 ? '🚨 JACKPOT! 🚨' : getRandom(troll.win), `KAZANÇ: ${winnings} $`, `NET: +${winnings - sBet} $`], 'SLOT MAKİNESİ'));
+                await updateBalance(userId, winnings);
+                await recordWin(userId, winnings - sBet);
+                await slotMsg.edit(centeredBox([slotRes, ' ', multiplier >= 10 ? '🚨 JACKPOT! 🚨' : await getRandom(troll.win), `KAZANÇ: ${winnings} $`, `NET: +${winnings - sBet} $`], 'SLOT MAKİNESİ'));
             } else {
-                recordLoss(userId, sBet);
-                await slotMsg.edit(centeredBox([slotRes, ' ', getRandom(troll.lose), `-${sBet} $`], 'SLOT MAKİNESİ'));
+                await recordLoss(userId, sBet);
+                await slotMsg.edit(centeredBox([slotRes, ' ', await getRandom(troll.lose), `-${sBet} $`], 'SLOT MAKİNESİ'));
             }
             return;
         }
@@ -227,7 +227,7 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
             let bjBet = parseInt(args[0]);
             if (args[0] === 'all' || args[0] === 'hepsi') bjBet = user.balance;
             if (isNaN(bjBet) || bjBet <= 0) return msg.reply('⚠️ Geçerli bahis gir.');
-            if (bjBet > user.balance) return msg.reply(`⚠️ ${getRandom(troll.poor)}`);
+            if (bjBet > user.balance) return msg.reply(`⚠️ ${await getRandom(troll.poor)}`);
 
             const deck = createDeck();
             const playerHand = [deck.pop(), deck.pop()];
@@ -260,11 +260,11 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
             if (val > 21) {
                 // Bust
                 try { await game.msg.edit(buildBJMsg(game, 'done')); } catch (e) { }
-                updateBalance(userId, -game.bet);
-                recordLoss(userId, game.bet);
+                await updateBalance(userId, -game.bet);
+                await recordLoss(userId, game.bet);
                 delete activeBlackjack[userId];
                 return msg.reply(centeredBox([
-                    `💀 BATTM! (${val})`, getRandom(troll.lose), `-${game.bet} $`
+                    `💀 BATTM! (${val})`, await getRandom(troll.lose), `-${game.bet} $`
                 ], '♠ BLACKJACK ♠'));
             }
 

@@ -1,5 +1,5 @@
 const { getUser, addUser, updateBalance, recordWin, recordLoss, getTopUsers, getTopActiveUsers,
-    addWanted, getWanted, getAllWanted, removeWanted, marry, divorce, hasRole, isOwner } = require('../database/db');
+    addWanted, getWanted, getAllWanted, removeWanted, marry, divorce, hasRole, isOwner } = require('../database/mongo');
 const { sleep, centeredBox, troll, getRandom, getTitle, progressBar } = require('./utils');
 const hangmanModule = require('./hangman');
 
@@ -105,7 +105,7 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
                 clearInterval(roulette.countdownInterval);
                 // Refund everyone
                 for (const p of roulette.participants) {
-                    updateBalance(p.id, p.bet);
+                    await updateBalance(p.id, p.bet);
                 }
                 try {
                     await roulette.msg.edit(centeredBox(['❌ RULET İPTAL EDİLDİ ❌', 'Paralar iade edildi.'], 'İPTAL'));
@@ -130,8 +130,8 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
             if (hangmanModule.activeGames && hangmanModule.activeGames[chatId]) {
                 const game = hangmanModule.activeGames[chatId];
                 if (game.bet > 0) {
-                    updateBalance(game.setter, game.bet);
-                    updateBalance(game.guesser, game.bet);
+                    await updateBalance(game.setter, game.bet);
+                    await updateBalance(game.guesser, game.bet);
                 }
                 try { await game.msg.edit(centeredBox(['❌ ADAM ASMACA İPTAL ❌', 'Paralar iade edildi.'], 'İPTAL')); } catch (e) { }
                 delete hangmanModule.activeGames[chatId];
@@ -147,7 +147,7 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
         case 'roulette': {
             const bet = parseInt(args[0]);
             if (isNaN(bet) || bet <= 0) return msg.reply('⚠️ Kullanım: !rulet <miktar>\nSonra herkes !katil ile katılır.');
-            if (bet > user.balance) return msg.reply(`⚠️ ${getRandom(troll.poor)}`);
+            if (bet > user.balance) return msg.reply(`⚠️ ${await getRandom(troll.poor)}`);
             if (activeRoulettes[chatId]) return msg.reply('⚠️ Zaten aktif bir rulet var! Bitsin bekle.');
 
             const RULET_DURATION = 30000; // 30 seconds
@@ -160,7 +160,7 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
                 endTime,
             };
 
-            updateBalance(userId, -bet);
+            await updateBalance(userId, -bet);
 
             const ruletMsg = await msg.reply(centeredBox([
                 '🎯 RULET BAŞLADI! 🎯',
@@ -185,7 +185,7 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
 
                 const participants = roulette.participants;
                 if (participants.length < 2) {
-                    updateBalance(participants[0].id, participants[0].bet);
+                    await updateBalance(participants[0].id, participants[0].bet);
                     delete activeRoulettes[chatId];
                     return ruletMsg.edit(centeredBox(['❌ Yeterli katılımcı yok.', 'Para iade edildi.'], 'RULET İPTAL'));
                 }
@@ -196,9 +196,9 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
                 const totalPot = participants.reduce((sum, p) => sum + p.bet, 0);
                 const winner = participants[Math.floor(Math.random() * participants.length)];
 
-                updateBalance(winner.id, totalPot);
-                recordWin(winner.id, totalPot - winner.bet);
-                participants.filter(p => p.id !== winner.id).forEach(p => recordLoss(p.id, p.bet));
+                await updateBalance(winner.id, totalPot);
+                await recordWin(winner.id, totalPot - winner.bet);
+                participants.filter(p => p.id !== winner.id).forEach(p => await recordLoss(p.id, p.bet));
 
                 await ruletMsg.edit(centeredBox([
                     '🎯 SONUÇ 🎯', ' ',
@@ -218,9 +218,9 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
             const roulette = activeRoulettes[chatId];
             if (!roulette) return msg.reply('⚠️ Aktif rulet yok. !rulet <miktar> ile başlat.');
             if (roulette.participants.some(p => p.id === userId)) return msg.reply('⚠️ Zaten katıldın.');
-            if (user.balance < roulette.minBet) return msg.reply(`⚠️ ${getRandom(troll.poor)} (Min: ${roulette.minBet} $)`);
+            if (user.balance < roulette.minBet) return msg.reply(`⚠️ ${await getRandom(troll.poor)} (Min: ${roulette.minBet} $)`);
 
-            updateBalance(userId, -roulette.minBet);
+            await updateBalance(userId, -roulette.minBet);
             roulette.participants.push({ id: userId, bet: roulette.minBet });
 
             // Immediately update the message with new participant
@@ -231,7 +231,7 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
         // ─── WANTED ───
         case 'wanted': {
             if (args.length < 1) {
-                const list = getAllWanted();
+                const list = await getAllWanted();
                 if (list.length === 0) return msg.reply(centeredBox(['Şu an aranan kimse yok.', 'Suçsuz bir dünya... Sıkıcı.'], 'ARANANLAR'));
                 const lines = list.map((w, i) => `${i + 1}. @${w.target_id.split('@')[0]} — ${w.bounty} $ ödül`);
                 return msg.reply(centeredBox(lines, '🏴‍☠️ ARANANLAR LİSTESİ'));
@@ -239,7 +239,7 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
 
             const wTarget = msg.mentionedIds[0];
             if (!wTarget) return msg.reply('⚠️ Kimi aranan ilan edeceksin?');
-            const normWTarget = resolve(wTarget);
+            const normWTarget = await resolve(wTarget);
 
             let bounty = parseInt(args[1]);
             if (isNaN(bounty)) {
@@ -247,10 +247,10 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
                 if (numArg) bounty = parseInt(numArg);
             }
             if (isNaN(bounty) || bounty < 100) return msg.reply('⚠️ En az 100$ ödül koy.');
-            if (bounty > user.balance) return msg.reply(`⚠️ ${getRandom(troll.poor)}`);
+            if (bounty > user.balance) return msg.reply(`⚠️ ${await getRandom(troll.poor)}`);
 
-            updateBalance(userId, -bounty);
-            addWanted(normWTarget, userId, bounty);
+            await updateBalance(userId, -bounty);
+            await addWanted(normWTarget, userId, bounty);
 
             return msg.reply(centeredBox([
                 '╔══════════════════╗',
@@ -335,8 +335,8 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
 
                 for (const [pid, dmg] of participants) {
                     const share = Math.floor((dmg / totalDamage) * boss.reward);
-                    updateBalance(pid, share);
-                    recordWin(pid, share);
+                    await updateBalance(pid, share);
+                    await recordWin(pid, share);
                     resultLines.push(`@${pid.split('@')[0]}: ${dmg} hasar → +${share} $`);
                 }
 
@@ -365,9 +365,9 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
         case 'profil':
         case 'profile': {
             let targetId = userId;
-            if (msg.mentionedIds[0]) targetId = resolve(msg.mentionedIds[0]);
-            let target = getUser(targetId);
-            if (!target) target = addUser(targetId);
+            if (msg.mentionedIds[0]) targetId = await resolve(msg.mentionedIds[0]);
+            let target = await getUser(targetId);
+            if (!target) target = await addUser(targetId);
 
             const totalGames = (target.games_won || 0) + (target.games_lost || 0);
             const winRate = totalGames > 0 ? Math.round((target.games_won / totalGames) * 100) : 0;
@@ -386,7 +386,7 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
                 `💰 Net: ${(target.total_won || 0) - (target.total_lost || 0)} $`,
             ];
             if (target.spouse) lines.push(' ', `💍 Eş: @${target.spouse.split('@')[0]}`);
-            const wanted = getWanted(targetId);
+            const wanted = await getWanted(targetId);
             if (wanted) lines.push(' ', `🏴‍☠️ ARANIYOR! Ödül: ${wanted.bounty} $`);
             return msg.reply(centeredBox(lines, 'PROFİL'));
         }
@@ -395,18 +395,18 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
         case 'kader':
         case 'fate': {
             let targetId = userId;
-            if (msg.mentionedIds[0]) targetId = resolve(msg.mentionedIds[0]);
-            let target = getUser(targetId);
-            if (!target) target = addUser(targetId);
+            if (msg.mentionedIds[0]) targetId = await resolve(msg.mentionedIds[0]);
+            let target = await getUser(targetId);
+            if (!target) target = await addUser(targetId);
 
             const kaderMsg = await msg.reply(centeredBox(['🔮 Kader çarkı dönüyor...', `@${targetId.split('@')[0]}`], 'KADER'));
             await sleep(2000);
 
             const event = kaderEvents[Math.floor(Math.random() * kaderEvents.length)];
             if (event.amount !== 0) {
-                updateBalance(targetId, event.amount);
-                if (event.amount > 0) recordWin(targetId, event.amount);
-                else recordLoss(targetId, Math.abs(event.amount));
+                await updateBalance(targetId, event.amount);
+                if (event.amount > 0) await recordWin(targetId, event.amount);
+                else await recordLoss(targetId, Math.abs(event.amount));
             }
 
             const sign = event.amount > 0 ? '+' : '';
@@ -423,7 +423,7 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
         case 'falci':
         case 'fortune': {
             let targetId = userId;
-            if (msg.mentionedIds[0]) targetId = resolve(msg.mentionedIds[0]);
+            if (msg.mentionedIds[0]) targetId = await resolve(msg.mentionedIds[0]);
             const falciMsg = await msg.reply(centeredBox(['🔮 Kristal küreye bakıyorum...', `@${targetId.split('@')[0]}`], 'FALCI'));
             await sleep(2000);
             const prediction = falciMessages[Math.floor(Math.random() * falciMessages.length)];
@@ -459,18 +459,18 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
                 }
                 return msg.reply('⚠️ Kullanım: !evlilik @kisi');
             }
-            const partnerId = resolve(msg.mentionedIds[0]);
+            const partnerId = await resolve(msg.mentionedIds[0]);
             if (partnerId === userId) return msg.reply('⚠️ Kendile evlenemezsin...');
             if (user.spouse) return msg.reply('⚠️ Zaten evlisin! Önce boşan: !bosanma');
-            let partner = getUser(partnerId);
-            if (!partner) partner = addUser(partnerId);
+            let partner = await getUser(partnerId);
+            if (!partner) partner = await addUser(partnerId);
             if (partner.spouse) return msg.reply('⚠️ O kişi zaten evli.');
 
             const weddingCost = 1000;
-            if (user.balance < weddingCost) return msg.reply(`⚠️ Düğün masrafı ${weddingCost} $. ${getRandom(troll.poor)}`);
+            if (user.balance < weddingCost) return msg.reply(`⚠️ Düğün masrafı ${weddingCost} $. ${await getRandom(troll.poor)}`);
 
-            updateBalance(userId, -weddingCost);
-            marry(userId, partnerId);
+            await updateBalance(userId, -weddingCost);
+            await marry(userId, partnerId);
 
             const weddingMsg = await msg.reply(centeredBox(['💒 Düğün hazırlıkları...'], 'EVLİLİK'));
             await sleep(2000);
@@ -488,7 +488,7 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
         case 'divorce': {
             if (!user.spouse) return msg.reply('⚠️ Zaten bekarsın.');
             const exSpouse = user.spouse;
-            divorce(userId);
+            await divorce(userId);
             return msg.reply(centeredBox([
                 '💔 BOŞANMA 💔', ' ',
                 `@${userId.split('@')[0]} & @${exSpouse.split('@')[0]}`,
@@ -502,11 +502,11 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
         case 'leaderboard': {
             const mode = args[0] ? args[0].toLowerCase() : 'para';
             if (mode === 'aktif' || mode === 'msg' || mode === 'mesaj') {
-                const activeUsers = getTopActiveUsers(5);
+                const activeUsers = await getTopActiveUsers(5);
                 const lines = activeUsers.map((u, i) => `#${i + 1} | ${u.id.split('@')[0].slice(-4).padStart(4, '*')} | ${u.msg_count} msj`);
                 return msg.reply(centeredBox(lines, '🗣️ ÇENESİ DÜŞÜKLER 🗣️'));
             } else {
-                const topUsers = getTopUsers(5);
+                const topUsers = await getTopUsers(5);
                 const lines = topUsers.map((u, i) => `#${i + 1} | ${u.id.split('@')[0].slice(-4).padStart(4, '*')} | ${u.balance} $`);
                 return msg.reply(centeredBox(lines, '🏆 ZENGİNLER KULÜBÜ 🏆'));
             }
@@ -545,7 +545,7 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
                 textToCheck = quoted.body.toLowerCase();
                 targetName = 'Bu mesaj';
             } else if (msg.mentionedIds && msg.mentionedIds[0]) {
-                const normMention = resolve(msg.mentionedIds[0]);
+                const normMention = await resolve(msg.mentionedIds[0]);
                 targetName = `@${normMention.split('@')[0]}`;
                 // For mentions, we still check args if they typed something like "!gay @user valorant"
                 // But usually !gay @user is just random.
@@ -601,13 +601,13 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
 
             if (isDetailed) {
                 const adminOwnerSection = [];
-                if (hasRole(userId, 'mod')) {
+                if (await hasRole(userId, 'mod')) {
                     adminOwnerSection.push(' ', '🔧 ═══ MOD KOMUTLARI ═══ 🔧', ' ', '!ban @kisi <süre> · !unban', '!adminler · !istatistik · !spamlog', '!modyardim');
                 }
-                if (hasRole(userId, 'admin')) {
+                if (await hasRole(userId, 'admin')) {
                     adminOwnerSection.push(' ', '🛡️ ═══ ADMİN KOMUTLARI ═══ 🛡️', ' ', '!mod_ata · !mod_cikar', '!admin_ekle · !admin_sil', '!bakiye_ayarla · !kullanici_sil', '!set <ayar> <deger> · !ayarlar', '!adminyardim');
                 }
-                if (isOwner(userId)) {
+                if (await isOwner(userId)) {
                     adminOwnerSection.push(' ', '👑 ═══ OWNER KOMUTLARI ═══ 👑', ' ', '!admin_ata · !admin_cikar', '!safemod ac/kapat', '!ownerhelp');
                 }
 
@@ -684,8 +684,8 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
             }
 
             const shortAdmin = [];
-            if (hasRole(userId, 'mod')) shortAdmin.push(' ', '🔧 --- MOD & ADMIN --- 🔧', '!modyardim · !adminyardim');
-            if (isOwner(userId)) shortAdmin.push('!ownerhelp · !safemod');
+            if (await hasRole(userId, 'mod')) shortAdmin.push(' ', '🔧 --- MOD & ADMIN --- 🔧', '!modyardim · !adminyardim');
+            if (await isOwner(userId)) shortAdmin.push('!ownerhelp · !safemod');
 
             return msg.reply(centeredBox([
                 '🎰 ---- KUMARHANELER ---- 🎰',

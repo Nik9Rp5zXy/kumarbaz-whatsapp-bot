@@ -1,6 +1,6 @@
 const { updateBalance, recordWin, recordLoss,
     getUnseenQuestion, markQuestionSeen, getSeenCount, getTotalQuestionCount,
-    getSetting, getMilyonerPlayed, incrementMilyonerPlayed } = require('../database/db');
+    getSetting, getMilyonerPlayed, incrementMilyonerPlayed } = require('../database/mongo');
 const { sleep, centeredBox, troll, getRandom } = require('./utils');
 
 // ─── Active Games ───
@@ -73,7 +73,7 @@ async function startLiveTimer(userId, msg) {
                     '⏳ SÜRE DOLDU!', ' ',
                     'Süren bittiği için elendin.',
                     'Tüm kazancın ve jokerlerin çöpe gitti 💸',
-                    ' ', getRandom(troll.lose)
+                    ' ', await getRandom(troll.lose)
                 ], '💎 MİLYONER - KAYBETTİN 💎'));
             } catch (e) {
                 msg.reply('⏳ Süre doldu! Elendin ve tüm kazancını kaybettin.');
@@ -89,8 +89,8 @@ async function startLiveTimer(userId, msg) {
 async function nextQuestion(userId, game, msg) {
     if (game.questionIndex >= 5) {
         // Won all 5!
-        updateBalance(userId, game.score);
-        recordWin(userId, game.score);
+        await updateBalance(userId, game.score);
+        await recordWin(userId, game.score);
             if (game.timerInterval) clearInterval(game.timerInterval);
         delete activeGames[userId];
 
@@ -106,15 +106,15 @@ async function nextQuestion(userId, game, msg) {
     }
 
     const difficulty = DIFFICULTY_MAP[game.questionIndex];
-    let question = getUnseenQuestion(userId, difficulty);
+    let question = await getUnseenQuestion(userId, difficulty);
 
     if (!question) {
-        const seen = getSeenCount(userId);
-        const total = getTotalQuestionCount();
+        const seen = await getSeenCount(userId);
+        const total = await getTotalQuestionCount();
 
         if (game.score > 0) {
-            updateBalance(userId, game.score);
-            recordWin(userId, game.score);
+            await updateBalance(userId, game.score);
+            await recordWin(userId, game.score);
         }
             if (game.timerInterval) clearInterval(game.timerInterval);
         delete activeGames[userId];
@@ -136,7 +136,7 @@ async function nextQuestion(userId, game, msg) {
     // Clone the question because we might modify options for 50-50 joker
     game.currentQ = { ...question };
     game.doubleActive = false; // reset double joker buff if active from previous question
-    markQuestionSeen(userId, question.id);
+    await markQuestionSeen(userId, question.id);
 
     // INTRO ANIMATION
     const isFinal = game.questionIndex === 4;
@@ -171,20 +171,20 @@ const handler = async (command, args, msg, userId, user, resolve) => {
             if (activeGames[userId]) return msg.reply('⚠️ Zaten aktif bir oyunun var! !cevap A/B/C/D ile devam et.');
 
             // ─── Daily Limit Check ───
-            const maxDailyLimit = parseInt(getSetting('milyoner_daily_limit')) || 2;
-            const playedToday = getMilyonerPlayed(userId);
+            const maxDailyLimit = parseInt(await getSetting('milyoner_daily_limit')) || 2;
+            const playedToday = await getMilyonerPlayed(userId);
             
             if (playedToday >= maxDailyLimit) {
                 return msg.reply(`⚠️ Günlük sınırına ulaştın! (Bugün ${playedToday}/${maxDailyLimit} oynadın)\nSınırın sıfırlanması için yarını bekle!`);
             }
-            incrementMilyonerPlayed(userId);
+            await incrementMilyonerPlayed(userId);
             // ─────────────────────────
 
-            const seen = getSeenCount(userId);
-            const total = getTotalQuestionCount();
+            const seen = await getSeenCount(userId);
+            const total = await getTotalQuestionCount();
 
             // Check if any questions left
-            const testQ = getUnseenQuestion(userId, 1);
+            const testQ = await getUnseenQuestion(userId, 1);
             if (!testQ) {
                 return msg.reply(centeredBox([
                     '📚 Tüm soruları bitirdin!',
@@ -324,8 +324,8 @@ const handler = async (command, args, msg, userId, user, resolve) => {
                     if (game.timerInterval) clearInterval(game.timerInterval);
                 const safeAmount = game.score > 0 ? Math.floor(game.score * 0.25) : 0;
                 if (safeAmount > 0) {
-                    updateBalance(userId, safeAmount);
-                    recordWin(userId, safeAmount);
+                    await updateBalance(userId, safeAmount);
+                    await recordWin(userId, safeAmount);
                 }
 
                 const resultLines = [
@@ -334,7 +334,7 @@ const handler = async (command, args, msg, userId, user, resolve) => {
                     `Doğru cevap: ${correct}) ${correctText}`, ' ',
                     `Toplam kazancın: ${game.score} $`,
                     safeAmount > 0 ? `Güvence: ${safeAmount} $ (25%)` : 'Güvence: 0 $',
-                    ' ', getRandom(troll.lose),
+                    ' ', await getRandom(troll.lose),
                 ];
 
                 try { await game.msg.edit(centeredBox(resultLines, '💎 MİLYONER - KAYBETTİN 💎')); }
@@ -353,8 +353,8 @@ const handler = async (command, args, msg, userId, user, resolve) => {
                 if (game.timerInterval) clearInterval(game.timerInterval);
 
             if (game.score > 0) {
-                updateBalance(userId, game.score);
-                recordWin(userId, game.score);
+                await updateBalance(userId, game.score);
+                await recordWin(userId, game.score);
             }
 
             try {

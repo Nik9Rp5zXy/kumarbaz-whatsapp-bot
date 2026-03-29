@@ -1,4 +1,4 @@
-const { getUser, addUser, updateBalance, recordWin, recordLoss, getWanted, removeWanted } = require('../database/db');
+const { getUser, addUser, updateBalance, recordWin, recordLoss, getWanted, removeWanted } = require('../database/mongo');
 const { sleep, centeredBox, troll, getRandom } = require('./utils');
 
 const pendingDuels = {};
@@ -10,7 +10,7 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
         case 'w': {
             const opponentId = msg.mentionedIds && msg.mentionedIds[0];
             if (!opponentId) return msg.reply('⚠️ Kendi kendine mi dövüşeceksin? Birini etiketle.\nKullanım: !duello @kisi <miktar>');
-            const normOpponentId = resolve(opponentId);
+            const normOpponentId = await resolve(opponentId);
             if (normOpponentId === userId) return msg.reply('⚠️ Mazoşist misin? Başkasını etiketle.');
 
             // Find numeric argument anywhere in args
@@ -23,10 +23,10 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
                 }
             }
             if (isNaN(duelBet) || duelBet <= 0) return msg.reply('⚠️ Kaç parasına kapışacaksınız?\nKullanım: !duello @kisi <miktar>');
-            if (duelBet > user.balance) return msg.reply(`⚠️ ${getRandom(troll.poor)}`);
+            if (duelBet > user.balance) return msg.reply(`⚠️ ${await getRandom(troll.poor)}`);
 
-            let opponent = getUser(normOpponentId);
-            if (!opponent) opponent = addUser(normOpponentId);
+            let opponent = await getUser(normOpponentId);
+            if (!opponent) opponent = await addUser(normOpponentId);
             if (opponent.balance < duelBet) return msg.reply('⚠️ Rakibinin parası yok, fakirle dans edilmez.');
 
             pendingDuels[normOpponentId] = { challenger: userId, amount: duelBet, timestamp: Date.now() };
@@ -38,8 +38,8 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
             const duel = pendingDuels[userId];
             if (!duel) return msg.reply('⚠️ Kimse sana meydan okumamış. Hayal görme.');
 
-            const challenger = getUser(duel.challenger);
-            const acceptor = getUser(userId);
+            const challenger = await getUser(duel.challenger);
+            const acceptor = await getUser(userId);
             if (!challenger || !acceptor || challenger.balance < duel.amount || acceptor.balance < duel.amount) {
                 delete pendingDuels[userId];
                 return msg.reply('⚠️ Birinizin parası bitmiş. Düello iptal.');
@@ -65,10 +65,10 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
             if (finalCh > finalAc) { winnerId = duel.challenger; loserId = userId; }
             else { winnerId = userId; loserId = duel.challenger; }
 
-            updateBalance(winnerId, duel.amount);
-            updateBalance(loserId, -duel.amount);
-            recordWin(winnerId, duel.amount);
-            recordLoss(loserId, duel.amount);
+            await updateBalance(winnerId, duel.amount);
+            await updateBalance(loserId, -duel.amount);
+            await recordWin(winnerId, duel.amount);
+            await recordLoss(loserId, duel.amount);
 
             await duelMsg.edit(centeredBox([
                 '🍆 SONUÇLAR 🍆',
@@ -85,14 +85,14 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
         case 'steal': {
             const soygunVictimId = msg.mentionedIds && msg.mentionedIds[0];
             if (!soygunVictimId) return msg.reply('⚠️ Kimi soyacaksın hayalet?\nKullanım: !soygun @kullanıcı');
-            const normVictimId = resolve(soygunVictimId);
+            const normVictimId = await resolve(soygunVictimId);
             if (normVictimId === userId) return msg.reply('⚠️ Kendini soyup sonsuz para döngüsü mü yapacan?');
 
-            let sVictim = getUser(normVictimId);
+            let sVictim = await getUser(normVictimId);
             if (!sVictim || sVictim.balance < 100) return msg.reply('⚠️ Adamda para yok sal garibanı.');
             if (user.balance < 100) return msg.reply('⚠️ Cebinde 100 doların yok, hırsızlığa kalkışıyorsun.');
 
-            const wanted = getWanted(normVictimId);
+            const wanted = await getWanted(normVictimId);
             const bonusMultiplier = wanted ? 1.5 : 1.0;
 
             const soygunSuccess = Math.random() < 0.4;
@@ -100,22 +100,22 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
             if (soygunSuccess) {
                 let stolen = Math.floor(sVictim.balance * (0.1 + Math.random() * 0.2));
                 stolen = Math.floor(stolen * bonusMultiplier);
-                updateBalance(normVictimId, -stolen);
-                updateBalance(userId, stolen);
-                recordWin(userId, stolen);
+                await updateBalance(normVictimId, -stolen);
+                await updateBalance(userId, stolen);
+                await recordWin(userId, stolen);
 
                 const lines = ['🔫 SOYGUN TAMAM 🔫', `Çalınan: ${stolen} $`, 'Temiz iş oldu.'];
                 if (wanted) {
                     lines.push(' ', `🏴‍☠️ WANTED BONUS: +%50`);
-                    updateBalance(userId, wanted.bounty);
-                    removeWanted(normVictimId);
+                    await updateBalance(userId, wanted.bounty);
+                    await removeWanted(normVictimId);
                     lines.push(`Ödül: +${wanted.bounty} $`);
                 }
                 return msg.reply(centeredBox(lines, 'SUÇ DÜNYASI'));
             } else {
                 const penalty = 250;
-                updateBalance(userId, -penalty);
-                recordLoss(userId, penalty);
+                await updateBalance(userId, -penalty);
+                await recordLoss(userId, penalty);
                 return msg.reply(centeredBox(['🚔 ENSELENDİN! 🚔', 'Rüşvet verdin de yırttın.', `Zarar: -${penalty} $`], 'HAPİSHANE'));
             }
         }

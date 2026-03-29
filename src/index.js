@@ -1,7 +1,7 @@
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const { handleCommand } = require('./commands');
-const { getUser, addUser, incrementMsgCount, getAlias, setAlias, migrateUser, hasSeenPatch, markPatchSeen, getSetting } = require('./database/db');
+const { getUser, addUser, incrementMsgCount, getAlias, setAlias, migrateUser, hasSeenPatch, markPatchSeen, getSetting } = require('./database/mongo');
 const hangmanHandler = require('./commands/hangman');
 
 const isTermux = !!process.env.TERMUX_VERSION;
@@ -54,7 +54,7 @@ const resolveUserId = async (msg) => {
     const rawId = msg.author || msg.from;
     if (idCache.has(rawId)) return idCache.get(rawId);
 
-    const existingAlias = getAlias(rawId);
+    const existingAlias = await getAlias(rawId);
     if (existingAlias) {
         idCache.set(rawId, existingAlias);
         return existingAlias;
@@ -65,11 +65,11 @@ const resolveUserId = async (msg) => {
         if (contact && contact.number) {
             const canonicalId = `${contact.number}@c.us`;
             if (rawId !== canonicalId) {
-                setAlias(rawId, canonicalId);
+                await setAlias(rawId, canonicalId);
                 console.log(`[ID-LINK] ${rawId} -> ${canonicalId}`);
-                migrateUser(rawId, canonicalId);
+                await migrateUser(rawId, canonicalId);
             }
-            setAlias(canonicalId, canonicalId);
+            await setAlias(canonicalId, canonicalId);
             idCache.set(rawId, canonicalId);
             idCache.set(canonicalId, canonicalId);
             return canonicalId;
@@ -83,9 +83,9 @@ const resolveUserId = async (msg) => {
     return fallbackId;
 };
 
-const resolveMentionedId = (rawId) => {
+const resolveMentionedId = async (rawId) => {
     if (idCache.has(rawId)) return idCache.get(rawId);
-    const alias = getAlias(rawId);
+    const alias = await getAlias(rawId);
     if (alias) { idCache.set(rawId, alias); return alias; }
     return rawId.replace(/@lid$/, '@c.us');
 };
@@ -119,16 +119,16 @@ client.on('message', async msg => {
     }
 
     try {
-        let user = getUser(userId);
-        if (!user) user = addUser(userId);
-        incrementMsgCount(userId);
+        let user = await getUser(userId);
+        if (!user) user = await addUser(userId);
+        await incrementMsgCount(userId);
     } catch (dbError) {
         console.error('Database Error:', dbError);
     }
 
     // ─── One-time Persistent Patch Notes Broadcast ───
-    if (msg.body.startsWith('!') && !hasSeenPatch(userId, PATCH_VERSION)) {
-        markPatchSeen(userId, PATCH_VERSION);
+    if (msg.body.startsWith('!') && !await hasSeenPatch(userId, PATCH_VERSION)) {
+        await markPatchSeen(userId, PATCH_VERSION);
         const patchNotes = [
             `🚀 GÜNCELLEME NOTLARI (v${PATCH_VERSION}) 🚀`,
             ' ',
@@ -162,7 +162,7 @@ client.on('message', async msg => {
 
     // ─── Owner Mode Check ───
     if (msg.body.startsWith('!')) {
-        const isOwnerMode = getSetting('owner_mode') === 'true';
+        const isOwnerMode = await getSetting('owner_mode') === 'true';
         if (isOwnerMode && msg.from !== OWNER_ID) {
             if (!maintenanceNotified.has(userId)) {
                 maintenanceNotified.add(userId);

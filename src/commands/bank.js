@@ -1,4 +1,4 @@
-const { getUser, addUser, updateBalance, getBankAccount, bankDeposit, bankWithdraw, calcInterest } = require('../database/db');
+const { getUser, addUser, updateBalance, getBankAccount, bankDeposit, bankWithdraw, calcInterest } = require('../database/mongo');
 const { centeredBox, troll, getRandom } = require('./utils');
 
 module.exports = async (command, args, msg, userId, user, resolve) => {
@@ -6,7 +6,7 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
         case 'banka':
         case 'bank':
         case 'hesap': {
-            const account = getBankAccount(userId);
+            const account = await getBankAccount(userId);
             if (!account || account.amount <= 0) {
                 return msg.reply(centeredBox([
                     '🏧 BANKA HESABI',
@@ -37,12 +37,12 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
             let amount = parseInt(args[0]);
             if (args[0] === 'hepsi' || args[0] === 'all') amount = user.balance;
             if (isNaN(amount) || amount <= 0) return msg.reply('⚠️ Miktar gir.\nKullanım: !yatir <miktar> veya !yatir hepsi');
-            if (amount > user.balance) return msg.reply(`⚠️ ${getRandom(troll.poor)}`);
+            if (amount > user.balance) return msg.reply(`⚠️ ${await getRandom(troll.poor)}`);
 
-            updateBalance(userId, -amount);
-            bankDeposit(userId, amount);
+            await updateBalance(userId, -amount);
+            await bankDeposit(userId, amount);
 
-            const account = getBankAccount(userId);
+            const account = await getBankAccount(userId);
             return msg.reply(centeredBox([
                 '🏧 PARA YATIRILDI',
                 ' ',
@@ -58,7 +58,7 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
         case 'withdraw': {
             let amount;
             if (args[0] === 'hepsi' || args[0] === 'all') {
-                const account = getBankAccount(userId);
+                const account = await getBankAccount(userId);
                 if (!account) return msg.reply('⚠️ Bankada paran yok ki.');
                 amount = account.amount + calcInterest(account);
             } else {
@@ -66,10 +66,10 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
             }
             if (isNaN(amount) || amount <= 0) return msg.reply('⚠️ Miktar gir.\nKullanım: !cek <miktar> veya !cek hepsi');
 
-            const result = bankWithdraw(userId, amount);
+            const result = await bankWithdraw(userId, amount);
             if (!result) return msg.reply('⚠️ Bankada o kadar paran yok.');
 
-            updateBalance(userId, amount);
+            await updateBalance(userId, amount);
 
             return msg.reply(centeredBox([
                 '🏧 PARA ÇEKİLDİ',

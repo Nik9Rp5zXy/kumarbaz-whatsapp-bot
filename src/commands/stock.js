@@ -1,4 +1,4 @@
-const { getUser, addUser, updateBalance, getStocks, getStock, updateStockPrices, buyStock, sellStock, getPortfolio } = require('../database/db');
+const { getUser, addUser, updateBalance, getStocks, getStock, updateStockPrices, buyStock, sellStock, getPortfolio } = require('../database/mongo');
 const { centeredBox, troll, getRandom } = require('./utils');
 
 module.exports = async (command, args, msg, userId, user, resolve) => {
@@ -6,8 +6,8 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
         case 'borsa':
         case 'piyasa':
         case 'market': {
-            updateStockPrices(); // Update prices if stale
-            const stocks = getStocks();
+            await updateStockPrices(); // Update prices if stale
+            const stocks = await getStocks();
             const lines = ['📈 BORSA TABLOSU', ' '];
             for (const s of stocks) {
                 const change = s.price - s.prev_price;
@@ -25,8 +25,8 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
         case 'stock': {
             const symbol = (args[0] || '').toUpperCase();
             if (!symbol) return msg.reply('⚠️ Hangi hisse?\nKullanım: !hisse KUMR');
-            updateStockPrices();
-            const stock = getStock(symbol);
+            await updateStockPrices();
+            const stock = await getStock(symbol);
             if (!stock) return msg.reply('⚠️ Böyle bir hisse yok. !borsa ile listeye bak.');
 
             const change = stock.price - stock.prev_price;
@@ -54,15 +54,15 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
                 return msg.reply('⚠️ Kullanım: !al <sembol> <adet>\nÖrnek: !al KUMR 5');
             }
 
-            updateStockPrices();
-            const stock = getStock(symbol);
+            await updateStockPrices();
+            const stock = await getStock(symbol);
             if (!stock) return msg.reply('⚠️ Böyle bir hisse yok. !borsa ile listeye bak.');
 
             const totalCost = stock.price * quantity;
-            if (totalCost > user.balance) return msg.reply(`⚠️ ${getRandom(troll.poor)}\nToplam maliyet: ${totalCost} $ — Bakiye: ${user.balance} $`);
+            if (totalCost > user.balance) return msg.reply(`⚠️ ${await getRandom(troll.poor)}\nToplam maliyet: ${totalCost} $ — Bakiye: ${user.balance} $`);
 
-            updateBalance(userId, -totalCost);
-            const result = buyStock(userId, symbol, quantity);
+            await updateBalance(userId, -totalCost);
+            const result = await buyStock(userId, symbol, quantity);
 
             return msg.reply(centeredBox([
                 '📈 HİSSE ALINDI',
@@ -81,7 +81,7 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
 
             // Handle "hepsi" / "all"
             if (quantity === 'hepsi' || quantity === 'all') {
-                const portfolio = getPortfolio(userId);
+                const portfolio = await getPortfolio(userId);
                 const holding = portfolio.find(p => p.stock_id === symbol);
                 if (!holding) return msg.reply('⚠️ Bu hisseden elinde yok.');
                 quantity = holding.quantity;
@@ -93,11 +93,11 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
                 return msg.reply('⚠️ Kullanım: !sat <sembol> <adet>\nÖrnek: !sat KUMR 5 veya !sat KUMR hepsi');
             }
 
-            updateStockPrices();
-            const result = sellStock(userId, symbol, quantity);
+            await updateStockPrices();
+            const result = await sellStock(userId, symbol, quantity);
             if (!result) return msg.reply('⚠️ Elinde o kadar hisse yok veya sembol yanlış.');
 
-            updateBalance(userId, result.revenue);
+            await updateBalance(userId, result.revenue);
 
             const profitEmoji = result.profit >= 0 ? '🟢' : '🔴';
             const profitSign = result.profit >= 0 ? '+' : '';
@@ -115,8 +115,8 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
 
         case 'portfoy':
         case 'portfolio': {
-            updateStockPrices();
-            const portfolio = getPortfolio(userId);
+            await updateStockPrices();
+            const portfolio = await getPortfolio(userId);
             if (!portfolio || portfolio.length === 0) {
                 return msg.reply(centeredBox([
                     '💼 PORTFÖY',

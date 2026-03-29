@@ -1,5 +1,5 @@
 // Command router — dispatches to individual modules
-const { getUser, addUser, updateBalance, getSetting } = require('../database/db');
+const { getUser, addUser, updateBalance, getSetting } = require('../database/mongo');
 const { checkSpam } = require('../spam');
 const { centeredBox, troll, getRandom } = require('./utils');
 
@@ -36,7 +36,7 @@ const handleCommand = async (msg, client) => {
         }
 
         // Check Safe Mode
-        const isSafeMode = getSetting('safe_mode') === 'true';
+        const isSafeMode = await getSetting('safe_mode') === 'true';
         if (isSafeMode) {
             const blockedCommands = ['gay', 'gey', 'yalan', 'lie', 'soygun', 'cal', 'wanted'];
             if (blockedCommands.includes(command)) {
@@ -45,28 +45,28 @@ const handleCommand = async (msg, client) => {
         }
 
         // Spam check
-        const spamResult = checkSpam(userId, command);
+        const spamResult = await checkSpam(userId, command);
         if (!spamResult.allowed) {
             if (spamResult.reason === 'ban') {
-                return msg.reply(`🚫 Banlısın. ${spamResult.remaining}sn kaldı.\n${getRandom(troll.spam)}`);
+                return msg.reply(`🚫 Banlısın. ${spamResult.remaining}sn kaldı.\n${await getRandom(troll.spam)}`);
             }
             if (spamResult.reason === 'hard_ban') {
-                updateBalance(userId, -spamResult.penalty);
-                return msg.reply(`🚨 HARD BAN! ${spamResult.remaining}sn yasak + ${spamResult.penalty}$ ceza.\n${getRandom(troll.spam)}`);
+                await updateBalance(userId, -spamResult.penalty);
+                return msg.reply(`🚨 HARD BAN! ${spamResult.remaining}sn yasak + ${spamResult.penalty}$ ceza.\n${await getRandom(troll.spam)}`);
             }
             if (spamResult.reason === 'soft_ban') {
-                return msg.reply(`⛔ ${spamResult.remaining}sn yasak.\n${getRandom(troll.spam)}`);
+                return msg.reply(`⛔ ${spamResult.remaining}sn yasak.\n${await getRandom(troll.spam)}`);
             }
             if (spamResult.reason === 'warning') {
-                return msg.reply(`⚠️ ${getRandom(troll.spam)}`);
+                return msg.reply(`⚠️ ${await getRandom(troll.spam)}`);
             }
             if (spamResult.reason === 'cooldown') {
                 return; // Silent ignore
             }
         }
 
-        let user = getUser(userId);
-        if (!user) user = addUser(userId);
+        let user = await getUser(userId);
+        if (!user) user = await addUser(userId);
 
         // Try each handler sequentially
         for (const handler of handlers) {

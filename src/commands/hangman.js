@@ -1,4 +1,4 @@
-const { getUser, addUser, updateBalance, recordWin, recordLoss } = require('../database/db');
+const { getUser, addUser, updateBalance, recordWin, recordLoss } = require('../database/mongo');
 const { centeredBox, troll, getRandom } = require('./utils');
 
 const pendingChallenge = {};   // targetId -> { challenger, bet, chatId, timestamp }
@@ -61,9 +61,9 @@ async function endGame(chatId, game, result, msg) {
 
     if (result === 'win') {
         if (totalPot > 0) {
-            updateBalance(game.guesser, totalPot);
-            recordWin(game.guesser, game.bet);
-            recordLoss(game.setter, game.bet);
+            await updateBalance(game.guesser, totalPot);
+            await recordWin(game.guesser, game.bet);
+            await recordLoss(game.setter, game.bet);
         }
         const art = HANGMAN_ART[Math.min(game.wrongCount, MAX_WRONG)];
         try {
@@ -78,9 +78,9 @@ async function endGame(chatId, game, result, msg) {
         return msg.reply(`🎉 Kelime bilindi! ${totalPot > 0 ? `+${totalPot} $` : ''}`);
     } else {
         if (totalPot > 0) {
-            updateBalance(game.setter, totalPot);
-            recordWin(game.setter, game.bet);
-            recordLoss(game.guesser, game.bet);
+            await updateBalance(game.setter, totalPot);
+            await recordWin(game.setter, game.bet);
+            await recordLoss(game.guesser, game.bet);
         }
         const art = HANGMAN_ART[MAX_WRONG];
         try {
@@ -108,7 +108,7 @@ const handler = async (command, args, msg, userId, user, resolve, client) => {
             const targetMention = msg.mentionedIds && msg.mentionedIds[0];
             if (!targetMention) return msg.reply('⚠️ Kullanım: !aa @kisi <bahis>\nBahis opsiyonel.');
 
-            const targetId = resolve(targetMention);
+            const targetId = await resolve(targetMention);
             if (targetId === userId) return msg.reply('⚠️ Kendine meydan okuyamazsın.');
 
             let bet = 0;
@@ -116,7 +116,7 @@ const handler = async (command, args, msg, userId, user, resolve, client) => {
                 const num = parseInt(arg);
                 if (!isNaN(num) && !arg.includes('@') && num > 0) { bet = num; break; }
             }
-            if (bet > 0 && bet > user.balance) return msg.reply(`⚠️ ${getRandom(troll.poor)}`);
+            if (bet > 0 && bet > user.balance) return msg.reply(`⚠️ ${await getRandom(troll.poor)}`);
 
             pendingChallenge[targetId] = { challenger: userId, bet, chatId, timestamp: Date.now() };
 
@@ -136,16 +136,16 @@ const handler = async (command, args, msg, userId, user, resolve, client) => {
                 return msg.reply('⚠️ Davet süresi dolmuş.');
             }
 
-            const challenger = getUser(ch.challenger);
+            const challenger = await getUser(ch.challenger);
             if (ch.bet > 0) {
                 if (!challenger || challenger.balance < ch.bet) {
                     delete pendingChallenge[userId]; return msg.reply('⚠️ Davet edenin parası bitmiş.');
                 }
                 if (user.balance < ch.bet) {
-                    delete pendingChallenge[userId]; return msg.reply(`⚠️ ${getRandom(troll.poor)}`);
+                    delete pendingChallenge[userId]; return msg.reply(`⚠️ ${await getRandom(troll.poor)}`);
                 }
-                updateBalance(ch.challenger, -ch.bet);
-                updateBalance(userId, -ch.bet);
+                await updateBalance(ch.challenger, -ch.bet);
+                await updateBalance(userId, -ch.bet);
             }
 
             delete pendingChallenge[userId];
@@ -160,7 +160,7 @@ const handler = async (command, args, msg, userId, user, resolve, client) => {
                 ], 'KELİME SEÇ'));
             } catch (e) {
                 console.error('DM gönderilemedi:', e);
-                if (ch.bet > 0) { updateBalance(ch.challenger, ch.bet); updateBalance(userId, ch.bet); }
+                if (ch.bet > 0) { await updateBalance(ch.challenger, ch.bet); await updateBalance(userId, ch.bet); }
                 delete pendingWordSelection[ch.challenger];
                 return msg.reply('⚠️ DM gönderilemedi. Bot numarasını kaydet.');
             }
@@ -224,7 +224,7 @@ const handler = async (command, args, msg, userId, user, resolve, client) => {
             const game = activeGames[chatId];
             if (!game) return msg.reply('⚠️ Aktif adam asmaca yok.');
             if (userId !== game.setter && userId !== game.guesser) return msg.reply('⚠️ Sadece oyuncular iptal edebilir.');
-            if (game.bet > 0) { updateBalance(game.setter, game.bet); updateBalance(game.guesser, game.bet); }
+            if (game.bet > 0) { await updateBalance(game.setter, game.bet); await updateBalance(game.guesser, game.bet); }
             try { await game.msg.edit(centeredBox(['❌ OYUN İPTAL ❌', 'Paralar iade edildi.'], 'ADAM ASMACA')); } catch (e) { }
             delete activeGames[chatId];
             return msg.reply('✅ Adam asmaca iptal edildi.');

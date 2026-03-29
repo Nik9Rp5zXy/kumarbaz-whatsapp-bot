@@ -66,10 +66,10 @@ const troll = {
     ]
 };
 
-const { getSetting } = require('../database/db');
+const { getSetting } = require('../database/mongo');
 
-const getRandom = (arr) => {
-    if (getSetting('safe_mode') === 'true') {
+const getRandom = async (arr) => {
+    if (await getSetting('safe_mode') === 'true') {
         if (arr === troll.poor) return "Şu an yeterli bakiyen yok gibi görünüyor, biraz daha biriktir istersen \uD83D\uDE0A";
         if (arr === troll.win) return "Tebrikler, çok şanslısın! 🎉";
         if (arr === troll.lose) return "Bu sefer olmadı, umudunu kaybetme şansını tekrar dene! 🍀";
@@ -109,7 +109,7 @@ const checkBrokeAdvice = (balance) => {
         "🏦 Cebinde üç kuruş kalmış. Batmadan önce en azından birazını !banka yatirarak güvenceye al.",
         "📊 Grafikler yalan söylemez! Paranı aptalca hiç etmek yerine akıllı esnaf ol, !borsa ile katla."
     ];
-    return '\n\n👔 Danışman: ' + getRandom(advices);
+    return '\n\n👔 Danışman: ' + await getRandom(advices);
 };
 
 module.exports = { sleep, centeredBox, troll, getRandom, getTitle, progressBar, checkBrokeAdvice };

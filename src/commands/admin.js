@@ -1,7 +1,7 @@
 const { getUser, addUser, updateBalance, setBalance, deleteUser,
   getAllUsers, getSpamLogs, getAllAliases,
   hasRole, isOwner, addAdmin, removeAdmin, getAllAdmins, getAdmin, OWNER_ID,
-  getSetting, updateSetting, getAllSettings } = require('../database/db');
+  getSetting, updateSetting, getAllSettings } = require('../database/mongo');
 const { centeredBox } = require('./utils');
 
 // ─── Ban system (in-memory, shared with spam.js) ───
@@ -20,10 +20,10 @@ const getManualBanRemaining = (userId) => {
   return Math.max(0, Math.ceil((until - Date.now()) / 1000));
 };
 
-const parseTargetId = (args, msg, resolve) => {
+const parseTargetId = async (args, msg, resolve) => {
   // 1. Check mentions first
   if (msg.mentionedIds && msg.mentionedIds.length > 0) {
-    return resolve(msg.mentionedIds[0]);
+    return await resolve(msg.mentionedIds[0]);
   }
   
   // 2. Check for raw phone numbers in args (e.g., 905551234567)
@@ -31,7 +31,7 @@ const parseTargetId = (args, msg, resolve) => {
     const cleanArg = arg.replace(/\D/g, ''); // Remove non-digits
     // Assume it's a phone number if it's long enough (e.g., 10+ digits)
     if (cleanArg.length >= 10 && cleanArg.length <= 15) {
-      return resolve(`${cleanArg}@c.us`);
+      return await resolve(`${cleanArg}@c.us`);
     }
   }
   
@@ -46,35 +46,35 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
     // ═══════════════════════════════════════
 
     case 'admin_ata': {
-      if (!isOwner(userId)) return msg.reply('🚫 Bu komutu sadece bot sahibi kullanabilir.');
-      const normTarget = parseTargetId(args, msg, resolve);
+      if (!await isOwner(userId)) return msg.reply('🚫 Bu komutu sadece bot sahibi kullanabilir.');
+      const normTarget = await parseTargetId(args, msg, resolve);
       if (!normTarget) return msg.reply('⚠️ Kullanım: !admin_ata @kisi veya !admin_ata 905510395152');
-      addAdmin(normTarget, 'admin', userId);
+      await addAdmin(normTarget, 'admin', userId);
       return msg.reply(`✅ @${normTarget.split('@')[0]} artık *Admin* 🛡️`);
     }
 
     case 'admin_cikar': {
-      if (!isOwner(userId)) return msg.reply('🚫 Bu komutu sadece bot sahibi kullanabilir.');
-      const normTarget = parseTargetId(args, msg, resolve);
+      if (!await isOwner(userId)) return msg.reply('🚫 Bu komutu sadece bot sahibi kullanabilir.');
+      const normTarget = await parseTargetId(args, msg, resolve);
       if (!normTarget) return msg.reply('⚠️ Kullanım: !admin_cikar @kisi veya !admin_cikar 90...');
-      const adminInfo = getAdmin(normTarget);
+      const adminInfo = await getAdmin(normTarget);
       if (!adminInfo) return msg.reply('⚠️ Bu kişi zaten admin/mod değil.');
       if (adminInfo.role === 'owner') return msg.reply('⚠️ Owner kaldırılamaz.');
-      removeAdmin(normTarget);
+      await removeAdmin(normTarget);
       return msg.reply(`✅ @${normTarget.split('@')[0]} admin yetkisi kaldırıldı.`);
     }
 
     case 'safemod': {
-      if (!isOwner(userId)) return msg.reply('🚫 Bu komutu sadece bot sahibi kullanabilir.');
+      if (!await isOwner(userId)) return msg.reply('🚫 Bu komutu sadece bot sahibi kullanabilir.');
       const arg = args[0] ? args[0].toLowerCase() : '';
       if (arg === 'ac' || arg === 'aç' || arg === 'true' || arg === 'on') {
-        updateSetting('safe_mode', 'true');
+        await updateSetting('safe_mode', 'true');
         return msg.reply('✅ Safe mod aktifleştirildi. Uygunsuz komutlar ve kaba mesajlar devre dışı bırakıldı.');
       } else if (arg === 'kapat' || arg === 'false' || arg === 'off') {
-        updateSetting('safe_mode', 'false');
+        await updateSetting('safe_mode', 'false');
         return msg.reply('❌ Safe mod kapatıldı. Sokak kuralları geri döndü.');
       } else {
-        const status = getSetting('safe_mode') === 'true' ? 'Açık ✅' : 'Kapalı ❌';
+        const status = await getSetting('safe_mode') === 'true' ? 'Açık ✅' : 'Kapalı ❌';
         return msg.reply(`Kullanım: !safemod ac/kapat\nŞu anki durum: ${status}`);
       }
     }
@@ -84,27 +84,27 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
     // ═══════════════════════════════════════
 
     case 'mod_ata': {
-      if (!hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece adminler kullanabilir.');
-      const normTarget = parseTargetId(args, msg, resolve);
+      if (!await hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece adminler kullanabilir.');
+      const normTarget = await parseTargetId(args, msg, resolve);
       if (!normTarget) return msg.reply('⚠️ Kullanım: !mod_ata @kisi veya !mod_ata 90...');
-      addAdmin(normTarget, 'mod', userId);
+      await addAdmin(normTarget, 'mod', userId);
       return msg.reply(`✅ @${normTarget.split('@')[0]} artık *Moderatör* 🔧`);
     }
 
     case 'mod_cikar': {
-      if (!hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece adminler kullanabilir.');
-      const normTarget = parseTargetId(args, msg, resolve);
+      if (!await hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece adminler kullanabilir.');
+      const normTarget = await parseTargetId(args, msg, resolve);
       if (!normTarget) return msg.reply('⚠️ Kullanım: !mod_cikar @kisi veya !mod_cikar 90...');
-      const modInfo = getAdmin(normTarget);
+      const modInfo = await getAdmin(normTarget);
       if (!modInfo || modInfo.role !== 'mod') return msg.reply('⚠️ Bu kişi mod değil.');
-      removeAdmin(normTarget);
+      await removeAdmin(normTarget);
       return msg.reply(`✅ @${normTarget.split('@')[0]} mod yetkisi kaldırıldı.`);
     }
 
     case 'admin_ekle':
     case 'addmoney': {
-      if (!hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece adminler kullanabilir.');
-      const normAddTarget = parseTargetId(args, msg, resolve);
+      if (!await hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece adminler kullanabilir.');
+      const normAddTarget = await parseTargetId(args, msg, resolve);
       if (!normAddTarget) return msg.reply('⚠️ Kullanım: !admin_ekle @kisi <miktar> veya !admin_ekle 90... <miktar>');
 
       let addAmount = NaN;
@@ -117,17 +117,17 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
       }
       if (isNaN(addAmount)) return msg.reply('⚠️ Miktar gir (Örn: 1000).');
 
-      let targetUserAdd = getUser(normAddTarget);
-      if (!targetUserAdd) targetUserAdd = addUser(normAddTarget);
+      let targetUserAdd = await getUser(normAddTarget);
+      if (!targetUserAdd) targetUserAdd = await addUser(normAddTarget);
 
-      updateBalance(normAddTarget, addAmount);
+      await updateBalance(normAddTarget, addAmount);
       return msg.reply(`✅ @${normAddTarget.split('@')[0]} hesabına *${addAmount}$* eklendi.`);
     }
 
     case 'admin_sil':
     case 'removemoney': {
-      if (!hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece adminler kullanabilir.');
-      const normRemTarget = parseTargetId(args, msg, resolve);
+      if (!await hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece adminler kullanabilir.');
+      const normRemTarget = await parseTargetId(args, msg, resolve);
       if (!normRemTarget) return msg.reply('⚠️ Kullanım: !admin_sil @kisi <miktar>');
 
       let remAmount = NaN;
@@ -136,16 +136,16 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
       }
       if (isNaN(remAmount)) return msg.reply('⚠️ Miktar gir.');
 
-      let targetUserRem = getUser(normRemTarget);
-      if (!targetUserRem) targetUserRem = addUser(normRemTarget);
+      let targetUserRem = await getUser(normRemTarget);
+      if (!targetUserRem) targetUserRem = await addUser(normRemTarget);
 
-      updateBalance(normRemTarget, -remAmount);
+      await updateBalance(normRemTarget, -remAmount);
       return msg.reply(`✅ @${normRemTarget.split('@')[0]} hesabından *${remAmount}$* silindi.`);
     }
 
     case 'bakiye_ayarla': {
-      if (!hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece adminler kullanabilir.');
-      const normTarget = parseTargetId(args, msg, resolve);
+      if (!await hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece adminler kullanabilir.');
+      const normTarget = await parseTargetId(args, msg, resolve);
       if (!normTarget) return msg.reply('⚠️ Kullanım: !bakiye_ayarla @kisi <miktar> veya !bakiye_ayarla 90555... <miktar>');
 
       let amount = NaN;
@@ -154,17 +154,17 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
       }
       if (isNaN(amount)) return msg.reply('⚠️ Miktar gir.');
 
-      let tUser = getUser(normTarget);
-      if (!tUser) tUser = addUser(normTarget);
-      setBalance(normTarget, amount);
+      let tUser = await getUser(normTarget);
+      if (!tUser) tUser = await addUser(normTarget);
+      await setBalance(normTarget, amount);
       return msg.reply(`✅ @${normTarget.split('@')[0]} bakiyesi *${amount}$* olarak ayarlandı.`);
     }
 
     case 'kullanici_sil': {
-      if (!hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece adminler kullanabilir.');
-      const normTarget = parseTargetId(args, msg, resolve);
+      if (!await hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece adminler kullanabilir.');
+      const normTarget = await parseTargetId(args, msg, resolve);
       if (!normTarget) return msg.reply('⚠️ Kullanım: !kullanici_sil @kisi veya 90555...');
-      deleteUser(normTarget);
+      await deleteUser(normTarget);
       return msg.reply(`✅ @${normTarget.split('@')[0]} veritabanından silindi.`);
     }
 
@@ -173,13 +173,13 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
     // ═══════════════════════════════════════
 
     case 'ban': {
-      if (!hasRole(userId, 'mod')) return msg.reply('🚫 Bu komutu sadece modlar kullanabilir.');
+      if (!await hasRole(userId, 'mod')) return msg.reply('🚫 Bu komutu sadece modlar kullanabilir.');
       const target = msg.mentionedIds && msg.mentionedIds[0];
       if (!target) return msg.reply('⚠️ Kullanım: !ban @kisi <süre_dakika>');
-      const normTarget = resolve(target);
+      const normTarget = await resolve(target);
 
       // Cannot ban someone with equal or higher role
-      if (hasRole(normTarget, 'mod')) return msg.reply('⚠️ Admin/Mod banlayamazsın.');
+      if (await hasRole(normTarget, 'mod')) return msg.reply('⚠️ Admin/Mod banlayamazsın.');
 
       let duration = 5; // default 5 dakika
       for (const arg of args) {
@@ -192,17 +192,17 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
     }
 
     case 'unban': {
-      if (!hasRole(userId, 'mod')) return msg.reply('🚫 Bu komutu sadece modlar kullanabilir.');
+      if (!await hasRole(userId, 'mod')) return msg.reply('🚫 Bu komutu sadece modlar kullanabilir.');
       const target = msg.mentionedIds && msg.mentionedIds[0];
       if (!target) return msg.reply('⚠️ Kullanım: !unban @kisi');
-      const normTarget = resolve(target);
+      const normTarget = await resolve(target);
       manualBans.delete(normTarget);
       return msg.reply(`✅ @${normTarget.split('@')[0]} banı kaldırıldı.`, undefined, { mentions: [target] });
     }
 
     case 'adminler': {
-      if (!hasRole(userId, 'mod')) return msg.reply('🚫 Bu komutu sadece yetkililer görebilir.');
-      const admins = getAllAdmins();
+      if (!await hasRole(userId, 'mod')) return msg.reply('🚫 Bu komutu sadece yetkililer görebilir.');
+      const admins = await getAllAdmins();
       if (admins.length === 0) return msg.reply('📋 Hiç admin/mod yok.');
 
       const roleEmoji = { owner: '👑', admin: '🛡️', mod: '🔧' };
@@ -222,8 +222,8 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
 
     case 'istatistik':
     case 'stats': {
-      if (!hasRole(userId, 'mod')) return msg.reply('🚫 Bu komutu sadece yetkililer görebilir.');
-      const users = getAllUsers();
+      if (!await hasRole(userId, 'mod')) return msg.reply('🚫 Bu komutu sadece yetkililer görebilir.');
+      const users = await getAllUsers();
       const totalUsers = users.length;
       const totalEconomy = users.reduce((s, u) => s + u.balance, 0);
       const totalMessages = users.reduce((s, u) => s + (u.msg_count || 0), 0);
@@ -247,8 +247,8 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
     }
 
     case 'spamlog': {
-      if (!hasRole(userId, 'mod')) return msg.reply('🚫 Bu komutu sadece yetkililer görebilir.');
-      const logs = getSpamLogs(15);
+      if (!await hasRole(userId, 'mod')) return msg.reply('🚫 Bu komutu sadece yetkililer görebilir.');
+      const logs = await getSpamLogs(15);
       if (logs.length === 0) return msg.reply('📋 Spam kaydı yok.');
 
       let text = '╔══════════════════════╗\n';
@@ -265,7 +265,7 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
 
     case 'modhelp':
     case 'modyardim': {
-      if (!hasRole(userId, 'mod')) return msg.reply('🚫 Bu komutu sadece Moderatörler kullanabilir.');
+      if (!await hasRole(userId, 'mod')) return msg.reply('🚫 Bu komutu sadece Moderatörler kullanabilir.');
       return msg.reply(
         '╔═════════════════════╗\n' +
         '║  🔧 MOD KOMUTLARI   ║\n' +
@@ -290,7 +290,7 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
 
     case 'adminhelp':
     case 'adminyardim': {
-      if (!hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece Adminler kullanabilir.');
+      if (!await hasRole(userId, 'admin')) return msg.reply('🚫 Bu komutu sadece Adminler kullanabilir.');
       return msg.reply(
         '╔═════════════════════╗\n' +
         '║  🛡️ ADMİN KOMUTLARI ║\n' +
@@ -320,7 +320,7 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
 
     case 'ownerhelp':
     case 'owneryardim': {
-      if (!isOwner(userId)) return msg.reply('🚫 Bu komutu sadece Kurucu (Owner) kullanabilir.');
+      if (!await isOwner(userId)) return msg.reply('🚫 Bu komutu sadece Kurucu (Owner) kullanabilir.');
       return msg.reply(
         '╔═════════════════════╗\n' +
         '║  👑 OWNER KOMUTLARI ║\n' +
@@ -345,20 +345,20 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
 
     case 'set':
     case 'ayar': {
-      if (!hasRole(userId, 'admin') && !isOwner(userId)) return msg.reply('🚫 Yetkisiz işlem.');
+      if (!await hasRole(userId, 'admin') && !await isOwner(userId)) return msg.reply('🚫 Yetkisiz işlem.');
       if (args.length < 2) return msg.reply('Kullanım: !set <ayar_adı> <değer>\nÖrn: !set owner_mode true');
       
       const key = args[0].toLowerCase();
       const val = args.slice(1).join(' ');
       
-      updateSetting(key, val);
+      await updateSetting(key, val);
       return msg.reply(`✅ Ayar güncellendi:\n🔑 ${key} = ${val}`);
     }
 
     case 'ayarlar':
     case 'settings': {
-      if (!hasRole(userId, 'admin') && !isOwner(userId)) return msg.reply('🚫 Yetkisiz işlem.');
-      const settings = getAllSettings();
+      if (!await hasRole(userId, 'admin') && !await isOwner(userId)) return msg.reply('🚫 Yetkisiz işlem.');
+      const settings = await getAllSettings();
       if (settings.length === 0) return msg.reply('Hiç ayar bulunamadı.');
       
       let res = '⚙️ *SİSTEM AYARLARI*\n\n';
@@ -371,9 +371,9 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
     case 'rlchk':
     case 'rolum': {
       let roleName = 'Kullanıcı 👤';
-      if (isOwner(userId)) roleName = 'Owner 👑';
-      else if (hasRole(userId, 'admin')) roleName = 'Admin 🛡️';
-      else if (hasRole(userId, 'mod')) roleName = 'Moderatör 🔧';
+      if (await isOwner(userId)) roleName = 'Owner 👑';
+      else if (await hasRole(userId, 'admin')) roleName = 'Admin 🛡️';
+      else if (await hasRole(userId, 'mod')) roleName = 'Moderatör 🔧';
 
       return msg.reply(`🏷️ Senin mevcut rolün: ${roleName}`);
     }
