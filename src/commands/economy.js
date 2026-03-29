@@ -44,7 +44,7 @@ module.exports = async (command, args, msg, userId, user, resolve) => {
             const title = getTitle(user.balance);
             const balanceArt = ['      ', ` 💸 ${user.balance} $ `, title, '      '];
             
-            const advice = checkBrokeAdvice(user.balance);
+            const advice = await checkBrokeAdvice(user.balance);
             return msg.reply(centeredBox(balanceArt, 'CÜZDAN') + advice);
         }
 

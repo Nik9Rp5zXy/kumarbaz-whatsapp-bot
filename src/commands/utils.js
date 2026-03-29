@@ -96,7 +96,7 @@ const progressBar = (current, max, length = 15) => {
     return '█'.repeat(Math.max(0, filled)) + '░'.repeat(Math.max(0, empty));
 };
 
-const checkBrokeAdvice = (balance) => {
+const checkBrokeAdvice = async (balance) => {
     // Only target people who are broke but not bankrupt yet
     if (balance <= 0 || balance > 500) return '';
     
