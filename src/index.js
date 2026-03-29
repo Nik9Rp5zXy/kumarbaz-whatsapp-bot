@@ -32,7 +32,7 @@ const client = new Client(clientOptions);
 const BOT_START_TIME = Date.now();
 const activeUsers = new Map(); // userId -> { chat, time }
 
-const PATCH_VERSION = '1.12.0';
+const PATCH_VERSION = '1.13.0';
 
 const maintenanceNotified = new Set(); // For Owner Mode one-time alerts
 
@@ -132,19 +132,14 @@ client.on('message', async msg => {
         const patchNotes = [
             `🚀 GÜNCELLEME NOTLARI (v${PATCH_VERSION}) 🚀`,
             ' ',
-            '📺 KİM MİLYONER YENİLENDİ!',
-            '• Canlı Sayaç: Süre WhatsApp üzerinde canlı güncellenir (5sn).',
-            '• Süre ve Joker Sınırı: Sorular zorlaştıkça süre azalır. Jokerler sadece 4-5. sorularda açılır.',
+            '🛡️ YETKİLİ SİSTEMİ',
+            '• Yöneticiler (Mod, Admin, Owner) artık `!yardim` veya `!yardim full` yazdıklarında listelerin en altında kendi yetkilerine özel gizli komutların özetini görebilecekler.',
             ' ',
-            '🎩 YATIRIM SİMÜLASYONU',
-            '• 500$ ın altındayken !bakiye yazarsan bot borsa ve banka danışmanlığı rolü yapabilir.',
+            '😇 GÜVENLİ MOD (SAFE MOD)',
+            '• Owner komutlarına `!safemod ac` seçeneği eklendi.',
+            '• Safemod açıldığında bot; kumar/soygun benzeri bazı komutları kapatır ve "troll/argo" konuşmak yerine kibar cevaplar verir.',
             ' ',
-            '👤 SİSTEM & YENİ MENÜLER',
-            '• Yardım: Tüm !yardim, !modyardim formları mobil ekranlara (telefon) %100 uyumlu daraltıldı.',
-            '• Rol: Rolünü !rlchk ile görebilirsin.',
-            '• Sinyal: Bot artık bakım için kapandığında aktif oyunculara %100 bildirim garantisiyle haber veriyor.',
-            ' ',
-            'Yeni özellikleri denemek için !milyoner ile oyuna başla veya !yardim yaz!'
+            'Yeni özellikleri denemek için !yardim yaz!'
         ];
         try {
             await client.sendMessage(msg.from, patchNotes.join('\n'));

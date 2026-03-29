@@ -2,6 +2,11 @@
 
 Tüm önemli değişiklikler bu dosyada belgelenecektir.
 
+## [1.13.0] - 2026-03-29
+### 🚀 İyileştirmeler & Eklemeler
+- **Yetkiye Dayalı Dinamik Yardım Menüsü**: `!yardim` ve `!yardim full` komutları güncellendi. Artık Admin, Mod ve Owner rollerına sahip kullanıcılar, yardım menüsünün altında yetkilerine özel ek komutları liste halinde görebilecekler.
+- **Güvenli Mod (Safe Mod)**: Kurucuya (Owner) özel `!safemod ac`/`kapat` ayarı eklendi. Aktif edildiğinde "gay, yalan, soygun, wanted" gibi hassas komutlar kullanıma kapatılır. Ayrıca botun varsayılan agresif/troll hazır mesajları daha kibar ve saygılı versiyonlarıyla değiştirilir.
+
 ## [1.12.0] - 2024-03-10
 ### 🚀 İyileştirmeler & Eklemeler (Aşama 8)
 - **Global Ayar Yöneticisi (Config Manager)**: SQLite'a `settings` adında bir tablo eklendi. Admin ve Kurucular artık koda dokunmadan WhatsApp üzerinden `!set <ayar_adı> <değer>` komutuyla botun iç ayarlarını (limitler vb.) dinamik olarak değiştirebilir. `!ayarlar` ile mevcut durum görüntülenebilir.
