@@ -163,7 +163,7 @@ client.on('message', async msg => {
     // ─── Owner Mode Check ───
     if (msg.body.startsWith('!')) {
         const isOwnerMode = await getSetting('owner_mode') === 'true';
-        if (isOwnerMode && msg.from !== OWNER_ID) {
+        if (isOwnerMode && userId !== OWNER_ID) {
             if (!maintenanceNotified.has(userId)) {
                 maintenanceNotified.add(userId);
                 try {
