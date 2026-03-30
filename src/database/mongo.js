@@ -238,6 +238,13 @@ const getAllSettings = async () => {
     return await Setting.find().lean();
 };
 
+const clearAllSettings = async () => {
+    await Setting.deleteMany({});
+    // Reload defaults
+    await Setting.updateOne({ key_name: 'owner_mode' }, { $setOnInsert: { key_value: 'false' }}, { upsert: true });
+    await Setting.updateOne({ key_name: 'milyoner_daily_limit' }, { $setOnInsert: { key_value: '2' }}, { upsert: true });
+};
+
 // ─── Milyoner Daily Logic ───
 const getMilyonerPlayed = async (id) => {
     const user = await getUser(id);
@@ -628,7 +635,7 @@ module.exports = {
   },
   
   getUser, addUser, updateBalance, setDaily, getTopUsers, getTopActiveUsers, getAllUsers,
-  hasSeenPatch, markPatchSeen, getSetting, updateSetting, getAllSettings,
+  hasSeenPatch, markPatchSeen, getSetting, updateSetting, getAllSettings, clearAllSettings,
   getMilyonerPlayed, incrementMilyonerPlayed,
   incrementMsgCount, recordWin, recordLoss,
   marry, divorce,

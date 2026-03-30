@@ -1,7 +1,7 @@
 const { getUser, addUser, updateBalance, setBalance, deleteUser,
   getAllUsers, getSpamLogs, getAllAliases,
   hasRole, isOwner, addAdmin, removeAdmin, getAllAdmins, getAdmin, OWNER_ID,
-  getSetting, updateSetting, getAllSettings } = require('../database/mongo');
+  getSetting, updateSetting, getAllSettings, clearAllSettings } = require('../database/mongo');
 const { centeredBox } = require('./utils');
 
 // ─── Ban system (in-memory, shared with spam.js) ───
@@ -62,6 +62,12 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
       if (adminInfo.role === 'owner') return msg.reply('⚠️ Owner kaldırılamaz.');
       await removeAdmin(normTarget);
       return msg.reply(`✅ @${normTarget.split('@')[0]} admin yetkisi kaldırıldı.`);
+    }
+
+    case 'sifirla': {
+      if (!await isOwner(userId)) return msg.reply('🚫 Bu komutu sadece bot sahibi kullanabilir.');
+      await clearAllSettings();
+      return msg.reply('🔄 Tüm bot ayarları ve kısıtlamalar sıfırlandı! Veritabanı ve bakiyeler olduğu gibi korundu.');
     }
 
     case 'safemod': {
@@ -334,6 +340,8 @@ module.exports = async (command, args, msg, userId, user, resolve, client) => {
         '║ !admin_cikar @kisi\n' +
         '║\n' +
         '║ ⚙️ SİSTEM VE BAKIM\n' +
+        '║ !sifirla\n' +
+        '║  ↳ Tüm ayarları fabrika ayarına çevirir\n' +
         '║ !set owner_mode true\n' +
         '║ !safemod ac/kapat\n' +
         '║  ↳ Küfür ve argoyu engeller\n' +
