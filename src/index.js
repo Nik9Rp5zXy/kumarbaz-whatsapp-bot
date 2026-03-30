@@ -1,7 +1,7 @@
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const { handleCommand } = require('./commands');
-const { getUser, addUser, incrementMsgCount, getAlias, setAlias, migrateUser, hasSeenPatch, markPatchSeen, getSetting } = require('./database/mongo');
+const { getUser, addUser, incrementMsgCount, getAlias, setAlias, migrateUser, hasSeenPatch, markPatchSeen, getSetting, updateSetting, isOwner, OWNER_ID } = require('./database/mongo');
 const hangmanHandler = require('./commands/hangman');
 
 const isTermux = !!process.env.TERMUX_VERSION;
@@ -156,6 +156,33 @@ client.on('message', async msg => {
             } catch (e) {
                 console.error('Hangman DM error:', e);
             }
+            return;
+        }
+    }
+
+    // ─── !sifirla — Emergency Reset (bypasses ALL checks) ───
+    if (msg.body.trim().toLowerCase() === '!sifirla') {
+        const isUserOwner = await isOwner(userId);
+        if (isUserOwner) {
+            try {
+                await updateSetting('owner_mode', 'false');
+                await updateSetting('safe_mode', 'false');
+                maintenanceNotified.clear();
+                await client.sendMessage(msg.from, [
+                    '🔄 *SİSTEM SIFIRLANDI*',
+                    '',
+                    '✅ owner_mode → kapalı',
+                    '✅ safe_mode → kapalı',
+                    '✅ Bakım bildirimleri temizlendi',
+                    '',
+                    '🟢 Bot artık herkese açık.'
+                ].join('\n'));
+            } catch (e) {
+                console.error('Sıfırlama hatası:', e);
+            }
+            return;
+        } else {
+            try { await msg.reply('🚫 Bu komutu sadece bot sahibi kullanabilir.'); } catch(e) {}
             return;
         }
     }
